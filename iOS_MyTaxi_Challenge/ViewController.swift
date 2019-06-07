@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        do {
+            try WebsiteParser.shared.startToParseWebSite()
+        } catch let error {
+            print("Error : \(error)")
+        }
+        
     }
 
 

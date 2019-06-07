@@ -1,0 +1,106 @@
+//
+//  LocationManager.swift
+//  iOS_MyTaxi_Challenge
+//
+//  Created by Erkut Baş on 6/6/19.
+//  Copyright © 2019 Erkut Baş. All rights reserved.
+//
+
+import Foundation
+
+import Foundation
+import CoreLocation
+
+class LocationManager: NSObject, CLLocationManagerDelegate {
+    
+    public static let shared = LocationManager()
+    
+    private var locationManager: CLLocationManager!
+    
+    // completion handler
+    typealias placeMarkCompletion = ([CLPlacemark]) -> Void
+    typealias locationDataCompletion = (CLLocation) -> Void
+    private var completionHandlerForLocationUpdates: locationDataCompletion?
+    
+    override init() {
+        super.init()
+        self.locationManager = CLLocationManager()
+        
+        guard let locationManager = self.locationManager else {
+            return
+        }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.pausesLocationUpdatesAutomatically = true // Enable automatic pausing
+    }
+    
+    /// Description: starts updating location
+    func startUpdateLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+    
+    /// Description: stops updating location
+    func stopUpdateLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.stopUpdatingLocation()
+        }
+    }
+    
+    
+    /// Description: It's called to get current location. Starts location update and stop after getting location
+    ///
+    /// - Parameter completion: completion containing cllocation object
+    func getCurrentLocationData(completion: @escaping locationDataCompletion) {
+        if CLLocationManager.locationServicesEnabled() {
+            self.startUpdateLocation()
+            completionHandlerForLocationUpdates = { (location) -> Void in
+                completion(location)
+                self.stopUpdateLocation()
+            }
+        }
+        
+    }
+    
+    func getCurrentPlaceMarkData(completion: @escaping placeMarkCompletion) {
+        getCurrentLocationData { (location) in
+            print("Location : \(location)")
+            self.startGettingCLGeocoderResult(location, completion: completion)
+        }
+    }
+    
+    private func startGettingCLGeocoderResult(_ location: CLLocation, completion: @escaping placeMarkCompletion) {
+        let clgeocoder = CLGeocoder()
+        clgeocoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks, error) in
+            if let error = error {
+                print("Something goes terribly wrong while getting placemarks : \(error)")
+            }
+            
+            if let placeMarksData = placeMarks {
+                completion(placeMarksData)
+            }
+            
+        })
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if let error = error as? CLError, error.code == .denied {
+            // Location updates are not authorized.
+            self.locationManager.stopUpdatingLocation()
+            return
+        }
+        // Notify the user of any errors.
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last  else {
+            return
+        }
+        completionHandlerForLocationUpdates?(location)
+        
+    }
+    
+}

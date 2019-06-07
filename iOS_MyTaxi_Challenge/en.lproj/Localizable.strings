@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  iOS_MyTaxi_Challenge
+
+  Created by Erkut Baş on 6/6/19.
+  Copyright © 2019 Erkut Baş. All rights reserved.
+*/
+
+"permissionMainSubject" = "Start Discovery";
+"permissionDetailedInformation" = "MyTaxiChallange needs location permission to enhance your experience.";
+"locationRequest" = "Access Location";
+"locationAccessed" = "Location Permission Granted";
+"locationEnable" = "Enable Location From Settings";
+
+"warning" = "Warning";
+"warningDetail" = "Sorry, application can not serve your current country. Please select another one for now ☺️.";
+
+"filterOptions" = "Filter Options";
+"detailedFilterOptions" = "You can choose country.";
+
+"startTime" = "Start Time";
+"endTime" = "End Time";
+"simulatorSpeed" = "Simulation Speed";
+"icao24Info" = "Icao24 Info";
+"cancelPrompt" = "Cancel";
+"simulatePrompt" = "Simulate";
+"finishPrompt" = "Finish";
+"simulationScreen" = "Simulation Screen";
+"brokenData" = "Invalid, expired data.Please try again.";
+
+"chooseCountry" = "Choose Country";
+

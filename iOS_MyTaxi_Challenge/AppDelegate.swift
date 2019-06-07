@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // create main starter view controller
+        let initialViewController = MainViewController()
+        let navigationViewController = UINavigationController(rootViewController: initialViewController)
+        self.window?.rootViewController = navigationViewController
+        self.window?.makeKeyAndVisible()
+        
+        // Cache Setting
+        let cache = URLCache(memoryCapacity: CONSTANT.CACHE.MEMORY_CAPACITY, diskCapacity: CONSTANT.CACHE.DISK_CAPACITY, diskPath: CONSTANT.CACHE.DISK_PATH)
+        URLCache.shared = cache
+        
         return true
     }
 
