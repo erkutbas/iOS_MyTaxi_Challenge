@@ -14,6 +14,9 @@ class MainViewController: UIViewController {
     
     private var viewModel = MainViewModel()
     
+    private var mapView: MapView!
+    private var countrySelectionView: CountrySelectionView!
+    
     lazy var refreshingView: RefreshingView = {
         let temp = RefreshingView()
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +45,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareViewControllerSettings()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +82,8 @@ class MainViewController: UIViewController {
     deinit {
         viewModel.apiCallStatus.unbind()
         viewModel.unsuitableCountry.unbind()
+        viewModel.countrySelectionViewActivation.unbind()
+        viewModel.mapViewActivation.unbind()
     }
     
 }
@@ -162,6 +168,14 @@ extension MainViewController {
                 self.presentWarningViewController()
             }
         }
+        
+        viewModel.countrySelectionViewActivation.bind { (activation) in
+            self.countrySelectionView.activationManager(active: activation)
+        }
+        
+        viewModel.mapViewActivation.bind { (activation) in
+            self.mapView.activationManager(active: activation)
+        }
     }
     
     private func presentWarningViewController() {
@@ -177,9 +191,10 @@ extension MainViewController {
     private func addBottomSheetViews() {
         let mainScreenBounds = UIScreen.main.bounds
         
-        let mapView = MapView(frame: CGRect(origin: CGPoint(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.MAPVIEW_Y_COORDINATE), size: mainScreenBounds.size))
+        mapView = MapView(frame: CGRect(origin: CGPoint(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.MAPVIEW_Y_COORDINATE - UIApplication.shared.returnBottomPadding()), size: mainScreenBounds.size))
         
-        let countrySelectionView = CountrySelectionView(frame: CGRect(origin: CGPoint(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE), size: mainScreenBounds.size))
+        countrySelectionView = CountrySelectionView(frame: CGRect(origin: CGPoint(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE - UIApplication.shared.returnBottomPadding()), size: CGSize(width: mainScreenBounds.width, height: CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE_ACTIVE)))
+        countrySelectionView.delegate = self
         
         self.view.addSubview(countrySelectionView)
         self.view.addSubview(mapView)
@@ -193,6 +208,9 @@ extension MainViewController {
 extension MainViewController: ViewAnimationTrigger {
     func triggerAnimation(direction: Direction?) {
         print("\(#function)")
+        guard let direction = direction else { return }
+        print("direction: \(direction)")
+        mapView.animatedFromOutside(direction: direction)
     }
 }
 

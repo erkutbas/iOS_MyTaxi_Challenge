@@ -55,7 +55,7 @@ struct CONSTANT {
     struct VIEW_FRAME_VALUES {
         static let MAPVIEW_Y_COORDINATE: CGFloat = 100
         static let COUNTRY_SELECTION_VIEW_Y_COORDINATE: CGFloat = 200
-        static let COUNTRY_SELECTION_VIEW_Y_COORDINATE_ACTIVE: CGFloat = 500
+        static let COUNTRY_SELECTION_VIEW_Y_COORDINATE_ACTIVE: CGFloat = 600
         static let MAPVIEW_Y_COORDINATE_ACTIVE: CGFloat = 0
     }
 }

@@ -8,14 +8,33 @@
 
 import UIKit
 
-class CountrySelectionView: BaseView {
+class CountrySelectionView: BaseBottomSheetView {
     
     weak var delegate: ViewAnimationTrigger?
     private var direction: Direction = .up
-
+    
+    var mainScreenBounds: CGRect {
+        get {
+            return UIScreen.main.bounds
+        }
+    }
+    
+    // blur view
+    lazy var blurView: UIVisualEffectView = {
+        let effect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let temp = UIVisualEffectView(effect: effect)
+        temp.isUserInteractionEnabled = false
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.layer.masksToBounds = true
+        temp.isHidden = true
+        return temp
+    }()
+    
     override func prepareViewConfigurations() {
         super.prepareViewConfigurations()
         configureViewSettings()
+        addBlurEffect()
+        
     }
 
 }
@@ -27,12 +46,34 @@ extension CountrySelectionView {
         self.backgroundColor = #colorLiteral(red: 0.6, green: 0.5607843137, blue: 0.6352941176, alpha: 1)
         self.arrangeCornerRadius(radius: 80, maskCorner: .layerMinXMinYCorner)
         self.addGestures()
+        self.reArrangeTopBarViewConstraint()
+        self.activationManager(active: false)
+    }
+    
+    private func reArrangeTopBarViewConstraint() {
+        NSLayoutConstraint.activate([
+            topBarView.heightAnchor.constraint(equalToConstant: 100),
+            ])
+    }
+    
+    private func addBlurEffect() {
+        
+        self.insertSubview(blurView, at: 0)
+        
+        NSLayoutConstraint.activate([
+            
+            blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            blurView.topAnchor.constraint(equalTo: self.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            ])
         
     }
     
-    private func arrangeCornerRadius(radius: CGFloat, maskCorner: CACornerMask) {
-        self.layer.maskedCorners = maskCorner
-        self.layer.cornerRadius = radius
+    // outsider functions
+    func activationManager(active: Bool) {
+        self.isUserInteractionEnabled = active
     }
     
 }
@@ -43,23 +84,37 @@ extension CountrySelectionView: UIGestureRecognizerDelegate {
     private func addGestures() {
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector.animateView)
         tapGesture.delegate = self
-        self.addGestureRecognizer(tapGesture)
+        self.topBarView.addGestureRecognizer(tapGesture)
     }
     
     @objc fileprivate func animateView(_ sender: UITapGestureRecognizer) {
         
-        let mainScreenBounds = UIScreen.main.bounds
-        
-        
+        switch direction {
+        case .down:
+            delegate?.triggerAnimation(direction: .up)
+        case .up:
+            delegate?.triggerAnimation(direction: .down)
+        default:
+            break
+        }
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             switch self.direction {
             case .down:
-                self.frame = CGRect(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE_ACTIVE, width: self.frame.width, height: self.frame.height)
+                self.frame = CGRect(x: 0, y: self.mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE - UIApplication.shared.returnBottomPadding(), width: self.frame.width, height: self.frame.height)
+                self.direction = .up
+                self.directionIcon.transform = .identity
+                self.blurView.isHidden = true
+                self.backgroundColor = #colorLiteral(red: 0.6, green: 0.5607843137, blue: 0.6352941176, alpha: 1)
                 
             case .up:
-                self.frame = CGRect(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE, width: self.frame.width, height: self.frame.height)
+                self.frame = CGRect(x: 0, y: self.mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE_ACTIVE, width: self.frame.width, height: self.frame.height)
+                self.direction = .down
+                self.directionIcon.transform = CGAffineTransform(scaleX: 1, y: -1)
+                self.blurView.isHidden = false
+                self.backgroundColor = UIColor.clear
+                
             default:
                 break
             }

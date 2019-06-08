@@ -35,4 +35,9 @@ extension UIView {
         layer.mask = mask
     }
     
+    func arrangeCornerRadius(radius: CGFloat, maskCorner: CACornerMask) {
+        self.layer.maskedCorners = maskCorner
+        self.layer.cornerRadius = radius
+    }
+    
 }

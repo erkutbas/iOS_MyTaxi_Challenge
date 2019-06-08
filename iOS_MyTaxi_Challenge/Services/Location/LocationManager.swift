@@ -21,6 +21,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     typealias placeMarkCompletion = ([CLPlacemark]) -> Void
     typealias locationDataCompletion = (CLLocation) -> Void
     private var completionHandlerForLocationUpdates: locationDataCompletion?
+    private var didCLGeocoderDataGet = false
     
     override init() {
         super.init()
@@ -32,7 +33,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.distanceFilter = 1000
         locationManager.pausesLocationUpdatesAutomatically = true // Enable automatic pausing
     }
     
@@ -66,13 +67,25 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func getCurrentPlaceMarkData(completion: @escaping placeMarkCompletion) {
+        
+        self.didCLGeocoderDataGet = false
+        
         getCurrentLocationData { (location) in
             print("Location : \(location)")
-            self.startGettingCLGeocoderResult(location, completion: completion)
+            // didupdatelocations triggers more than once until it stopsupdatinglocation. That's why we need to keep clgeocoder function call in control. Because afterward it triggers a view controller presentation.
+            if !self.didCLGeocoderDataGet {
+                self.didCLGeocoderDataGet = true
+                self.startGettingCLGeocoderResult(location, completion: completion)
+            }
+            
         }
     }
     
     private func startGettingCLGeocoderResult(_ location: CLLocation, completion: @escaping placeMarkCompletion) {
+        print("\(#function)")
+        // in case location update still works
+        self.stopUpdateLocation()
+        
         let clgeocoder = CLGeocoder()
         clgeocoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks, error) in
             if let error = error {
@@ -84,6 +97,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             }
             
         })
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -96,6 +110,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("\(#function)")
         guard let location = locations.last  else {
             return
         }

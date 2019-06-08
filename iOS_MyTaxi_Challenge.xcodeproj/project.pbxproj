@@ -37,9 +37,12 @@
 		A75FF84922AAB8C300E2493E /* TempBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF84822AAB8C300E2493E /* TempBase.swift */; };
 		A75FF84C22AAC6B600E2493E /* WarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF84B22AAC6B600E2493E /* WarningViewController.swift */; };
 		A75FF84F22AACE2A00E2493E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF84E22AACE2A00E2493E /* UIView+Extension.swift */; };
+		A76E0CFC22AB607500BD577D /* CountryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E0CFB22AB607500BD577D /* CountryPickerView.swift */; };
+		A76E0CFE22AB608800BD577D /* CityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E0CFD22AB608800BD577D /* CityPickerView.swift */; };
 		A76EB36A22AAD555006D7DEA /* warning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A76EB36922AAD555006D7DEA /* warning.jpg */; };
 		A76EB36E22AB03D4006D7DEA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB36D22AB03D4006D7DEA /* MapView.swift */; };
 		A76EB37022AB1BA0006D7DEA /* CountrySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */; };
+		A76EB37222AB443E006D7DEA /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */; };
 		A7A3091722A8E5C100FEBABC /* WebSiteParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3091622A8E5C100FEBABC /* WebSiteParser.swift */; };
 		A7A3091B22A8E63800FEBABC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3091A22A8E63800FEBABC /* Enums.swift */; };
 		A7A3092322A9299200FEBABC /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7A3092222A9299200FEBABC /* MapViewController.m */; };
@@ -83,9 +86,12 @@
 		A75FF84822AAB8C300E2493E /* TempBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempBase.swift; sourceTree = "<group>"; };
 		A75FF84B22AAC6B600E2493E /* WarningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningViewController.swift; sourceTree = "<group>"; };
 		A75FF84E22AACE2A00E2493E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		A76E0CFB22AB607500BD577D /* CountryPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerView.swift; sourceTree = "<group>"; };
+		A76E0CFD22AB608800BD577D /* CityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerView.swift; sourceTree = "<group>"; };
 		A76EB36922AAD555006D7DEA /* warning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = warning.jpg; path = ../../../../../Downloads/warning.jpg; sourceTree = "<group>"; };
 		A76EB36D22AB03D4006D7DEA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectionView.swift; sourceTree = "<group>"; };
+		A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		A7A3091622A8E5C100FEBABC /* WebSiteParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSiteParser.swift; sourceTree = "<group>"; };
 		A7A3091A22A8E63800FEBABC /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A7A3092022A9299100FEBABC /* iOS_MyTaxi_Challenge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS_MyTaxi_Challenge-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				A75FF84E22AACE2A00E2493E /* UIView+Extension.swift */,
+				A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -337,6 +344,8 @@
 				A75FF84822AAB8C300E2493E /* TempBase.swift */,
 				A76EB36D22AB03D4006D7DEA /* MapView.swift */,
 				A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */,
+				A76E0CFB22AB607500BD577D /* CountryPickerView.swift */,
+				A76E0CFD22AB608800BD577D /* CityPickerView.swift */,
 			);
 			path = Custom_Views;
 			sourceTree = "<group>";
@@ -485,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A701D62022AA409A00CBF1BE /* ApiCallManager.swift in Sources */,
+				A76E0CFE22AB608800BD577D /* CityPickerView.swift in Sources */,
 				A76EB36E22AB03D4006D7DEA /* MapView.swift in Sources */,
 				A75FF84922AAB8C300E2493E /* TempBase.swift in Sources */,
 				A75FF83D22AA80B000E2493E /* Dynamic.swift in Sources */,
@@ -496,6 +506,7 @@
 				A701D60D22A9C6D600CBF1BE /* Constants.swift in Sources */,
 				A701D5F222A9ABF100CBF1BE /* PermissionViewController.swift in Sources */,
 				A75FF84F22AACE2A00E2493E /* UIView+Extension.swift in Sources */,
+				A76EB37222AB443E006D7DEA /* UIApplication+Extension.swift in Sources */,
 				A701D60022A9B48700CBF1BE /* PermissionButtonView.swift in Sources */,
 				A75FF83B22AA805D00E2493E /* Protocols.swift in Sources */,
 				A714BE5C22A8E41A00A373DC /* AppDelegate.swift in Sources */,
@@ -509,6 +520,7 @@
 				A7A3091722A8E5C100FEBABC /* WebSiteParser.swift in Sources */,
 				A75FF83822AA803200E2493E /* MainViewModel.swift in Sources */,
 				A76EB37022AB1BA0006D7DEA /* CountrySelectionView.swift in Sources */,
+				A76E0CFC22AB607500BD577D /* CountryPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,190 @@ class BaseView: UIView {
     
 }
 
+class BaseBottomSheetView: UIView {
+    
+    lazy var topBarView: UIView = {
+        let temp = UIView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.isUserInteractionEnabled = true
+        return temp
+    }()
+    
+    lazy var mainStackView: UIStackView = {
+        
+        let temp = UIStackView(arrangedSubviews: [stackViewForDirectionIcon, stackViewForSheetInformation])
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.isUserInteractionEnabled = true
+        temp.spacing = 10
+        temp.alignment = .fill
+        temp.axis = .horizontal
+        temp.distribution = .fillProportionally
+        
+        
+        return temp
+    }()
+    
+    lazy var stackViewForSheetInformation: UIStackView = {
+        
+        let temp = UIStackView(arrangedSubviews: [mainSubject, detailedInformation])
+        temp.isUserInteractionEnabled = true
+        temp.spacing = 4
+        temp.alignment = .fill
+        temp.axis = .vertical
+        temp.distribution = .fillProportionally
+        
+        return temp
+    }()
+    
+    let mainSubject: UILabel = {
+        let label = UILabel()
+        //label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        label.contentMode = .center
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = LocalizedConstants.TitlePrompts.selectCountry
+        //label.font = UIFont(name: "Avenier-Medium", size: 48)
+        label.font = UIFont(name: "Avenir-Heavy", size: 18)
+        //label.textColor = #colorLiteral(red: 0.1647058824, green: 0.1803921569, blue: 0.262745098, alpha: 1)
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        return label
+    }()
+    
+    let detailedInformation: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.lightGray
+        label.numberOfLines = 0
+        label.textAlignment = .left
+        label.contentMode = .center
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = LocalizedConstants.TitlePrompts.selectCountryDetail
+        label.font = UIFont(name: "Avenir-Medium", size: 14)
+        //label.textColor = #colorLiteral(red: 0.1647058824, green: 0.1803921569, blue: 0.262745098, alpha: 1)
+        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        return label
+    }()
+    
+    lazy var stackViewForDirectionIcon: UIStackView = {
+        
+        let temp = UIStackView(arrangedSubviews: [directionIcon])
+        temp.isUserInteractionEnabled = true
+        //temp.spacing = 10
+        temp.alignment = .fill
+        temp.axis = .vertical
+        temp.distribution = .fillProportionally
+        
+        return temp
+    }()
+    
+    lazy var directionIcon: UIImageView = {
+        let temp = UIImageView()
+        temp.isUserInteractionEnabled = true
+        temp.image = UIImage(named: "direction1")
+        temp.contentMode = .top
+        return temp
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        prepareViewConfigurations()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func prepareViewConfigurations() {
+        self.clipsToBounds = true
+        self.addViews()
+    }
+    
+    func addViews() {
+        self.addSubview(topBarView)
+        self.topBarView.addSubview(mainStackView)
+        
+        NSLayoutConstraint.activate([
+            
+            topBarView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            topBarView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            topBarView.topAnchor.constraint(equalTo: self.topAnchor),
+//            topBarView.heightAnchor.constraint(equalToConstant: 100),
+            
+            mainStackView.centerYAnchor.constraint(equalTo: self.topBarView.centerYAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: self.topBarView.leadingAnchor, constant: 50)
+            
+            ])
+    }
+    
+}
+
+class BasePickerView: UIView {
+    
+    lazy var stackViewForPickerView: UIStackView = {
+        
+        let temp = UIStackView(arrangedSubviews: [infoLabel, infoPicker])
+        temp.isUserInteractionEnabled = true
+        temp.spacing = 5
+        temp.alignment = .fill
+        temp.axis = .vertical
+        temp.distribution = .fillProportionally
+        
+        return temp
+    }()
+    
+    let infoLabel: UILabel = {
+        let temp = UILabel()
+        //label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
+        temp.numberOfLines = 0
+        temp.textAlignment = .center
+        temp.contentMode = .center
+        temp.lineBreakMode = .byWordWrapping
+        temp.text = LocalizedConstants.TitlePrompts.country
+        temp.font = UIFont(name: "Avenir-Medium", size: 18)
+        temp.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        return temp
+    }()
+    
+    lazy var infoPicker: UIPickerView = {
+        let temp = UIPickerView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.isUserInteractionEnabled = true
+//        temp.delegate = self
+//        temp.dataSource = self
+        temp.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return temp
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        prepareViewConfigurations()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func prepareViewConfigurations() {
+        addViews()
+    }
+    
+    func addViews() {
+        self.addSubview(stackViewForPickerView)
+        
+        NSLayoutConstraint.activate([
+            
+            stackViewForPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            stackViewForPickerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            
+            ])
+    }
+}
+
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()

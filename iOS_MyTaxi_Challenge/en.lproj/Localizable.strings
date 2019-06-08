@@ -29,4 +29,9 @@
 "brokenData" = "Invalid, expired data.Please try again.";
 
 "chooseCountry" = "Choose Country";
-
+"selectCountry" = "Country Selection";
+"selectCountryDetail" = "Please select country and city.";
+"mapViewScreen" = "Map Screen";
+"mapViewScreenDetail" = "You can see taxi on map.";
+"country" = "Country";
+"city" = "City";
