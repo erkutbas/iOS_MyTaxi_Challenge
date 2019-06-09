@@ -28,5 +28,22 @@ struct ApiCallInputStruct {
     }
 }
 
+struct CountrySelectionStruct {
+    var country: CountryList?
+    var city: String?
+    
+    /*
+    init() {
+        self.country = CountryList(countryImageURL: CONSTANT.CHARS.SPACE, cities: [], countryCode: CONSTANT.CHARS.SPACE, countryName: CONSTANT.CHARS.SPACE)
+        self.city = CONSTANT.CHARS.SPACE
+    }*/
+    
+    init() {}
+    
+    init(country: CountryList, city: String) {
+        self.country = country
+        self.city = city
+    }
+}
 
 

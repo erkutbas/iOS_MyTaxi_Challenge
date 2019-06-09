@@ -67,11 +67,11 @@ class BaseBottomSheetView: UIView {
     let mainSubject: UILabel = {
         let label = UILabel()
         //label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-        label.numberOfLines = 0
+//        label.numberOfLines = 0
         label.textAlignment = .left
         label.contentMode = .center
-        label.lineBreakMode = .byWordWrapping
-        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.lineBreakMode = .byWordWrapping
+//        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = LocalizedConstants.TitlePrompts.selectCountry
         //label.font = UIFont(name: "Avenier-Medium", size: 48)
         label.font = UIFont(name: "Avenir-Heavy", size: 18)
@@ -84,11 +84,11 @@ class BaseBottomSheetView: UIView {
     let detailedInformation: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.lightGray
-        label.numberOfLines = 0
+//        label.numberOfLines = 0
         label.textAlignment = .left
         label.contentMode = .center
-        label.lineBreakMode = .byWordWrapping
-        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.lineBreakMode = .byWordWrapping
+//        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = LocalizedConstants.TitlePrompts.selectCountryDetail
         label.font = UIFont(name: "Avenir-Medium", size: 14)
         //label.textColor = #colorLiteral(red: 0.1647058824, green: 0.1803921569, blue: 0.262745098, alpha: 1)
@@ -155,6 +155,7 @@ class BasePickerView: UIView {
     lazy var stackViewForPickerView: UIStackView = {
         
         let temp = UIStackView(arrangedSubviews: [infoLabel, infoPicker])
+        temp.translatesAutoresizingMaskIntoConstraints = false
         temp.isUserInteractionEnabled = true
         temp.spacing = 5
         temp.alignment = .fill
@@ -178,12 +179,23 @@ class BasePickerView: UIView {
         return temp
     }()
     
+    // transparent toolbar
+    lazy var toolbar: UIToolbar = {
+        let temp = UIToolbar()
+        temp.barStyle = .default
+        temp.isTranslucent = true
+        temp.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        temp.backgroundColor = UIColor.clear
+        temp.barTintColor = UIColor.clear
+        temp.setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        temp.sizeToFit()
+        temp.isUserInteractionEnabled = true
+        return temp
+    }()
+    
     lazy var infoPicker: UIPickerView = {
         let temp = UIPickerView()
-        temp.translatesAutoresizingMaskIntoConstraints = false
         temp.isUserInteractionEnabled = true
-//        temp.delegate = self
-//        temp.dataSource = self
         temp.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return temp
     }()
@@ -198,6 +210,7 @@ class BasePickerView: UIView {
     }
     
     func prepareViewConfigurations() {
+        print("yarro 2")
         addViews()
     }
     
@@ -206,8 +219,10 @@ class BasePickerView: UIView {
         
         NSLayoutConstraint.activate([
             
-            stackViewForPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackViewForPickerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            stackViewForPickerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackViewForPickerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            stackViewForPickerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackViewForPickerView.topAnchor.constraint(equalTo: self.topAnchor),
             
             ])
     }

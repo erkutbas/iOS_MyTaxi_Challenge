@@ -12,7 +12,7 @@ class MainViewModel: CommonViewModel {
     
     // dynamic components
     var apiCallStatus = Dynamic(ApiCallStatus.none)
-    var countrySelectionViewActivation = Dynamic(false)
+    var feedDataToCountySelectionView = Dynamic(Array<CountryList>())
     var mapViewActivation = Dynamic(false)
     var unsuitableCountry = Dynamic(false)
 
@@ -20,6 +20,7 @@ class MainViewModel: CommonViewModel {
     var currentCountryCode: String?
     
     func getPresentedCountries(apiCallInputStruct: ApiCallInputStruct, currentCountryCode: String) {
+        
         self.currentCountryCode = currentCountryCode
         apiCallStatus.value = .process
         
@@ -51,7 +52,8 @@ class MainViewModel: CommonViewModel {
         self.presentedCountryData = data
         // first apicall status triggers, it closes the refreshing view
         apiCallStatus.value = .done
-        countrySelectionViewActivation.value = true
+        // feed country list data
+        feedDataToCountySelectionView.value = data.resultData.presentedCountries.countryList
         // then check current country
         self.checkCurrentCountryInsidePresentedCountries()
         

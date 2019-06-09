@@ -60,7 +60,7 @@ class PresentedCountries: Codable {
 // MARK: - CountryList
 class CountryList: Codable {
     let countryImageURL: String
-    let cities: [String]
+    var cities: [String]
     let countryCode, countryName: String
     
     enum CodingKeys: String, CodingKey {

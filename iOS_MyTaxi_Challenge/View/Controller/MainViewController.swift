@@ -82,7 +82,7 @@ class MainViewController: UIViewController {
     deinit {
         viewModel.apiCallStatus.unbind()
         viewModel.unsuitableCountry.unbind()
-        viewModel.countrySelectionViewActivation.unbind()
+        viewModel.feedDataToCountySelectionView.unbind()
         viewModel.mapViewActivation.unbind()
     }
     
@@ -97,7 +97,6 @@ extension MainViewController {
         addViews()
         addMainBackgroundImage()
         addListeners()
-        addBottomSheetViews()
         
     }
     
@@ -124,18 +123,23 @@ extension MainViewController {
     }
     
     private func addViews() {
-        // first of all add static bottom sheetviews
-        //addBottomSheetViews()
-        
         self.view.addSubview(viewControllerImage)
-        self.view.addSubview(refreshingView)
-        
         NSLayoutConstraint.activate([
-
             viewControllerImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             viewControllerImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             viewControllerImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             viewControllerImage.topAnchor.constraint(equalTo: self.view.topAnchor),
+            
+            ])
+        
+        self.addBottomSheetViews()
+        self.addRefreshingView()
+        
+    }
+    
+    private func addRefreshingView() {
+        self.view.addSubview(refreshingView)
+        NSLayoutConstraint.activate([
             
             refreshingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             refreshingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -143,7 +147,6 @@ extension MainViewController {
             refreshingView.topAnchor.constraint(equalTo: self.view.topAnchor),
             
             ])
-        
     }
     
     private func addMainBackgroundImage() {
@@ -169,13 +172,16 @@ extension MainViewController {
             }
         }
         
-        viewModel.countrySelectionViewActivation.bind { (activation) in
-            self.countrySelectionView.activationManager(active: activation)
+        viewModel.feedDataToCountySelectionView.bind { (countryListData) in
+            self.countrySelectionView.setPresentedCountriesData(data: countryListData)
         }
         
         viewModel.mapViewActivation.bind { (activation) in
             self.mapView.activationManager(active: activation)
         }
+        
+        self.listenCountrySelectionViewDataChanges()
+        
     }
     
     private func presentWarningViewController() {
@@ -198,8 +204,28 @@ extension MainViewController {
         
         self.view.addSubview(countrySelectionView)
         self.view.addSubview(mapView)
-        
-        
+
+    }
+
+    private func listenCountrySelectionViewDataChanges() {
+        self.countrySelectionView.listenSelectedCountryData { (selectedCountryData) in
+            
+            if let country = selectedCountryData.country {
+                print("selected country data : \(country.countryName)")
+            } else {
+                print("country is nil")
+            }
+            
+            if let city = selectedCountryData.city {
+                print("selected city data : \(city)")
+            } else {
+                print("city is nil")
+            }
+            
+            
+            
+            
+        }
     }
     
 }

@@ -16,6 +16,16 @@ extension ViewAnimationTrigger {
     func triggerAnimation(direction: Direction?) {}
 }
 
+protocol PickerProtocols: class {
+    func getSelectedCountryInformation(countryData: CountryList)
+    func getSelectedCity(city: String?)
+}
+
+extension PickerProtocols {
+    func getSelectedCountryInformation(countryData: CountryList) {}
+    func getSelectedCity(city: String?) {}
+}
+
 protocol CommonViewModel {
     func handleGenericResponse<T: Codable>(response: Result<T, Error>)
 }

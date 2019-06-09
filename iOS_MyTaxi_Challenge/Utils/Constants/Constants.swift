@@ -37,6 +37,7 @@ struct CONSTANT {
     
     struct CHARS {
         static let SPACE = ""
+        static let DEFAULT_COUNTRY_CODE = "XX"
     }
     
     struct NUMERICS {

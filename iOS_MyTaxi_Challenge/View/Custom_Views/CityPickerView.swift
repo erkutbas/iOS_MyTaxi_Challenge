@@ -10,21 +10,16 @@ import UIKit
 
 class CityPickerView: BasePickerView {
     
-    private var data = Array<String>()
+    private var cityPickerViewModel = CityPickerViewModel()
+    weak var delegate: PickerProtocols?
 
-    init(frame: CGRect, data: Array<String>) {
-        super.init(frame: frame)
-        self.data = data
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func prepareViewConfigurations() {
         super.prepareViewConfigurations()
-        
         self.configureViewSettings()
+    }
+    
+    deinit {
+        cityPickerViewModel.cityListData.unbind()
     }
     
 }
@@ -36,8 +31,42 @@ extension CityPickerView {
         self.backgroundColor = UIColor.clear
         self.infoPicker.delegate = self
         self.infoPicker.dataSource = self
+        self.infoLabel.text = LocalizedConstants.TitlePrompts.city
+        self.activationManager(active: true)
+        
+        self.addListeners()
     }
     
+    private func activationManager(active: Bool) {
+        self.isHidden = active
+    }
+    
+    private func addListeners() {
+        cityPickerViewModel.cityListData.bind { (cityList) in
+            self.reloadPickerData()
+        }
+    }
+    
+    private func reloadPickerData() {
+        self.infoPicker.reloadAllComponents()
+    }
+    
+    // outsider
+    func setCitidata(cityList: Array<String>) {
+        self.cityPickerViewModel.cityListData.value = cityList
+        
+        DispatchQueue.main.async {
+            UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                if self.cityPickerViewModel.returnNumberOfComponents() <= 1 {
+                    self.activationManager(active: true)
+                } else {
+                    self.activationManager(active: false)
+                }
+                
+            }, completion: nil)
+        }
+        
+    }
 }
 
 // MARK: - UIPickerViewDataSource, UIPickerViewDelegate
@@ -47,17 +76,19 @@ extension CityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.data.count
+        return self.cityPickerViewModel.returnNumberOfComponents()
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: self.data[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        return NSAttributedString(string: self.cityPickerViewModel.returnCityName(index: row), attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        let selectedCountry = slideMenuViewModel.returnCountryDataByIndex(index: row)
-//        slideMenuViewModel.selectedCountry.value = selectedCountry
-//        delegate?.returnSelectedCountry(country: selectedCountry)
+        if row > 0 {
+            delegate?.getSelectedCity(city: self.cityPickerViewModel.returnCityName(index: row))
+        } else {
+            delegate?.getSelectedCity(city: nil)
+        }
     }
     
     
