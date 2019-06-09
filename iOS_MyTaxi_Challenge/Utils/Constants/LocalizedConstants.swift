@@ -46,6 +46,7 @@ struct LocalizedConstants {
         static let country = NSLocalizedString("country", comment: "")
         static let city = NSLocalizedString("city", comment: "")
         static let pleaseChoose = NSLocalizedString("pleaseChoose", comment: "")
+        static let mapView = NSLocalizedString("pleaseChoose", comment: "")
         
     }
 }

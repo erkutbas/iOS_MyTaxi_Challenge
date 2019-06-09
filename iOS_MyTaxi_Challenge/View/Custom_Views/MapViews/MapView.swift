@@ -10,6 +10,32 @@ import UIKit
 
 class MapView: BaseBottomSheetView {
     
+    lazy var mapView: MKMapView = {
+        let temp = MKMapView(frame: .zero)
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.isUserInteractionEnabled = true
+        temp.showsScale = true
+        temp.showsCompass = true
+        temp.showsUserLocation = true
+        temp.setUserTrackingMode(.followWithHeading, animated: true)
+        
+        temp.delegate = self
+        temp.register(VehicleAnnotationView.self, forAnnotationViewWithReuseIdentifier: VehicleAnnotationView.identifier)
+        
+        return temp
+    }()
+    
+    // blur view
+    lazy var blurView: UIVisualEffectView = {
+        let effect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let temp = UIVisualEffectView(effect: effect)
+        temp.isUserInteractionEnabled = false
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.layer.masksToBounds = true
+        temp.isHidden = true
+        return temp
+    }()
+    
     private var direction = Direction.up
     
     var mainScreenBounds: CGRect {
@@ -30,6 +56,7 @@ extension MapView {
     
     private func configureViewSettings() {
         self.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.07450980392, blue: 0.1960784314, alpha: 1)
+        self.reArrangeViewTitles()
         self.arrangeCornerRadius(radius: 80, maskCorner: .layerMinXMinYCorner)
         self.addGestures()
         self.reArrangeTopBarViewConstraint()
@@ -42,9 +69,26 @@ extension MapView {
             ])
     }
     
+    private func reArrangeViewTitles() {
+        self.mainSubject.text = LocalizedConstants.TitlePrompts.mapViewScreen
+        self.detailedInformation.text = LocalizedConstants.TitlePrompts.mapViewScreenDetail
+    }
+    
+    private func addBlurEffect() {
+        self.topBarView.insertSubview(blurView, at: 0)
+        NSLayoutConstraint.activate([
+            blurView.leadingAnchor.constraint(equalTo: self.topBarView.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: self.topBarView.trailingAnchor),
+            blurView.topAnchor.constraint(equalTo: self.topBarView.topAnchor),
+            blurView.bottomAnchor.constraint(equalTo: self.topBarView.bottomAnchor),
+            ])
+    }
+    
     // outsider functions
     func activationManager(active: Bool) {
-        self.isUserInteractionEnabled = active
+        DispatchQueue.main.async {
+            self.isUserInteractionEnabled = active
+        }
     }
     
 }
@@ -67,12 +111,14 @@ extension MapView: UIGestureRecognizerDelegate {
                 self.direction = .up
                 self.arrangeCornerRadius(radius: 80, maskCorner: .layerMinXMinYCorner)
                 self.directionIcon.transform = .identity
+                self.blurView.isHidden = true
                 
             case .up:
                 self.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.direction = .down
                 self.arrangeCornerRadius(radius: 0, maskCorner: .layerMinXMinYCorner)
                 self.directionIcon.transform = CGAffineTransform(scaleX: 1, y: -1)
+                self.blurView.isHidden = false
                 
             default:
                 break
@@ -100,6 +146,32 @@ extension MapView: UIGestureRecognizerDelegate {
             }
             
         }, completion: nil)
+    }
+    
+}
+
+// MARK: - MKMapViewDelegate
+extension MapView: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print("\(#function)")
+        //viewModel.getStatesData(openSkyNetworkRequestStruct: createOpenSkyNetworkRequestStruct(highestNorthCorner: mapView.northWestCoordinate, lowestSouthCorner: mapView.southEastCoordinate))
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
+            return nil
+        }
+        
+        guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: VehicleAnnotationView.identifier) as? VehicleAnnotationView else { return nil }
+        
+        //annotationView.delegate = self
+        //        annotationView.frame.size.height = 50
+        //        annotationView.frame.size.width = 50
+        
+        return annotationView
+        
     }
     
 }

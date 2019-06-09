@@ -49,6 +49,8 @@ extension CityPickerView {
     
     private func reloadPickerData() {
         self.infoPicker.reloadAllComponents()
+        self.infoPicker.selectRow(0, inComponent: 0, animated: true)
+        delegate?.getSelectedCity(city: nil)
     }
     
     // outsider

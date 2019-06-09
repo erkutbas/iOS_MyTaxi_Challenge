@@ -117,7 +117,10 @@ class ApiCallManager {
         case .presentedCountries:
             // there is no need for extra query parameters
             break
-        case .listOfVehicles:
+        case .listOfVehiclesDefault:
+            // there is no need for extra query parameters
+            break
+        case .listOfVehiclesWithInputs:
             // there is some code needing here :D
             break
         }

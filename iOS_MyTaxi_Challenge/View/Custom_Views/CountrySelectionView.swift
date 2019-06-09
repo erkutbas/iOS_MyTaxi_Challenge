@@ -42,9 +42,9 @@ class CountrySelectionView: BaseBottomSheetView {
         temp.image = UIImage(named: "check.png")?.withRenderingMode(.alwaysTemplate)
         temp.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         temp.layer.cornerRadius = 20
-        temp.layer.shadowColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        temp.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         temp.layer.shadowOffset = .zero
-        temp.layer.shadowOpacity = 1;
+        temp.layer.shadowOpacity = 0.5;
         temp.layer.shadowRadius = 5;
         return temp
     }()

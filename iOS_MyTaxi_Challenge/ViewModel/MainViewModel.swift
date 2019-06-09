@@ -15,19 +15,35 @@ class MainViewModel: CommonViewModel {
     var feedDataToCountySelectionView = Dynamic(Array<CountryList>())
     var mapViewActivation = Dynamic(false)
     var unsuitableCountry = Dynamic(false)
+    var selectedCountryDataStruct = Dynamic(CountrySelectionStruct())
+    var backgroundImageChanger = Dynamic(String())
+    var poiListCallStatus = Dynamic(ApiCallStatus.none)
 
     var presentedCountryData: PresentedCountryData?
     var currentCountryCode: String?
     
-    func getPresentedCountries(apiCallInputStruct: ApiCallInputStruct, currentCountryCode: String) {
-        
-        self.currentCountryCode = currentCountryCode
+    func getPresentedCountries(apiCallInputStruct: ApiCallInputStruct, currentCountryCode: String?) {
+
+        if let currentCountryCode = currentCountryCode {
+            self.currentCountryCode = currentCountryCode
+        }
+
         apiCallStatus.value = .process
         
         guard let urlRequest = ApiCallManager.shared.createUrlRequest(apiCallInputStruct: apiCallInputStruct) else { return }
         print("urlRequest : \(urlRequest)")
         ApiCallManager.shared.startUrlRequest(PresentedCountryData.self
         , useCache: true, urlRequest: urlRequest) { (result) in
+            self.handleGenericResponse(response: result)
+        }
+        
+    }
+    
+    func getDefaultListOfVehicles(apiCallStruct: ApiCallInputStruct) {
+        print("\(#function)")
+        
+        guard let urlRequest = ApiCallManager.shared.createUrlRequest(apiCallInputStruct: apiCallStruct) else { return }
+        ApiCallManager.shared.startUrlRequest(PoiListData.self, useCache: false, urlRequest: urlRequest) { (result) in
             self.handleGenericResponse(response: result)
         }
         
@@ -43,8 +59,25 @@ class MainViewModel: CommonViewModel {
         case .success(let data):
             if let data = data as? PresentedCountryData {
                 self.handlePresentedCountiesResponseData(data: data)
+            } else if let data = data as? PoiListData {
+                self.handlePoiListData(data: data)
             }
         }
+        
+    }
+    
+    private func handlePoiListData(data: PoiListData) {
+        print("\(#function)")
+        
+        guard let poiList = data.poiList else { return }
+        print("Total Data : \(poiList.count)")
+        
+        for item in poiList {
+            print("item : \(item.coordinate)")
+        }
+
+        
+        mapViewActivation.value = true
         
     }
     
@@ -97,6 +130,17 @@ class MainViewModel: CommonViewModel {
            // do nothing
         } else {
             self.unsuitableCountry.value = false
+        }
+        
+    }
+    
+    func setSelectedCountryData(data: CountrySelectionStruct) {
+        self.selectedCountryDataStruct.value = data
+        
+        if let country = data.country {
+            self.backgroundImageChanger.value = country.countryImageURL
+        } else {
+            self.backgroundImageChanger.value = CONSTANT.CHARS.SPACE
         }
         
     }

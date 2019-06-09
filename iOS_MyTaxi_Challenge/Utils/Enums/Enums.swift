@@ -35,7 +35,8 @@ enum BackendApiError: Error {
 
 enum ApiCallType {
     case presentedCountries
-    case listOfVehicles
+    case listOfVehiclesDefault
+    case listOfVehiclesWithInputs
 }
 
 enum ApiCallStatus {

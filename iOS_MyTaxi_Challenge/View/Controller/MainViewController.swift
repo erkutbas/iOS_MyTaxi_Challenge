@@ -24,11 +24,12 @@ class MainViewController: UIViewController {
         return temp
     }()
     
-    lazy var viewControllerImage: UIImageView = {
-        let temp = UIImageView()
+    lazy var viewControllerImage: CachedImageView = {
+        let temp = CachedImageView()
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.isUserInteractionEnabled = false
         temp.contentMode = .scaleAspectFill
+        temp.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.07450980392, blue: 0.1960784314, alpha: 1)
         return temp
     }()
     
@@ -63,6 +64,8 @@ class MainViewController: UIViewController {
                 
                 self.viewModel.getPresentedCountries(apiCallInputStruct: ApiCallInputStruct(callType: .presentedCountries, urlString: CONSTANT.CLOUD_FUNCTIONS_KEYS.URLS.presentedCountries), currentCountryCode: countryCode)
                 
+                self.viewModel.getDefaultListOfVehicles(apiCallStruct: ApiCallInputStruct(callType: .listOfVehiclesDefault, urlString: CONSTANT.MY_TAXI_URLS.URLS.DEFAULT_HAMBURG_SEARCH_URL))
+                
             })
             
         }
@@ -84,6 +87,9 @@ class MainViewController: UIViewController {
         viewModel.unsuitableCountry.unbind()
         viewModel.feedDataToCountySelectionView.unbind()
         viewModel.mapViewActivation.unbind()
+        viewModel.selectedCountryDataStruct.unbind()
+        viewModel.backgroundImageChanger.unbind()
+        viewModel.poiListCallStatus.unbind()
     }
     
 }
@@ -180,8 +186,52 @@ extension MainViewController {
             self.mapView.activationManager(active: activation)
         }
         
+        viewModel.selectedCountryDataStruct.bind { (selectedCountryData) in
+            self.startGettingDataProcess(data: selectedCountryData)
+        }
+        
+        viewModel.backgroundImageChanger.bind { (urlString) in
+            self.changeBackgroundImage(urlString: urlString)
+        }
+        
+        viewModel.poiListCallStatus.bind { (status) in
+            self.mapViewManagers(status: status)
+        }
+        
         self.listenCountrySelectionViewDataChanges()
         
+    }
+    
+    private func mapViewManagers(status: ApiCallStatus) {
+        switch status {
+        case .process:
+            break
+        case .failed:
+            break
+        case .done:
+            break
+        default:
+            break
+        }
+    }
+    
+    private func startGettingDataProcess(data: CountrySelectionStruct) {
+        
+    }
+    
+    private func changeBackgroundImage(urlString: String) {
+        print("\(#function) urlString \(urlString)")
+        DispatchQueue.main.async {
+            
+            UIView.transition(with: self.viewControllerImage, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                if urlString.isEmpty {
+                    self.addMainBackgroundImage()
+                } else {
+                    self.viewControllerImage.loadImage(urlString: urlString)
+                }
+            }, completion: nil)
+            
+        }
     }
     
     private func presentWarningViewController() {
@@ -204,11 +254,23 @@ extension MainViewController {
         
         self.view.addSubview(countrySelectionView)
         self.view.addSubview(mapView)
-
+        
+    }
+    
+    private func setMapViewTitles() {
+        
     }
 
     private func listenCountrySelectionViewDataChanges() {
         self.countrySelectionView.listenSelectedCountryData { (selectedCountryData) in
+            self.viewModel.setSelectedCountryData(data: selectedCountryData)
+
+            
+            
+            
+            
+            
+            
             
             if let country = selectedCountryData.country {
                 print("selected country data : \(country.countryName)")
@@ -221,10 +283,6 @@ extension MainViewController {
             } else {
                 print("city is nil")
             }
-            
-            
-            
-            
         }
     }
     

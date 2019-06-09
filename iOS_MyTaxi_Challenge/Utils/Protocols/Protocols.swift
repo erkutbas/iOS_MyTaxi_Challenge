@@ -29,3 +29,5 @@ extension PickerProtocols {
 protocol CommonViewModel {
     func handleGenericResponse<T: Codable>(response: Result<T, Error>)
 }
+
+protocol CommonPlaceData {}
