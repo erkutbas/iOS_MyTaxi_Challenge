@@ -55,6 +55,8 @@
 		A7E46D8622AD3867006DE3A9 /* PoiiListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8522AD3867006DE3A9 /* PoiiListData.swift */; };
 		A7E46D8822AD481E006DE3A9 /* VehicleAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8722AD481E006DE3A9 /* VehicleAnnotationView.swift */; };
 		A7E46D8B22AD488D006DE3A9 /* VehiclePointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */; };
+		A7E46D8D22AD6735006DE3A9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8C22AD6735006DE3A9 /* MapViewModel.swift */; };
+		A7E46D8F22AD6C23006DE3A9 /* VehicleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8E22AD6C23006DE3A9 /* VehicleData.swift */; };
 		A7EC3C1C22AD1C7200A0E26E /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */; };
 		A7EC3C1F22AD1DA600A0E26E /* DiscardableImageCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */; };
 /* End PBXBuildFile section */
@@ -115,6 +117,8 @@
 		A7E46D8522AD3867006DE3A9 /* PoiiListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiiListData.swift; sourceTree = "<group>"; };
 		A7E46D8722AD481E006DE3A9 /* VehicleAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAnnotationView.swift; sourceTree = "<group>"; };
 		A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePointAnnotation.swift; sourceTree = "<group>"; };
+		A7E46D8C22AD6735006DE3A9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		A7E46D8E22AD6C23006DE3A9 /* VehicleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleData.swift; sourceTree = "<group>"; };
 		A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
 		FA084DE1DFD35DC140AE0B2A /* Pods-iOS_MyTaxi_Challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_MyTaxi_Challenge.debug.xcconfig"; path = "Target Support Files/Pods-iOS_MyTaxi_Challenge/Pods-iOS_MyTaxi_Challenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 			children = (
 				A701D62122AA416B00CBF1BE /* PresentedCountryData.swift */,
 				A7E46D8522AD3867006DE3A9 /* PoiiListData.swift */,
+				A7E46D8E22AD6C23006DE3A9 /* VehicleData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				A76E0CFF22AB6E0200BD577D /* CountrySelectionViewModel.swift */,
 				A76E0D0222ABE98E00BD577D /* CountryPickerViewModel.swift */,
 				A76E0D0422AC015F00BD577D /* CityPickerViewModel.swift */,
+				A7E46D8C22AD6735006DE3A9 /* MapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -539,6 +545,7 @@
 			files = (
 				A701D62022AA409A00CBF1BE /* ApiCallManager.swift in Sources */,
 				A7E46D8822AD481E006DE3A9 /* VehicleAnnotationView.swift in Sources */,
+				A7E46D8F22AD6C23006DE3A9 /* VehicleData.swift in Sources */,
 				A76E0CFE22AB608800BD577D /* CityPickerView.swift in Sources */,
 				A76EB36E22AB03D4006D7DEA /* MapView.swift in Sources */,
 				A75FF84922AAB8C300E2493E /* TempBase.swift in Sources */,
@@ -556,6 +563,7 @@
 				A75FF84F22AACE2A00E2493E /* UIView+Extension.swift in Sources */,
 				A76EB37222AB443E006D7DEA /* UIApplication+Extension.swift in Sources */,
 				A701D60022A9B48700CBF1BE /* PermissionButtonView.swift in Sources */,
+				A7E46D8D22AD6735006DE3A9 /* MapViewModel.swift in Sources */,
 				A75FF83B22AA805D00E2493E /* Protocols.swift in Sources */,
 				A76E0D0022AB6E0200BD577D /* CountrySelectionViewModel.swift in Sources */,
 				A714BE5C22A8E41A00A373DC /* AppDelegate.swift in Sources */,

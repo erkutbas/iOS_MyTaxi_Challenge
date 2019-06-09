@@ -112,7 +112,8 @@ class BaseBottomSheetView: UIView {
     lazy var directionIcon: UIImageView = {
         let temp = UIImageView()
         temp.isUserInteractionEnabled = true
-        temp.image = UIImage(named: "direction1")
+        temp.image = UIImage(named: "direction1")?.withRenderingMode(.alwaysTemplate)
+        temp.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         temp.contentMode = .top
         return temp
     }()

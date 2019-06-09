@@ -46,6 +46,7 @@ class Coordinate: Codable {
 
 enum State: String, Codable {
     case active = "ACTIVE"
+    case inActive = "INACTIVE"
 }
 
 enum TypeEnum: String, Codable {

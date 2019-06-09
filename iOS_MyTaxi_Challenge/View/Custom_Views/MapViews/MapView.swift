@@ -10,6 +10,8 @@ import UIKit
 
 class MapView: BaseBottomSheetView {
     
+    private var mapViewModel = MapViewModel()
+    
     lazy var mapView: MKMapView = {
         let temp = MKMapView(frame: .zero)
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +20,7 @@ class MapView: BaseBottomSheetView {
         temp.showsCompass = true
         temp.showsUserLocation = true
         temp.setUserTrackingMode(.followWithHeading, animated: true)
+        temp.isHidden = true
         
         temp.delegate = self
         temp.register(VehicleAnnotationView.self, forAnnotationViewWithReuseIdentifier: VehicleAnnotationView.identifier)
@@ -48,6 +51,10 @@ class MapView: BaseBottomSheetView {
         super.prepareViewConfigurations()
         configureViewSettings()
     }
+    
+    deinit {
+        mapViewModel.vehicleDataArray.unbind()
+    }
 
 }
 
@@ -59,8 +66,11 @@ extension MapView {
         self.reArrangeViewTitles()
         self.arrangeCornerRadius(radius: 80, maskCorner: .layerMinXMinYCorner)
         self.addGestures()
+        self.addMap()
         self.reArrangeTopBarViewConstraint()
+        self.addBlurEffect()
         self.activationManager(active: false)
+        self.addListener()
     }
     
     private func reArrangeTopBarViewConstraint() {
@@ -84,11 +94,70 @@ extension MapView {
             ])
     }
     
-    // outsider functions
-    func activationManager(active: Bool) {
+    private func addMap() {
+        self.addSubview(mapView)
+        self.sendSubviewToBack(mapView)
+        NSLayoutConstraint.activate([
+            
+            mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: self.topAnchor),
+            mapView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            ])
+    }
+    
+    private func mapViewHiddenManager(active: Bool) {
+        self.mapView.isHidden = !active
+    }
+    
+    private func addListener() {
+        mapViewModel.vehicleDataArray.bind { (data) in
+            self.activationManager(active: true)
+            self.focusMapAndLoadAnnotations()
+        }
+    }
+    
+    private func focusMapAndLoadAnnotations() {
+        print("\(#function)")
+        
+        DispatchQueue.main.async {
+            self.removeAnnotationsOnMap()
+            
+            for item in self.mapViewModel.returnVehicleDataArray() {
+                let annotation = VehiclePointAnnotation(data: item)
+                
+                annotation.coordinate = CLLocationCoordinate2D(latitude: item.location.coordinate.latitude, longitude: item.location.coordinate.longitude)
+                
+                self.mapView.addAnnotation(annotation)
+                
+            }
+            
+//            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+            
+            self.mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.lat1)!, longitude: CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.lon1)!), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)), animated: true)
+            
+        }
+    }
+    
+    private func removeAnnotationsOnMap() {
+        for annotation in self.mapView.annotations {
+            if !(annotation is MKUserLocation) {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+    }
+    
+    private func activationManager(active: Bool) {
+        print("TAKATAKATAKATAKATAKA active :\(active)")
         DispatchQueue.main.async {
             self.isUserInteractionEnabled = active
         }
+    }
+    
+    // outsider functions
+    func setVehicleDataIntoMap(data: Array<VehicleData>) {
+        self.mapViewModel.getDataIntoViewModel(data: data)
     }
     
 }
@@ -103,6 +172,41 @@ extension MapView: UIGestureRecognizerDelegate {
     
     @objc fileprivate func animateView(_ sender: UITapGestureRecognizer) {
         
+        blurViewAnimations()
+        mapKitAnimations()
+        mainViewAnimations()
+        
+    }
+    
+    fileprivate func blurViewAnimations() {
+        UIView.transition(with: self.blurView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            switch self.direction {
+            case .down:
+                self.blurView.isHidden = true
+            case .up:
+                self.blurView.isHidden = false
+            default:
+                break
+            }
+        })
+    }
+    
+    fileprivate func mapKitAnimations() {
+        UIView.transition(with: self.mapView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            switch self.direction {
+            case .down:
+                self.mapView.isHidden = true
+            case .up:
+                self.mapView.isHidden = false
+            default:
+                break
+            }
+        })
+    }
+    
+    fileprivate func mainViewAnimations() {
+        print("MOMOMOMOMOMOMOMOMOMO")
+        print("direction : \(direction)")
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             switch self.direction {
@@ -111,34 +215,48 @@ extension MapView: UIGestureRecognizerDelegate {
                 self.direction = .up
                 self.arrangeCornerRadius(radius: 80, maskCorner: .layerMinXMinYCorner)
                 self.directionIcon.transform = .identity
-                self.blurView.isHidden = true
+                //self.blurView.isHidden = true
+                self.changeTitleTintColor(active: false)
                 
             case .up:
                 self.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 self.direction = .down
                 self.arrangeCornerRadius(radius: 0, maskCorner: .layerMinXMinYCorner)
                 self.directionIcon.transform = CGAffineTransform(scaleX: 1, y: -1)
-                self.blurView.isHidden = false
+                //self.blurView.isHidden = false
+                self.changeTitleTintColor(active: true)
                 
             default:
                 break
             }
             
         }, completion: nil)
-        
     }
     
+    private func changeTitleTintColor(active: Bool) {
+        if active {
+            self.mainSubject.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            self.detailedInformation.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            self.directionIcon.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        } else {
+            self.mainSubject.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            self.detailedInformation.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            self.directionIcon.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        }
+    }
+    
+    // outsider function
     func animatedFromOutside(direction: Direction) {
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             switch direction {
             case .down:
                 self.frame = CGRect(x: 0, y: self.mainScreenBounds.height, width: self.frame.width, height: self.frame.height)
-                self.direction = .up
+                //self.direction = .up
                 self.arrangeCornerRadius(radius: 0, maskCorner: .layerMinXMinYCorner)
             case .up:
                 self.frame = CGRect(x: 0, y: self.mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.MAPVIEW_Y_COORDINATE - UIApplication.shared.returnBottomPadding(), width: self.frame.width, height: self.frame.height)
-                self.direction = .down
+                //self.direction = .down
                 self.arrangeCornerRadius(radius: 80, maskCorner: .layerMinXMinYCorner)
                 
             default:
@@ -159,6 +277,7 @@ extension MapView: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        print("YAKALA")
         guard !annotation.isKind(of: MKUserLocation.self) else {
             // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
             return nil

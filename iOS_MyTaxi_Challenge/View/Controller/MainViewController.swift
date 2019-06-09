@@ -86,10 +86,9 @@ class MainViewController: UIViewController {
         viewModel.apiCallStatus.unbind()
         viewModel.unsuitableCountry.unbind()
         viewModel.feedDataToCountySelectionView.unbind()
-        viewModel.mapViewActivation.unbind()
         viewModel.selectedCountryDataStruct.unbind()
         viewModel.backgroundImageChanger.unbind()
-        viewModel.poiListCallStatus.unbind()
+        viewModel.vehicleDataArray.unbind()
     }
     
 }
@@ -182,10 +181,6 @@ extension MainViewController {
             self.countrySelectionView.setPresentedCountriesData(data: countryListData)
         }
         
-        viewModel.mapViewActivation.bind { (activation) in
-            self.mapView.activationManager(active: activation)
-        }
-        
         viewModel.selectedCountryDataStruct.bind { (selectedCountryData) in
             self.startGettingDataProcess(data: selectedCountryData)
         }
@@ -194,24 +189,21 @@ extension MainViewController {
             self.changeBackgroundImage(urlString: urlString)
         }
         
-        viewModel.poiListCallStatus.bind { (status) in
-            self.mapViewManagers(status: status)
+        viewModel.vehicleDataArray.bind { (data) in
+            print("POPOPOPOPOPOPO")
+            self.mapViewManagers(data: data)
         }
+
         
         self.listenCountrySelectionViewDataChanges()
         
     }
     
-    private func mapViewManagers(status: ApiCallStatus) {
-        switch status {
-        case .process:
-            break
-        case .failed:
-            break
-        case .done:
-            break
-        default:
-            break
+    private func mapViewManagers(data: Array<VehicleData>) {
+        print("KOKOKOKOKOKOKOKOKO")
+        // we remove vehicle data before append new one. This process changes the value of the listener. That's why, in the case of removing data, it's not required to set vehicle data to mapView.
+        if data.count > 0 {
+            self.mapView.setVehicleDataIntoMap(data: data)
         }
     }
     
@@ -295,6 +287,11 @@ extension MainViewController: ViewAnimationTrigger {
         guard let direction = direction else { return }
         print("direction: \(direction)")
         mapView.animatedFromOutside(direction: direction)
+        
+    }
+    
+    func completeBottonSheetAnimation() {
+        countrySelectionView.animatedFromOutside()
     }
 }
 

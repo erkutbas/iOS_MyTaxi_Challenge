@@ -43,15 +43,15 @@ class VehicleAnnotationView: MKAnnotationView {
         let randomNumber = Int.random(in: 1 ..< 5)
         
         if randomNumber == 1 {
-            self.image = UIImage(named: "vehicle_color_1")
+            self.image = UIImage(named: "taxi_1")
         } else if randomNumber == 2 {
-            self.image = UIImage(named: "vehicle_color_2")
+            self.image = UIImage(named: "taxi_2")
         } else if randomNumber == 3 {
-            self.image = UIImage(named: "vehicle_color_3")
+            self.image = UIImage(named: "taxi_3")
         } else if randomNumber == 4 {
-            self.image = UIImage(named: "vehicle_color_4")
+            self.image = UIImage(named: "taxi_4")
         } else {
-            self.image = UIImage(named: "vehicle_color_black")
+            self.image = UIImage(named: "taxi_1")
         }
     }
     

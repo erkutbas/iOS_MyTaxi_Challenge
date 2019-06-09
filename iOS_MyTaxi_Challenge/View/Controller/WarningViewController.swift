@@ -16,7 +16,6 @@ class WarningViewController: PermissionTemplateViewController {
         let temp = PermissionButtonView(frame: CGRect(x: 0, y: 0, width: 240, height: 50))
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.isUserInteractionEnabled = true
-//        temp.backgroundColor = #colorLiteral(red: 0.2274509804, green: 0.8, blue: 0.8823529412, alpha: 1)
         temp.backgroundColor = #colorLiteral(red: 0.2588235294, green: 0.1882352941, blue: 0.3137254902, alpha: 1)
         temp.buttonPrompt.text = LocalizedConstants.TitlePrompts.chooseCountry
         return temp
@@ -31,11 +30,6 @@ class WarningViewController: PermissionTemplateViewController {
         addGestureRecognizerToCustomView()
     }
     
-    /*
-    override func addGestureToPermissionButton() {
-        self.configureGestureRecognizerToPermissionButtuon()
-    }*/
-
 }
 
 // MARK: - major functions
@@ -67,7 +61,6 @@ extension WarningViewController {
     
     private func addCustomViews() {
         self.centerView.addSubview(customButtonView)
-        
         NSLayoutConstraint.activate([
             customButtonView.leadingAnchor.constraint(equalTo: self.centerView.leadingAnchor, constant: 20),
             customButtonView.trailingAnchor.constraint(equalTo: self.centerView.trailingAnchor, constant: -20),
@@ -75,8 +68,6 @@ extension WarningViewController {
             customButtonView.topAnchor.constraint(equalTo: self.mainStackView.bottomAnchor, constant: 20)
             
             ])
-        
-        
     }
     
 }
@@ -87,7 +78,7 @@ extension WarningViewController: UIGestureRecognizerDelegate {
     @objc fileprivate func buttonPressed(_ sender: UITapGestureRecognizer) {
         customButtonView.startAnimationCommon()
         self.dismiss(animated: true, completion: nil)
-        delegate?.triggerAnimation(direction: nil)
+        delegate?.completeBottonSheetAnimation()
     }
     
 }

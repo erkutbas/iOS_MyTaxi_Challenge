@@ -13,11 +13,10 @@ class MainViewModel: CommonViewModel {
     // dynamic components
     var apiCallStatus = Dynamic(ApiCallStatus.none)
     var feedDataToCountySelectionView = Dynamic(Array<CountryList>())
-    var mapViewActivation = Dynamic(false)
     var unsuitableCountry = Dynamic(false)
     var selectedCountryDataStruct = Dynamic(CountrySelectionStruct())
     var backgroundImageChanger = Dynamic(String())
-    var poiListCallStatus = Dynamic(ApiCallStatus.none)
+    var vehicleDataArray = Dynamic(Array<VehicleData>())
 
     var presentedCountryData: PresentedCountryData?
     var currentCountryCode: String?
@@ -71,14 +70,16 @@ class MainViewModel: CommonViewModel {
         
         guard let poiList = data.poiList else { return }
         print("Total Data : \(poiList.count)")
+
+        self.emptyVehicleData()
+
+        var tempVehicleDataArray = Array<VehicleData>()
         
         for item in poiList {
-            print("item : \(item.coordinate)")
+            tempVehicleDataArray.append(VehicleData(data: item))
         }
-
         
-        mapViewActivation.value = true
-        
+        self.vehicleDataArray.value = tempVehicleDataArray
     }
     
     private func handlePresentedCountiesResponseData(data: PresentedCountryData) {
@@ -90,6 +91,11 @@ class MainViewModel: CommonViewModel {
         // then check current country
         self.checkCurrentCountryInsidePresentedCountries()
         
+    }
+    
+    private func emptyVehicleData() {
+        // this process changes value and triggers binder in the view controller
+        self.vehicleDataArray.value.removeAll()
     }
     
     func returnPresentedCountries() -> PresentedCountryData? {

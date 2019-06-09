@@ -10,10 +10,12 @@ import Foundation
 
 protocol ViewAnimationTrigger: class {
     func triggerAnimation(direction: Direction?)
+    func completeBottonSheetAnimation()
 }
 
 extension ViewAnimationTrigger {
     func triggerAnimation(direction: Direction?) {}
+    func completeBottonSheetAnimation() {}
 }
 
 protocol PickerProtocols: class {

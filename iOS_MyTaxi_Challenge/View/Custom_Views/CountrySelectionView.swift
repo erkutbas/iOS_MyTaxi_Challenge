@@ -178,13 +178,13 @@ extension CountrySelectionView {
         }
     }
     
-    // outsider functions
-    func activationManager(active: Bool) {
+    private func activationManager(active: Bool) {
         DispatchQueue.main.async {
             self.isUserInteractionEnabled = active
         }
     }
     
+    // outsider functions
     func setPresentedCountriesData(data: Array<CountryList>) {
         self.countryPickerView.setCountryListData(data: data)
         self.activationManager(active: true)
@@ -206,19 +206,15 @@ extension CountrySelectionView: UIGestureRecognizerDelegate {
     }
     
     @objc fileprivate func animateView(_ sender: UITapGestureRecognizer) {
-        self.bottonSheetAnimationManager(direction: direction)
+        self.bottonSheetAnimationManager()
     }
     
-    private func bottonSheetAnimationManager(direction: Direction) {
-        switch direction {
-        case .down:
-            delegate?.triggerAnimation(direction: .up)
-        case .up:
-            delegate?.triggerAnimation(direction: .down)
-        default:
-            break
-        }
-        
+    private func bottonSheetAnimationManager() {
+        outerViewAnimations()
+        mainViewAnimations()
+    }
+    
+    fileprivate func mainViewAnimations() {
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             switch self.direction {
@@ -243,10 +239,26 @@ extension CountrySelectionView: UIGestureRecognizerDelegate {
         }, completion: nil)
     }
     
+    fileprivate func outerViewAnimations() {
+        switch self.direction {
+        case .down:
+            delegate?.triggerAnimation(direction: .up)
+        case .up:
+            delegate?.triggerAnimation(direction: .down)
+        default:
+            break
+        }
+    }
+    
+    // outsider function
+    func animatedFromOutside() {
+        self.bottonSheetAnimationManager()
+    }
+    
     @objc fileprivate func donePressed(_ sender: UITapGestureRecognizer){
         print("\(#function)")
         self.doneButton.startAnimationCommon()
-        self.bottonSheetAnimationManager(direction: Direction.down)
+        self.bottonSheetAnimationManager()
         closureForSelectedCountryData?(self.countrySelectionViewModel.returnSelectedCountryData())
     }
     

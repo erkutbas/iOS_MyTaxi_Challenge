@@ -77,6 +77,15 @@ enum Direction {
     case left
 }
 
+enum VehicleState {
+    case active
+    case inActive
+}
+
+enum VehicleType {
+    case taxi
+}
+
 public struct LoaderTransition {
     
     public enum Curve {
