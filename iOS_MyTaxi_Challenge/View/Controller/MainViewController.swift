@@ -179,9 +179,9 @@ extension MainViewController {
     }
     
     @objc fileprivate func triggerObjcViewController(_ sender: UIButton) {
-        let objcViewController = MapViewController()
-        let navigationViewController = UINavigationController(rootViewController: objcViewController)
-        self.present(navigationViewController, animated: true, completion: nil)
+//        let objcViewController = MapViewController()
+//        let navigationViewController = UINavigationController(rootViewController: objcViewController)
+//        self.present(navigationViewController, animated: true, completion: nil)
         
     }
     

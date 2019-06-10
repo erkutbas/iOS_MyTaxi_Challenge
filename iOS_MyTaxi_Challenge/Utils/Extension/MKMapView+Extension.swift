@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 extension MKMapView {
     var northWestCoordinate: CLLocationCoordinate2D {
