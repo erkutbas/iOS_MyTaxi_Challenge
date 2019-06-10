@@ -18,7 +18,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     private var locationManager: CLLocationManager!
     
     // completion handler
-    typealias placeMarkCompletion = ([CLPlacemark]) -> Void
+    typealias placeMarkCompletion = (Result<[CLPlacemark], Error>) -> Void
     typealias locationDataCompletion = (CLLocation) -> Void
     private var completionHandlerForLocationUpdates: locationDataCompletion?
     private var didCLGeocoderDataGet = false
@@ -90,14 +90,30 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         clgeocoder.reverseGeocodeLocation(location, completionHandler: { (placeMarks, error) in
             if let error = error {
                 print("Something goes terribly wrong while getting placemarks : \(error)")
+                completion(.failure(BackendApiError.geoCoderFailed))
             }
             
             if let placeMarksData = placeMarks {
-                completion(placeMarksData)
+                completion(.success(placeMarksData))
             }
             
         })
         
+    }
+    
+    func startGettingLocationDataByAddress(address: String, completion: @escaping placeMarkCompletion) {
+        print("\(#function) address : \(address)")
+        let clgeocoder = CLGeocoder()
+        clgeocoder.geocodeAddressString(address) { (placeMarks, error) in
+            if let error = error {
+                print("Something goes terribly wrong while getting placemarks : \(error)")
+                completion(.failure(error))
+            }
+            
+            if let placeMarksData = placeMarks {
+                completion(.success(placeMarksData))
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

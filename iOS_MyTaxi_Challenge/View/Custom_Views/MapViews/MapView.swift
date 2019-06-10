@@ -28,6 +28,13 @@ class MapView: BaseBottomSheetView {
         return temp
     }()
     
+    lazy var refreshingView: RefreshingView = {
+        let temp = RefreshingView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.isUserInteractionEnabled = false
+        return temp
+    }()
+    
     // blur view
     lazy var blurView: UIVisualEffectView = {
         let effect = UIBlurEffect(style: UIBlurEffect.Style.light)
@@ -36,6 +43,19 @@ class MapView: BaseBottomSheetView {
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.layer.masksToBounds = true
         temp.isHidden = true
+        return temp
+    }()
+    
+    lazy var taxiCount: UILabel = {
+        let temp = UILabel()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.numberOfLines = 0
+        temp.textAlignment = .center
+        temp.contentMode = .center
+        temp.text = "0"
+        temp.font = UIFont(name: "Avenir-Medium", size: 30)
+        temp.textColor = #colorLiteral(red: 0.2392156863, green: 0.2588235294, blue: 0.3333333333, alpha: 1)
+        
         return temp
     }()
     
@@ -53,7 +73,8 @@ class MapView: BaseBottomSheetView {
     }
     
     deinit {
-        mapViewModel.vehicleDataArray.unbind()
+        mapViewModel.apiCallStatus.unbind()
+        mapViewModel.mapTrigger.unbind()
     }
 
 }
@@ -71,6 +92,8 @@ extension MapView {
         self.addBlurEffect()
         self.activationManager(active: false)
         self.addListener()
+        self.addCountLabel()
+        self.addRefreshingView()
     }
     
     private func reArrangeTopBarViewConstraint() {
@@ -107,35 +130,87 @@ extension MapView {
             ])
     }
     
+    private func addRefreshingView() {
+        self.addSubview(refreshingView)
+        NSLayoutConstraint.activate([
+            
+            refreshingView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            refreshingView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            refreshingView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            refreshingView.topAnchor.constraint(equalTo: self.topAnchor),
+            
+            ])
+        refreshingView.activationManager(active: false)
+    }
+    
+    private func addCountLabel() {
+        self.topBarView.addSubview(taxiCount)
+        NSLayoutConstraint.activate([
+            
+            taxiCount.trailingAnchor.constraint(equalTo: self.topBarView.trailingAnchor, constant: -20),
+            taxiCount.centerYAnchor.constraint(equalTo: self.topBarView.centerYAnchor),
+            
+            ])
+        
+    }
+    
     private func mapViewHiddenManager(active: Bool) {
         self.mapView.isHidden = !active
     }
     
     private func addListener() {
-        mapViewModel.vehicleDataArray.bind { (data) in
+        mapViewModel.mapTrigger.bind { (mapTrigger) in
+            self.mapTriggerOperations(mapTrigger: mapTrigger)
+        }
+        
+        mapViewModel.apiCallStatus.bind { (status) in
+            self.manageApiCallProcess(status: status)
+        }
+    }
+    
+    private func mapTriggerOperations(mapTrigger: MapUpdateTrigger) {
+        switch mapTrigger {
+        case .outsider:
             self.activationManager(active: true)
             self.focusMapAndLoadAnnotations()
+            
+        case .insider:
+            self.updateMapViewAnnotations()
+            
+        default:
+            break
         }
+        
+        self.setTaxiCount()
     }
     
     private func focusMapAndLoadAnnotations() {
         print("\(#function)")
         
         DispatchQueue.main.async {
-            self.removeAnnotationsOnMap()
+            self.addAnnotationsToMapView()
+            self.mapView.setRegion(MKCoordinateRegion(center: self.mapViewModel.returnRegionCoordinate(), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)), animated: true)
             
-            for item in self.mapViewModel.returnVehicleDataArray() {
-                let annotation = VehiclePointAnnotation(data: item)
-                
-                annotation.coordinate = CLLocationCoordinate2D(latitude: item.location.coordinate.latitude, longitude: item.location.coordinate.longitude)
-                
-                self.mapView.addAnnotation(annotation)
-                
-            }
+        }
+    }
+    
+    private func updateMapViewAnnotations() {
+        DispatchQueue.main.async {
+            self.addAnnotationsToMapView()
+        }
+    }
+    
+    private func addAnnotationsToMapView() {
+        self.removeAnnotationsOnMap()
+        
+        guard let data = self.mapViewModel.returnVehicleDataArray() else { return }
+        
+        for item in data {
+            let annotation = VehiclePointAnnotation(data: item)
             
-//            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+            annotation.coordinate = CLLocationCoordinate2D(latitude: item.location.coordinate.latitude, longitude: item.location.coordinate.longitude)
             
-            self.mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.lat1)!, longitude: CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.lon1)!), span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)), animated: true)
+            self.mapView.addAnnotation(annotation)
             
         }
     }
@@ -148,15 +223,36 @@ extension MapView {
         }
     }
     
+    private func setTaxiCount() {
+        DispatchQueue.main.async {
+            UIView.transition(with: self.taxiCount, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.taxiCount.text = String(describing: self.mapViewModel.returnTotalNumberOfTaxi())
+            }, completion: nil)
+        }
+    }
+    
+    private func manageApiCallProcess(status: ApiCallStatus) {
+        
+        switch status {
+        case .process:
+            print("REFRESH BASLAR")
+            self.refreshingView.activationManager(active: true)
+        case .done:
+            print("REFRESH BITIR")
+            self.refreshingView.activationManager(active: false)
+        default:
+            break
+        }
+    }
+    
     private func activationManager(active: Bool) {
-        print("TAKATAKATAKATAKATAKA active :\(active)")
         DispatchQueue.main.async {
             self.isUserInteractionEnabled = active
         }
     }
     
     // outsider functions
-    func setVehicleDataIntoMap(data: Array<VehicleData>) {
+    func setVehicleDataIntoMap(data: MapViewRequiredParams) {
         self.mapViewModel.getDataIntoViewModel(data: data)
     }
     
@@ -205,8 +301,6 @@ extension MapView: UIGestureRecognizerDelegate {
     }
     
     fileprivate func mainViewAnimations() {
-        print("MOMOMOMOMOMOMOMOMOMO")
-        print("direction : \(direction)")
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
             switch self.direction {
@@ -273,11 +367,16 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         print("\(#function)")
-        //viewModel.getStatesData(openSkyNetworkRequestStruct: createOpenSkyNetworkRequestStruct(highestNorthCorner: mapView.northWestCoordinate, lowestSouthCorner: mapView.southEastCoordinate))
+        
+        print("NW : \(mapView.northWestCoordinate)")
+        print("NE : \(mapView.northEastCoordinate)")
+        print("SW : \(mapView.southWestCoordinate)")
+        print("SE : \(mapView.southEastCoordinate)")
+        
+        mapViewModel.updateMapView(apiCallData: ApiCallInputStruct(callType: .listOfVehiclesCallByInsider, urlString: CONSTANT.MY_TAXI_URLS.URLS.RAW_URL_POI_SERVICE, p2Lat: String(describing: mapView.northWestCoordinate.latitude), p2Lon: String(describing: mapView.southEastCoordinate.longitude), p1Lat: String(describing: mapView.southEastCoordinate.latitude), p1Lon: String(describing: mapView.northWestCoordinate.longitude)))
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("YAKALA")
         guard !annotation.isKind(of: MKUserLocation.self) else {
             // Make a fast exit if the annotation is the `MKUserLocation`, as it's not an annotation view we wish to customize.
             return nil
@@ -286,8 +385,8 @@ extension MapView: MKMapViewDelegate {
         guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: VehicleAnnotationView.identifier) as? VehicleAnnotationView else { return nil }
         
         //annotationView.delegate = self
-        //        annotationView.frame.size.height = 50
-        //        annotationView.frame.size.width = 50
+        annotationView.frame.size.height = 30
+        annotationView.frame.size.width = 30
         
         return annotationView
         

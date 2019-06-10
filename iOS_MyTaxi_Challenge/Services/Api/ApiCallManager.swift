@@ -51,9 +51,6 @@ class ApiCallManager {
                     let dataDecoded = try JSONDecoder().decode(T.self, from: data)
                     completion(.success(dataDecoded))
                     // if says use cache, let's store response data to cache
-                    
-                    print("dataDecoded : \(dataDecoded)")
-                    
                     if useCache {
                         if let response = response as? HTTPURLResponse {
                             self.storeDataToCache(urlResponse: response, urlRequest: urlRequest, data: data)
@@ -120,9 +117,16 @@ class ApiCallManager {
         case .listOfVehiclesDefault:
             // there is no need for extra query parameters
             break
-        case .listOfVehiclesWithInputs:
+        case .listOfVehiclesCallByOutsider:
             // there is some code needing here :D
-            break
+            
+            guard let placeMark = apiCallInputStruct.placeMark else { return nil }
+            guard let location = placeMark.location else { return nil }
+            
+            urlComponent?.queryItems = [URLQueryItem(name: "p2Lat", value: String(describing: Double(location.coordinate.latitude - 0.2))), URLQueryItem(name: "p1Lon", value: String(describing: Double(location.coordinate.longitude - 0.2))), URLQueryItem(name: "p1Lat", value: String(describing: Double(location.coordinate.latitude + 0.2))), URLQueryItem(name: "p2Lon", value: String(describing: Double(location.coordinate.longitude + 0.2)))]
+            
+        case .listOfVehiclesCallByInsider:
+            urlComponent?.queryItems = [URLQueryItem(name: "p2Lat", value: apiCallInputStruct.p2Lat), URLQueryItem(name: "p1Lon", value: apiCallInputStruct.p1Lon), URLQueryItem(name: "p1Lat", value: apiCallInputStruct.p1Lat), URLQueryItem(name: "p2Lon", value: apiCallInputStruct.p2Lon)]
         }
         
         guard let component = urlComponent else { return nil }

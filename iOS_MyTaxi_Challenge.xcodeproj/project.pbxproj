@@ -57,6 +57,7 @@
 		A7E46D8B22AD488D006DE3A9 /* VehiclePointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */; };
 		A7E46D8D22AD6735006DE3A9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8C22AD6735006DE3A9 /* MapViewModel.swift */; };
 		A7E46D8F22AD6C23006DE3A9 /* VehicleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8E22AD6C23006DE3A9 /* VehicleData.swift */; };
+		A7E46D9122ADC0BF006DE3A9 /* MKMapView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D9022ADC0BF006DE3A9 /* MKMapView+Extension.swift */; };
 		A7EC3C1C22AD1C7200A0E26E /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */; };
 		A7EC3C1F22AD1DA600A0E26E /* DiscardableImageCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */; };
 /* End PBXBuildFile section */
@@ -119,6 +120,7 @@
 		A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePointAnnotation.swift; sourceTree = "<group>"; };
 		A7E46D8C22AD6735006DE3A9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		A7E46D8E22AD6C23006DE3A9 /* VehicleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleData.swift; sourceTree = "<group>"; };
+		A7E46D9022ADC0BF006DE3A9 /* MKMapView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extension.swift"; sourceTree = "<group>"; };
 		A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
 		FA084DE1DFD35DC140AE0B2A /* Pods-iOS_MyTaxi_Challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_MyTaxi_Challenge.debug.xcconfig"; path = "Target Support Files/Pods-iOS_MyTaxi_Challenge/Pods-iOS_MyTaxi_Challenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			children = (
 				A75FF84E22AACE2A00E2493E /* UIView+Extension.swift */,
 				A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */,
+				A7E46D9022ADC0BF006DE3A9 /* MKMapView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				A701D60322A9B4FA00CBF1BE /* Structs.swift in Sources */,
 				A7EC3C1C22AD1C7200A0E26E /* CachedImageView.swift in Sources */,
 				A714BE5E22A8E41A00A373DC /* ViewController.swift in Sources */,
+				A7E46D9122ADC0BF006DE3A9 /* MKMapView+Extension.swift in Sources */,
 				A701D60622A9BD5200CBF1BE /* RefreshingView.swift in Sources */,
 				A701D5FE22A9AECB00CBF1BE /* LocalizedConstants.swift in Sources */,
 				A701D60922A9BDD100CBF1BE /* PermissionManager.swift in Sources */,

@@ -61,7 +61,6 @@ extension CountryPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        print("self.countryPickerViewModel.returnNumberOfComponents() : \(self.countryPickerViewModel.returnNumberOfComponents())")
         return self.countryPickerViewModel.returnNumberOfComponents()
     }
     

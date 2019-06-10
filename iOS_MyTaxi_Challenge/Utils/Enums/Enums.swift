@@ -31,12 +31,14 @@ enum PermissionType {
 enum BackendApiError: Error {
     case missingDataError
     case parseDataError
+    case geoCoderFailed
 }
 
 enum ApiCallType {
     case presentedCountries
     case listOfVehiclesDefault
-    case listOfVehiclesWithInputs
+    case listOfVehiclesCallByOutsider
+    case listOfVehiclesCallByInsider
 }
 
 enum ApiCallStatus {
@@ -75,6 +77,12 @@ enum Direction {
     case down
     case right
     case left
+}
+
+enum MapUpdateTrigger {
+    case outsider
+    case insider
+    case none
 }
 
 enum VehicleState {

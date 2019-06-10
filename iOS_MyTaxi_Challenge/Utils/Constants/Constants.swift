@@ -25,13 +25,23 @@ struct CONSTANT {
     struct MY_TAXI_URLS {
         struct URLS {
             static var DEFAULT_HAMBURG_SEARCH_URL : String = "https://poi-api.mytaxi.com/PoiService/poi/v1?p2Lat=53.394655&p1Lon=9.757589&p1Lat=53.694865&p2Lon=10.099891"
+            static var RAW_URL_POI_SERVICE : String = "https://poi-api.mytaxi.com/PoiService/poi/v1?"
         }
         
-        struct DEFAULT_HAMBURG_LOCATIONS {
+        struct DEFAULT_HAMBURG_LOCATION_LIMITS {
             static let lat2: Float = 53.394655
             static let lon2: Float = 10.099891
             static let lat1: Float = 53.694865
             static let lon1: Float = 9.757589
+        }
+        
+        struct DEFAULT_HAMBURG_LOCATIONS {
+            static let LATITUDE: Float = 53.5584898
+            static let LONGITUDE: Float = 9.7873967
+        }
+        
+        struct DEFAULT_CITY {
+            static let HAMBURG: String = "Hamburg"
         }
     }
     

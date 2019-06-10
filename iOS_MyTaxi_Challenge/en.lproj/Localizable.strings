@@ -36,3 +36,6 @@
 "country" = "Country";
 "city" = "City";
 "pleaseChoose" = "Please Select";
+"mainWelcome" = "Welcome to iOS Challenge";
+"detailWelcome" = "Choose Country, Select City, Wander on the Map. Whatever you desire :)";
+

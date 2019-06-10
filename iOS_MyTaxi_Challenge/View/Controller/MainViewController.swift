@@ -42,6 +42,45 @@ class MainViewController: UIViewController {
         temp.addTarget(self, action: Selector.triggerObjcViewController, for: UIControl.Event.touchUpInside)
         return temp
     }()
+    
+    lazy var stackViewForMainViewController: UIStackView = {
+        
+        let temp = UIStackView(arrangedSubviews: [mainSubject, detailedInformation])
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.isUserInteractionEnabled = true
+        temp.spacing = 12
+        temp.alignment = .fill
+        temp.axis = .vertical
+        temp.distribution = .fillProportionally
+        
+        return temp
+    }()
+    
+    let mainSubject: UILabel = {
+        let temp = UILabel()
+        temp.text = LocalizedConstants.TitlePrompts.mainWelcome
+        temp.numberOfLines = 0
+        temp.textAlignment = .center
+        temp.contentMode = .center
+        temp.lineBreakMode = .byWordWrapping
+        temp.font = UIFont(name: "Avenir-Heavy", size: 36)
+        temp.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        return temp
+    }()
+    
+    let detailedInformation: UILabel = {
+        let temp = UILabel()
+        temp.text = LocalizedConstants.TitlePrompts.detailWelcome
+        temp.textColor = UIColor.lightGray
+        temp.numberOfLines = 0
+        temp.textAlignment = .center
+        temp.lineBreakMode = .byWordWrapping
+        temp.font = UIFont(name: "Avenir-Medium", size: 20)
+        temp.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        return temp
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,25 +90,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        PermissionManager.shared.triggerPermissionCheck(callerViewController: self)
-        PermissionManager.shared.completionHandlerPermissionsAcquired = { (granted) -> Void in
-            print("granted : \(granted)")
-            
-            LocationManager.shared.getCurrentPlaceMarkData(completion: { (placeMarks) in
-                guard let placeMarkFirstItem = placeMarks.first else { return }
-                guard let countryCode = placeMarkFirstItem.isoCountryCode else { return }
-                print("placeMarks: \(placeMarks)")
-                print("placeMarkFirstItem : \(placeMarkFirstItem)")
-                print("countryCode : \(countryCode)")
-                
-                self.viewModel.getPresentedCountries(apiCallInputStruct: ApiCallInputStruct(callType: .presentedCountries, urlString: CONSTANT.CLOUD_FUNCTIONS_KEYS.URLS.presentedCountries), currentCountryCode: countryCode)
-                
-                self.viewModel.getDefaultListOfVehicles(apiCallStruct: ApiCallInputStruct(callType: .listOfVehiclesDefault, urlString: CONSTANT.MY_TAXI_URLS.URLS.DEFAULT_HAMBURG_SEARCH_URL))
-                
-            })
-            
-        }
-
+        initialOperations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,9 +107,10 @@ class MainViewController: UIViewController {
         viewModel.apiCallStatus.unbind()
         viewModel.unsuitableCountry.unbind()
         viewModel.feedDataToCountySelectionView.unbind()
-        viewModel.selectedCountryDataStruct.unbind()
+//        viewModel.selectedCountryDataStruct.unbind()
         viewModel.backgroundImageChanger.unbind()
-        viewModel.vehicleDataArray.unbind()
+        viewModel.poiListApicallStatus.unbind()
+        
     }
     
 }
@@ -110,6 +132,42 @@ extension MainViewController {
         
     }
     
+    private func initialOperations() {
+        PermissionManager.shared.triggerPermissionCheck(callerViewController: self)
+        PermissionManager.shared.completionHandlerPermissionsAcquired = { (granted) -> Void in
+            self.getNecessaryDataFromServers()
+        }
+        
+    }
+    
+    private func getNecessaryDataFromServers() {
+        LocationManager.shared.getCurrentPlaceMarkData(completion: { (result) in
+            switch result {
+            case .failure(let error):
+                print("Error : \(error)")
+            case .success(let placeMarks):
+                guard let placeMarkFirstItem = placeMarks.first else { return }
+                guard let countryCode = placeMarkFirstItem.isoCountryCode else { return }
+                self.triggerGettingPresentedCountries(countryCode: countryCode)
+                self.triggerGettingDefaultListOfVehicles()
+            }
+            
+        })
+    }
+    
+    private func triggerGettingPresentedCountries(countryCode: String) {
+        // get presented countries by myTaxi in order to feed country selection bottom sheet views
+        // and this process check users current country and it's availability for myTaxi
+        self.viewModel.getPresentedCountries(apiCallInputStruct: ApiCallInputStruct(callType: .presentedCountries, urlString: CONSTANT.CLOUD_FUNCTIONS_KEYS.URLS.presentedCountries), currentCountryCode: countryCode)
+    }
+    
+    private func triggerGettingDefaultListOfVehicles() {
+        // get default challenge data (Germany, Hamburg)
+        guard let latitude = CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.LATITUDE) else { return }
+        guard let longitude = CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.LONGITUDE) else { return }
+        self.viewModel.getListOfVehicles(apiCallStruct: ApiCallInputStruct(callType: .listOfVehiclesDefault, urlString: CONSTANT.MY_TAXI_URLS.URLS.DEFAULT_HAMBURG_SEARCH_URL, coordinate: CLLocation(latitude: latitude, longitude: longitude)))
+    }
+    
     private func addButton() {
         self.view.addSubview(button)
         NSLayoutConstraint.activate([
@@ -129,11 +187,17 @@ extension MainViewController {
     
     private func addViews() {
         self.view.addSubview(viewControllerImage)
+        self.view.addSubview(stackViewForMainViewController)
+        
         NSLayoutConstraint.activate([
             viewControllerImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             viewControllerImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             viewControllerImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             viewControllerImage.topAnchor.constraint(equalTo: self.view.topAnchor),
+            
+            stackViewForMainViewController.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            stackViewForMainViewController.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            stackViewForMainViewController.widthAnchor.constraint(equalToConstant: 300)
             
             ])
         
@@ -181,28 +245,25 @@ extension MainViewController {
             self.countrySelectionView.setPresentedCountriesData(data: countryListData)
         }
         
-        viewModel.selectedCountryDataStruct.bind { (selectedCountryData) in
-            self.startGettingDataProcess(data: selectedCountryData)
-        }
+//        viewModel.selectedCountryDataStruct.bind { (selectedCountryData) in
+//            self.startGettingDataProcess(data: selectedCountryData)
+//        }
         
         viewModel.backgroundImageChanger.bind { (urlString) in
             self.changeBackgroundImage(urlString: urlString)
         }
         
-        viewModel.vehicleDataArray.bind { (data) in
-            print("POPOPOPOPOPOPO")
-            self.mapViewManagers(data: data)
+        viewModel.poiListApicallStatus.bind { (status) in
+            self.mapViewManagers(status: status)
         }
 
-        
         self.listenCountrySelectionViewDataChanges()
         
     }
     
-    private func mapViewManagers(data: Array<VehicleData>) {
-        print("KOKOKOKOKOKOKOKOKO")
-        // we remove vehicle data before append new one. This process changes the value of the listener. That's why, in the case of removing data, it's not required to set vehicle data to mapView.
-        if data.count > 0 {
+    private func mapViewManagers(status: ApiCallStatus) {
+        if status == .done {
+            guard let data = self.viewModel.returnMapViewRequiredParams() else { return }
             self.mapView.setVehicleDataIntoMap(data: data)
         }
     }
@@ -255,27 +316,35 @@ extension MainViewController {
 
     private func listenCountrySelectionViewDataChanges() {
         self.countrySelectionView.listenSelectedCountryData { (selectedCountryData) in
-            self.viewModel.setSelectedCountryData(data: selectedCountryData)
+            self.viewModel.changeBackgroundImage(data: selectedCountryData)
 
+            LocationManager.shared.startGettingLocationDataByAddress(address: self.returnAddress(data: selectedCountryData), completion: { (result) in
+                
+                switch result {
+                case .failure(let error):
+                    print("Error : \(error)")
+                case .success(let placeMarks):
+                    guard let placeMarkFirstItem = placeMarks.first else { return }
+                    let apiCallData = ApiCallInputStruct(callType: .listOfVehiclesCallByOutsider, urlString: CONSTANT.MY_TAXI_URLS.URLS.RAW_URL_POI_SERVICE, placeMark: placeMarkFirstItem)
+                    self.viewModel.getListOfVehicles(apiCallStruct: apiCallData)
+                }
+            })
             
-            
-            
-            
-            
-            
-            
-            if let country = selectedCountryData.country {
-                print("selected country data : \(country.countryName)")
-            } else {
-                print("country is nil")
-            }
-            
-            if let city = selectedCountryData.city {
-                print("selected city data : \(city)")
-            } else {
-                print("city is nil")
-            }
         }
+    }
+    
+    private func returnAddress(data: CountrySelectionStruct) -> String {
+        var address: String = CONSTANT.MY_TAXI_URLS.DEFAULT_CITY.HAMBURG
+        
+        if let country = data.country {
+            address = country.countryName
+        }
+        
+        if let city = data.city {
+            address = address + " " + city
+        }
+        
+        return address
     }
     
 }
@@ -299,24 +368,3 @@ fileprivate extension Selector {
     static let triggerObjcViewController = #selector(MainViewController.triggerObjcViewController)
 }
 
-extension MKMapView {
-    var northWestCoordinate: CLLocationCoordinate2D {
-        print("northWestCoordinate : \(MKMapPoint(x: visibleMapRect.minX, y: visibleMapRect.minY).coordinate)")
-        return MKMapPoint(x: visibleMapRect.minX, y: visibleMapRect.minY).coordinate
-    }
-    
-    var northEastCoordinate: CLLocationCoordinate2D {
-        print("northEastCoordinate : \(MKMapPoint(x: visibleMapRect.maxX, y: visibleMapRect.minY).coordinate)")
-        return MKMapPoint(x: visibleMapRect.maxX, y: visibleMapRect.minY).coordinate
-    }
-    
-    var southEastCoordinate: CLLocationCoordinate2D {
-        print("southEastCoordinate : \(MKMapPoint(x: visibleMapRect.maxX, y: visibleMapRect.maxY).coordinate)")
-        return MKMapPoint(x: visibleMapRect.maxX, y: visibleMapRect.maxY).coordinate
-    }
-    
-    var southWestCoordinate: CLLocationCoordinate2D {
-        print("southWestCoordinate : \(MKMapPoint(x: visibleMapRect.minX, y: visibleMapRect.maxY).coordinate)")
-        return MKMapPoint(x: visibleMapRect.minX, y: visibleMapRect.maxY).coordinate
-    }
-}

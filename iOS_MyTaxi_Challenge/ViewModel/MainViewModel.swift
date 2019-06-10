@@ -14,10 +14,15 @@ class MainViewModel: CommonViewModel {
     var apiCallStatus = Dynamic(ApiCallStatus.none)
     var feedDataToCountySelectionView = Dynamic(Array<CountryList>())
     var unsuitableCountry = Dynamic(false)
-    var selectedCountryDataStruct = Dynamic(CountrySelectionStruct())
+    //var selectedCountryDataStruct = Dynamic(CountrySelectionStruct())
     var backgroundImageChanger = Dynamic(String())
-    var vehicleDataArray = Dynamic(Array<VehicleData>())
+    var poiListApicallStatus = Dynamic(ApiCallStatus.none)
+    
+    // mapview requirements
+    var mapViewRequiredData: MapViewRequiredParams?
+    var regionLocation: CLLocation?
 
+    // presented country checkers
     var presentedCountryData: PresentedCountryData?
     var currentCountryCode: String?
     
@@ -38,10 +43,14 @@ class MainViewModel: CommonViewModel {
         
     }
     
-    func getDefaultListOfVehicles(apiCallStruct: ApiCallInputStruct) {
+    func getListOfVehicles(apiCallStruct: ApiCallInputStruct) {
         print("\(#function)")
         
+        poiListApicallStatus.value = .process
+        self.retrieveCoordinateData(apiCallStruct: apiCallStruct)
+        
         guard let urlRequest = ApiCallManager.shared.createUrlRequest(apiCallInputStruct: apiCallStruct) else { return }
+        
         ApiCallManager.shared.startUrlRequest(PoiListData.self, useCache: false, urlRequest: urlRequest) { (result) in
             self.handleGenericResponse(response: result)
         }
@@ -65,21 +74,33 @@ class MainViewModel: CommonViewModel {
         
     }
     
+    private func retrieveCoordinateData(apiCallStruct: ApiCallInputStruct) {
+        if let coordinate = apiCallStruct.coordinate {
+            self.regionLocation = coordinate
+        } else if let placeMark = apiCallStruct.placeMark {
+            self.regionLocation = placeMark.location
+        }
+    }
+    
     private func handlePoiListData(data: PoiListData) {
         print("\(#function)")
         
         guard let poiList = data.poiList else { return }
         print("Total Data : \(poiList.count)")
 
-        self.emptyVehicleData()
-
-        var tempVehicleDataArray = Array<VehicleData>()
-        
+        var vehicleDataArray = Array<VehicleData>()
         for item in poiList {
-            tempVehicleDataArray.append(VehicleData(data: item))
+            vehicleDataArray.append(VehicleData(data: item))
         }
         
-        self.vehicleDataArray.value = tempVehicleDataArray
+        self.createMapViewRequeiredParams(vehicleArray: vehicleDataArray)
+        
+        poiListApicallStatus.value = .done
+    }
+    
+    private func createMapViewRequeiredParams(vehicleArray: Array<VehicleData>)  {
+        guard let regionLocation = self.regionLocation else { return }
+        self.mapViewRequiredData = MapViewRequiredParams(location: regionLocation, vehicleArray: vehicleArray)
     }
     
     private func handlePresentedCountiesResponseData(data: PresentedCountryData) {
@@ -93,22 +114,16 @@ class MainViewModel: CommonViewModel {
         
     }
     
-    private func emptyVehicleData() {
-        // this process changes value and triggers binder in the view controller
-        self.vehicleDataArray.value.removeAll()
-    }
-    
     func returnPresentedCountries() -> PresentedCountryData? {
         guard let data = self.presentedCountryData else { return nil }
         
-        for item in data.resultData.presentedCountries.countryList {
-            print("item : \(item.countryCode)")
-            print("item : \(item.countryName)")
-            
-            for item in item.cities {
-                print("city : \(item)")
-            }
-        }
+//        for item in data.resultData.presentedCountries.countryList {
+//            print("item : \(item.countryName)")
+//
+//            for item in item.cities {
+//                print("city : \(item)")
+//            }
+//        }
         
         return data
         
@@ -140,8 +155,13 @@ class MainViewModel: CommonViewModel {
         
     }
     
-    func setSelectedCountryData(data: CountrySelectionStruct) {
-        self.selectedCountryDataStruct.value = data
+    func returnMapViewRequiredParams() -> MapViewRequiredParams? {
+        guard let data = self.mapViewRequiredData else { return nil }
+        return data
+    }
+    
+    func changeBackgroundImage(data: CountrySelectionStruct) {
+//        self.selectedCountryDataStruct.value = data
         
         if let country = data.country {
             self.backgroundImageChanger.value = country.countryImageURL
@@ -150,6 +170,5 @@ class MainViewModel: CommonViewModel {
         }
         
     }
-    
     
 }
