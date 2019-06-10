@@ -65,43 +65,32 @@ class BaseBottomSheetView: UIView {
     }()
     
     let mainSubject: UILabel = {
-        let label = UILabel()
-        //label.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-//        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.contentMode = .center
-//        label.lineBreakMode = .byWordWrapping
-//        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = LocalizedConstants.TitlePrompts.selectCountry
-        //label.font = UIFont(name: "Avenier-Medium", size: 48)
-        label.font = UIFont(name: "Avenir-Heavy", size: 18)
-        //label.textColor = #colorLiteral(red: 0.1647058824, green: 0.1803921569, blue: 0.262745098, alpha: 1)
-        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        let temp = UILabel()
+        temp.textAlignment = .left
+        temp.contentMode = .center
+        temp.text = LocalizedConstants.TitlePrompts.selectCountry
+        temp.font = UIFont(name: "Avenir-Heavy", size: 18)
+        temp.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        return label
+        return temp
     }()
     
     let detailedInformation: UILabel = {
-        let label = UILabel()
-        label.textColor = UIColor.lightGray
-//        label.numberOfLines = 0
-        label.textAlignment = .left
-        label.contentMode = .center
-//        label.lineBreakMode = .byWordWrapping
-//        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = LocalizedConstants.TitlePrompts.selectCountryDetail
-        label.font = UIFont(name: "Avenir-Medium", size: 14)
-        //label.textColor = #colorLiteral(red: 0.1647058824, green: 0.1803921569, blue: 0.262745098, alpha: 1)
-        label.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        let temp = UILabel()
+        temp.textColor = UIColor.lightGray
+        temp.textAlignment = .left
+        temp.contentMode = .center
+        temp.text = LocalizedConstants.TitlePrompts.selectCountryDetail
+        temp.font = UIFont(name: "Avenir-Medium", size: 14)
+        temp.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        return label
+        return temp
     }()
     
     lazy var stackViewForDirectionIcon: UIStackView = {
         
         let temp = UIStackView(arrangedSubviews: [directionIcon])
         temp.isUserInteractionEnabled = true
-        //temp.spacing = 10
         temp.alignment = .fill
         temp.axis = .vertical
         temp.distribution = .fillProportionally
@@ -462,65 +451,6 @@ class PermissionTemplateViewController: UIViewController {
     
 }
 
-class BaseMapViewController: UIViewController {
-    
-    lazy var mapView: MKMapView = {
-        let temp = MKMapView(frame: .zero)
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.isUserInteractionEnabled = true
-        temp.showsScale = true
-        temp.showsCompass = true
-        temp.showsUserLocation = true
-        //temp.setUserTrackingMode(.followWithHeading, animated: true)
-        //        temp.delegate = self
-        //
-        //        temp.register(PlaneAnnotationView.self, forAnnotationViewWithReuseIdentifier: PlaneAnnotationView.identifier)
-        
-        return temp
-    }()
-    
-    lazy var refreshingView: RefreshingView = {
-        let temp = RefreshingView()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.isUserInteractionEnabled = false
-        return temp
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        prepareViewConfigurations()
-        configureMapViewSettings()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        print("Receive memory warning from \(String(describing: self))")
-    }
-    
-    func prepareViewConfigurations() {
-        addView()
-    }
-    
-    func configureMapViewSettings() {}
-    
-    func addView() {
-        self.view.addSubview(mapView)
-        self.view.addSubview(refreshingView)
-        
-        NSLayoutConstraint.activate([
-            
-            mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            mapView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            refreshingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            refreshingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            refreshingView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            refreshingView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            
-            ])
-        
-    }
-    
+class BaseMainViewTemplate: BaseView {
     
 }

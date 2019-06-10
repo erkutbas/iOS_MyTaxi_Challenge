@@ -59,6 +59,7 @@
 		A7E46D9122ADC0BF006DE3A9 /* MKMapView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D9022ADC0BF006DE3A9 /* MKMapView+Extension.swift */; };
 		A7E46DBD22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h in Resources */ = {isa = PBXBuildFile; fileRef = A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */; };
 		A7E46DC022AE0454006DE3A9 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E46DBF22AE0454006DE3A9 /* ListViewController.m */; };
+		A7E46DC222AEB478006DE3A9 /* SideButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46DC122AEB478006DE3A9 /* SideButtonView.swift */; };
 		A7EC3C1C22AD1C7200A0E26E /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */; };
 		A7EC3C1F22AD1DA600A0E26E /* DiscardableImageCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */; };
 /* End PBXBuildFile section */
@@ -122,6 +123,7 @@
 		A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS_MyTaxi_Challenge-Bridging-Header.h"; sourceTree = "<group>"; };
 		A7E46DBE22AE0454006DE3A9 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		A7E46DBF22AE0454006DE3A9 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		A7E46DC122AEB478006DE3A9 /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
 		FA084DE1DFD35DC140AE0B2A /* Pods-iOS_MyTaxi_Challenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_MyTaxi_Challenge.debug.xcconfig"; path = "Target Support Files/Pods-iOS_MyTaxi_Challenge/Pods-iOS_MyTaxi_Challenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */,
 				A76E0CFB22AB607500BD577D /* CountryPickerView.swift */,
 				A76E0CFD22AB608800BD577D /* CityPickerView.swift */,
+				A7E46DC122AEB478006DE3A9 /* SideButtonView.swift */,
 			);
 			path = Custom_Views;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				A76E0D0522AC015F00BD577D /* CityPickerViewModel.swift in Sources */,
 				A76E0D0322ABE98E00BD577D /* CountryPickerViewModel.swift in Sources */,
 				A701D5F222A9ABF100CBF1BE /* PermissionViewController.swift in Sources */,
+				A7E46DC222AEB478006DE3A9 /* SideButtonView.swift in Sources */,
 				A75FF84F22AACE2A00E2493E /* UIView+Extension.swift in Sources */,
 				A76EB37222AB443E006D7DEA /* UIApplication+Extension.swift in Sources */,
 				A701D60022A9B48700CBF1BE /* PermissionButtonView.swift in Sources */,

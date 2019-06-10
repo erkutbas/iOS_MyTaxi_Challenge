@@ -17,13 +17,37 @@
                     <view key="view" contentMode="scaleToFill" id="etm-k8-Dq1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="58T-CS-6VG">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="znK-ER-O5q">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="hj6-d2-3Wa" id="d4J-wl-2oI"/>
+                                    <outlet property="delegate" destination="hj6-d2-3Wa" id="Tly-uU-yau"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="58T-CS-6VG" firstAttribute="trailing" secondItem="2rq-Uf-ha9" secondAttribute="trailing" id="5zN-uk-kvf"/>
+                            <constraint firstItem="58T-CS-6VG" firstAttribute="bottom" secondItem="2rq-Uf-ha9" secondAttribute="bottom" id="Gdk-mX-9Lv"/>
+                            <constraint firstItem="58T-CS-6VG" firstAttribute="leading" secondItem="2rq-Uf-ha9" secondAttribute="leading" id="PR5-fZ-whC"/>
+                            <constraint firstItem="58T-CS-6VG" firstAttribute="top" secondItem="2rq-Uf-ha9" secondAttribute="top" id="ymf-52-RGu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2rq-Uf-ha9"/>
                     </view>
+                    <connections>
+                        <outlet property="listTableView" destination="58T-CS-6VG" id="A7G-iB-SFK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S9c-uD-pns" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-191" y="-475"/>
+            <point key="canvasLocation" x="-191.30434782608697" y="-475.44642857142856"/>
         </scene>
     </scenes>
 </document>

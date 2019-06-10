@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.listTableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"testDeneme"];
 }
 
 /*
@@ -28,5 +32,18 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 100;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"testDeneme" forIndexPath:indexPath];
+    cell.backgroundColor = UIColor.blueColor;
+    
+    return cell;
+    
+}
 
 @end

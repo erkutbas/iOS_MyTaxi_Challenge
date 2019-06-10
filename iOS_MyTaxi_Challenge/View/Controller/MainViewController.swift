@@ -17,6 +17,13 @@ class MainViewController: UIViewController {
     private var mapView: MapView!
     private var countrySelectionView: CountrySelectionView!
     
+    lazy var sideButtonView: SideButtonView = {
+        let temp = SideButtonView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.isUserInteractionEnabled = true
+        return temp
+    }()
+    
     lazy var refreshingView: RefreshingView = {
         let temp = RefreshingView()
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -52,6 +59,8 @@ class MainViewController: UIViewController {
         temp.alignment = .fill
         temp.axis = .vertical
         temp.distribution = .fillProportionally
+        
+        temp.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector.triggerObjcViewController))
         
         return temp
     }()
@@ -178,10 +187,9 @@ extension MainViewController {
             ])
     }
     
-    @objc fileprivate func triggerObjcViewController(_ sender: UIButton) {
-//        let objcViewController = MapViewController()
-//        let navigationViewController = UINavigationController(rootViewController: objcViewController)
-//        self.present(navigationViewController, animated: true, completion: nil)
+    @objc fileprivate func triggerObjcViewController(_ sender: UITapGestureRecognizer) {
+        let objcViewController = ListViewController()
+        self.navigationController?.pushViewController(objcViewController, animated: true)
         
     }
     
@@ -202,6 +210,7 @@ extension MainViewController {
             ])
         
         self.addBottomSheetViews()
+        self.addSideButtonViews()
         self.addRefreshingView()
         
     }
@@ -216,6 +225,19 @@ extension MainViewController {
             refreshingView.topAnchor.constraint(equalTo: self.view.topAnchor),
             
             ])
+    }
+    
+    private func addSideButtonViews() {
+        self.view.addSubview(sideButtonView)
+        NSLayoutConstraint.activate([
+            
+            sideButtonView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            sideButtonView.bottomAnchor.constraint(equalTo: self.mapView.topAnchor, constant: 25),
+            sideButtonView.heightAnchor.constraint(equalToConstant: 50),
+            sideButtonView.widthAnchor.constraint(equalToConstant: 100),
+            
+            ])
+        
     }
     
     private func addMainBackgroundImage() {
