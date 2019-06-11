@@ -94,6 +94,11 @@ enum VehicleType {
     case taxi
 }
 
+enum AnimationCaller {
+    case outsider
+    case sideButton
+}
+
 public struct LoaderTransition {
     
     public enum Curve {

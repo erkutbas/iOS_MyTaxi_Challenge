@@ -210,7 +210,8 @@ extension CountrySelectionView: UIGestureRecognizerDelegate {
     }
     
     private func bottonSheetAnimationManager() {
-        outerViewAnimations()
+        // outerViewAnimation triggers outside view animations.
+        outerViewAnimations(direction: self.direction)
         mainViewAnimations()
     }
     
@@ -239,8 +240,8 @@ extension CountrySelectionView: UIGestureRecognizerDelegate {
         }, completion: nil)
     }
     
-    fileprivate func outerViewAnimations() {
-        switch self.direction {
+    fileprivate func outerViewAnimations(direction: Direction) {
+        switch direction {
         case .down:
             delegate?.triggerAnimation(direction: .up)
         case .up:
@@ -250,9 +251,41 @@ extension CountrySelectionView: UIGestureRecognizerDelegate {
         }
     }
     
+    private func closeButtonSheetView(direction: Direction) {
+        delegate?.triggerAnimation(direction: direction)
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            switch direction {
+            case .down:
+                self.frame = CGRect(x: 0, y: self.mainScreenBounds.height, width: self.frame.width, height: self.frame.height)
+//                self.direction = .up
+//                self.directionIcon.transform = .identity
+//                self.blurView.isHidden = true
+//                self.backgroundColor = #colorLiteral(red: 0.6, green: 0.5607843137, blue: 0.6352941176, alpha: 1)
+                
+            case .up:
+                self.frame = CGRect(x: 0, y: self.mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE - UIApplication.shared.returnBottomPadding(), width: self.frame.width, height: self.frame.height)
+                
+            default:
+                break
+            }
+            
+        }, completion: nil)
+    }
+    
     // outsider function
     func animatedFromOutside() {
         self.bottonSheetAnimationManager()
+        /*
+        switch animationParams.callerType {
+        case .outsider:
+            
+        case .sideButton:
+            guard let direction = animationParams.direction else { return }
+            self.closeButtonSheetView(direction: direction)
+            break
+        }*/
     }
     
     @objc fileprivate func donePressed(_ sender: UITapGestureRecognizer){
@@ -275,7 +308,6 @@ extension CountrySelectionView: PickerProtocols {
     
     func getSelectedCity(city: String?) {
         print("\(#function) city : \(city)")
-        
         self.countrySelectionViewModel.setSelectedCity(city: city)
     }
 }

@@ -31,6 +31,8 @@ class BaseView: UIView {
 
 class BaseBottomSheetView: UIView {
     
+    var mainStackViewLeadingConstraint = NSLayoutConstraint()
+    
     lazy var topBarView: UIView = {
         let temp = UIView()
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -110,6 +112,7 @@ class BaseBottomSheetView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         prepareViewConfigurations()
+        reArrangeViewConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -121,9 +124,13 @@ class BaseBottomSheetView: UIView {
         self.addViews()
     }
     
+    func reArrangeViewConstraints() {}
+    
     func addViews() {
         self.addSubview(topBarView)
         self.topBarView.addSubview(mainStackView)
+        
+        self.mainStackViewLeadingConstraint = self.mainStackView.leadingAnchor.constraint(equalTo: self.topBarView.leadingAnchor, constant: 50)
         
         NSLayoutConstraint.activate([
             
@@ -133,7 +140,8 @@ class BaseBottomSheetView: UIView {
 //            topBarView.heightAnchor.constraint(equalToConstant: 100),
             
             mainStackView.centerYAnchor.constraint(equalTo: self.topBarView.centerYAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: self.topBarView.leadingAnchor, constant: 50)
+            //mainStackView.leadingAnchor.constraint(equalTo: self.topBarView.leadingAnchor, constant: 50)
+            mainStackViewLeadingConstraint
             
             ])
     }
@@ -216,6 +224,7 @@ class BasePickerView: UIView {
             
             ])
     }
+    
 }
 
 class BaseViewController: UIViewController {

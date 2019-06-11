@@ -84,3 +84,12 @@ struct MapViewRequiredParams {
     
 }
 
+struct BottomAnimationsParams {
+    var callerType: AnimationCaller
+    var direction: Direction?
+    
+    init(callerType: AnimationCaller, direction: Direction?) {
+        self.callerType = callerType
+        self.direction = direction
+    }
+}

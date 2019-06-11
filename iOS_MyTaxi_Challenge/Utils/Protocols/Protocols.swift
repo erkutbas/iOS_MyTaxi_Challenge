@@ -28,6 +28,10 @@ extension PickerProtocols {
     func getSelectedCity(city: String?) {}
 }
 
+protocol ViewControllerPresentationProtocol: class {
+    func pushViewController()
+}
+
 protocol CommonViewModel {
     func handleGenericResponse<T: Codable>(response: Result<T, Error>)
 }

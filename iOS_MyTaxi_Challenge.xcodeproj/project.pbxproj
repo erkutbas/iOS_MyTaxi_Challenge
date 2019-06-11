@@ -50,7 +50,12 @@
 		A7A3091722A8E5C100FEBABC /* WebSiteParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3091622A8E5C100FEBABC /* WebSiteParser.swift */; };
 		A7A3091B22A8E63800FEBABC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3091A22A8E63800FEBABC /* Enums.swift */; };
 		A7A3092722A92A3600FEBABC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3092622A92A3600FEBABC /* MainViewController.swift */; };
-		A7A3092A22A92DA200FEBABC /* ListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A3092922A92DA200FEBABC /* ListView.storyboard */; };
+		A7C1EE1022AF4458007CA706 /* ListDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */; };
+		A7C1EE1222AF458C007CA706 /* ListData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C1EE1122AF458C007CA706 /* ListData.storyboard */; };
+		A7C1EE1522AF484D007CA706 /* ListDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE1422AF484D007CA706 /* ListDataViewController.m */; };
+		A7C1EE1E22AF6578007CA706 /* ListVehicleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */; };
+		A7C1EE2222AF6D3E007CA706 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE2122AF6D3E007CA706 /* Constants.m */; };
+		A7C1EE2822AFEDBD007CA706 /* ImageContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE2722AFEDBD007CA706 /* ImageContainerView.m */; };
 		A7E46D8622AD3867006DE3A9 /* PoiiListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8522AD3867006DE3A9 /* PoiiListData.swift */; };
 		A7E46D8822AD481E006DE3A9 /* VehicleAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8722AD481E006DE3A9 /* VehicleAnnotationView.swift */; };
 		A7E46D8B22AD488D006DE3A9 /* VehiclePointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */; };
@@ -58,7 +63,6 @@
 		A7E46D8F22AD6C23006DE3A9 /* VehicleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8E22AD6C23006DE3A9 /* VehicleData.swift */; };
 		A7E46D9122ADC0BF006DE3A9 /* MKMapView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D9022ADC0BF006DE3A9 /* MKMapView+Extension.swift */; };
 		A7E46DBD22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h in Resources */ = {isa = PBXBuildFile; fileRef = A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */; };
-		A7E46DC022AE0454006DE3A9 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7E46DBF22AE0454006DE3A9 /* ListViewController.m */; };
 		A7E46DC222AEB478006DE3A9 /* SideButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46DC122AEB478006DE3A9 /* SideButtonView.swift */; };
 		A7EC3C1C22AD1C7200A0E26E /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */; };
 		A7EC3C1F22AD1DA600A0E26E /* DiscardableImageCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */; };
@@ -113,7 +117,17 @@
 		A7A3091622A8E5C100FEBABC /* WebSiteParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSiteParser.swift; sourceTree = "<group>"; };
 		A7A3091A22A8E63800FEBABC /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A7A3092622A92A3600FEBABC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A7A3092922A92DA200FEBABC /* ListView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListView.storyboard; sourceTree = "<group>"; };
+		A7C1EE0E22AF4458007CA706 /* ListDataTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDataTableViewCell.h; sourceTree = "<group>"; };
+		A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDataTableViewCell.m; sourceTree = "<group>"; };
+		A7C1EE1122AF458C007CA706 /* ListData.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListData.storyboard; sourceTree = "<group>"; };
+		A7C1EE1322AF484D007CA706 /* ListDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDataViewController.h; sourceTree = "<group>"; };
+		A7C1EE1422AF484D007CA706 /* ListDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDataViewController.m; sourceTree = "<group>"; };
+		A7C1EE1C22AF6578007CA706 /* ListVehicleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListVehicleViewController.h; sourceTree = "<group>"; };
+		A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListVehicleViewController.m; sourceTree = "<group>"; };
+		A7C1EE2122AF6D3E007CA706 /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		A7C1EE2322AF6D49007CA706 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		A7C1EE2622AFEDBD007CA706 /* ImageContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageContainerView.h; sourceTree = "<group>"; };
+		A7C1EE2722AFEDBD007CA706 /* ImageContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageContainerView.m; sourceTree = "<group>"; };
 		A7E46D8522AD3867006DE3A9 /* PoiiListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiiListData.swift; sourceTree = "<group>"; };
 		A7E46D8722AD481E006DE3A9 /* VehicleAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAnnotationView.swift; sourceTree = "<group>"; };
 		A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePointAnnotation.swift; sourceTree = "<group>"; };
@@ -121,8 +135,6 @@
 		A7E46D8E22AD6C23006DE3A9 /* VehicleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleData.swift; sourceTree = "<group>"; };
 		A7E46D9022ADC0BF006DE3A9 /* MKMapView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extension.swift"; sourceTree = "<group>"; };
 		A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS_MyTaxi_Challenge-Bridging-Header.h"; sourceTree = "<group>"; };
-		A7E46DBE22AE0454006DE3A9 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
-		A7E46DBF22AE0454006DE3A9 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		A7E46DC122AEB478006DE3A9 /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		A7EC3C1B22AD1C7200A0E26E /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscardableImageCacheItem.swift; sourceTree = "<group>"; };
@@ -345,7 +357,9 @@
 		A7A3091D22A9296000FEBABC /* ListViewCodes */ = {
 			isa = PBXGroup;
 			children = (
+				A7C1EE1F22AF6D1C007CA706 /* Utils */,
 				A7A3092822A92D8D00FEBABC /* StoryBoard */,
+				A7C1EE2422AFE2E6007CA706 /* Model */,
 				A7A3091E22A9296700FEBABC /* View */,
 			);
 			path = ListViewCodes;
@@ -354,9 +368,14 @@
 		A7A3091E22A9296700FEBABC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A7C1EE2522AFED9A007CA706 /* CustomViews */,
 				A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */,
-				A7E46DBE22AE0454006DE3A9 /* ListViewController.h */,
-				A7E46DBF22AE0454006DE3A9 /* ListViewController.m */,
+				A7C1EE0E22AF4458007CA706 /* ListDataTableViewCell.h */,
+				A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */,
+				A7C1EE1322AF484D007CA706 /* ListDataViewController.h */,
+				A7C1EE1422AF484D007CA706 /* ListDataViewController.m */,
+				A7C1EE1C22AF6578007CA706 /* ListVehicleViewController.h */,
+				A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -390,9 +409,42 @@
 		A7A3092822A92D8D00FEBABC /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				A7A3092922A92DA200FEBABC /* ListView.storyboard */,
+				A7C1EE1122AF458C007CA706 /* ListData.storyboard */,
 			);
 			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		A7C1EE1F22AF6D1C007CA706 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A7C1EE2022AF6D26007CA706 /* Constant */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A7C1EE2022AF6D26007CA706 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				A7C1EE2122AF6D3E007CA706 /* Constants.m */,
+				A7C1EE2322AF6D49007CA706 /* Constants.h */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		A7C1EE2422AFE2E6007CA706 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A7C1EE2522AFED9A007CA706 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				A7C1EE2622AFEDBD007CA706 /* ImageContainerView.h */,
+				A7C1EE2722AFEDBD007CA706 /* ImageContainerView.m */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		A7E46D8922AD486B006DE3A9 /* MapViews */ = {
@@ -495,8 +547,8 @@
 				A701D61222A9C82900CBF1BE /* placeholder_location.png in Resources */,
 				A701D61422A9C82900CBF1BE /* tick.png in Resources */,
 				A75FF84122AAA22700E2493E /* mainVC.jpg in Resources */,
+				A7C1EE1222AF458C007CA706 /* ListData.storyboard in Resources */,
 				A76E0D0722AC7FAE00BD577D /* check.png in Resources */,
-				A7A3092A22A92DA200FEBABC /* ListView.storyboard in Resources */,
 				A7E46DBD22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h in Resources */,
 				A701D61722A9C9E300CBF1BE /* taxiSample.jpg in Resources */,
 			);
@@ -551,7 +603,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7C1EE2822AFEDBD007CA706 /* ImageContainerView.m in Sources */,
 				A701D62022AA409A00CBF1BE /* ApiCallManager.swift in Sources */,
+				A7C1EE1E22AF6578007CA706 /* ListVehicleViewController.m in Sources */,
 				A7E46D8822AD481E006DE3A9 /* VehicleAnnotationView.swift in Sources */,
 				A7E46D8F22AD6C23006DE3A9 /* VehicleData.swift in Sources */,
 				A76E0CFE22AB608800BD577D /* CityPickerView.swift in Sources */,
@@ -560,8 +614,8 @@
 				A75FF83D22AA80B000E2493E /* Dynamic.swift in Sources */,
 				A701D60322A9B4FA00CBF1BE /* Structs.swift in Sources */,
 				A7EC3C1C22AD1C7200A0E26E /* CachedImageView.swift in Sources */,
-				A7E46DC022AE0454006DE3A9 /* ListViewController.m in Sources */,
 				A714BE5E22A8E41A00A373DC /* ViewController.swift in Sources */,
+				A7C1EE1022AF4458007CA706 /* ListDataTableViewCell.m in Sources */,
 				A7E46D9122ADC0BF006DE3A9 /* MKMapView+Extension.swift in Sources */,
 				A701D60622A9BD5200CBF1BE /* RefreshingView.swift in Sources */,
 				A701D5FE22A9AECB00CBF1BE /* LocalizedConstants.swift in Sources */,
@@ -569,6 +623,7 @@
 				A701D60D22A9C6D600CBF1BE /* Constants.swift in Sources */,
 				A76E0D0522AC015F00BD577D /* CityPickerViewModel.swift in Sources */,
 				A76E0D0322ABE98E00BD577D /* CountryPickerViewModel.swift in Sources */,
+				A7C1EE2222AF6D3E007CA706 /* Constants.m in Sources */,
 				A701D5F222A9ABF100CBF1BE /* PermissionViewController.swift in Sources */,
 				A7E46DC222AEB478006DE3A9 /* SideButtonView.swift in Sources */,
 				A75FF84F22AACE2A00E2493E /* UIView+Extension.swift in Sources */,
@@ -581,6 +636,7 @@
 				A75FF84C22AAC6B600E2493E /* WarningViewController.swift in Sources */,
 				A7E46D8622AD3867006DE3A9 /* PoiiListData.swift in Sources */,
 				A7E46D8B22AD488D006DE3A9 /* VehiclePointAnnotation.swift in Sources */,
+				A7C1EE1522AF484D007CA706 /* ListDataViewController.m in Sources */,
 				A701D62222AA416B00CBF1BE /* PresentedCountryData.swift in Sources */,
 				A701D5F022A9A3BD00CBF1BE /* LocationManager.swift in Sources */,
 				A7A3092722A92A3600FEBABC /* MainViewController.swift in Sources */,

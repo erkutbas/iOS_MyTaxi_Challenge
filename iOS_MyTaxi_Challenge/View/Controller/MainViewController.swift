@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
         let temp = SideButtonView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.isUserInteractionEnabled = true
+        temp.delegate = self
         return temp
     }()
     
@@ -102,6 +103,12 @@ class MainViewController: UIViewController {
         initialOperations()
     }
     
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        sideButtonAnimationTrigger(animationParams: BottomAnimationsParams(callerType: .sideButton, direction: .up))
+//
+//    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
@@ -110,8 +117,8 @@ class MainViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        
     }
+
     deinit {
         viewModel.apiCallStatus.unbind()
         viewModel.unsuitableCountry.unbind()
@@ -188,7 +195,7 @@ extension MainViewController {
     }
     
     @objc fileprivate func triggerObjcViewController(_ sender: UITapGestureRecognizer) {
-        let objcViewController = ListViewController()
+        let objcViewController = ListDataViewController()
         self.navigationController?.pushViewController(objcViewController, animated: true)
         
     }
@@ -232,9 +239,9 @@ extension MainViewController {
         NSLayoutConstraint.activate([
             
             sideButtonView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            sideButtonView.bottomAnchor.constraint(equalTo: self.mapView.topAnchor, constant: 25),
+            sideButtonView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(UIApplication.shared.returnBottomPadding() + 75)),
             sideButtonView.heightAnchor.constraint(equalToConstant: 50),
-            sideButtonView.widthAnchor.constraint(equalToConstant: 100),
+            sideButtonView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width / 3),
             
             ])
         
@@ -332,10 +339,6 @@ extension MainViewController {
         
     }
     
-    private func setMapViewTitles() {
-        
-    }
-
     private func listenCountrySelectionViewDataChanges() {
         self.countrySelectionView.listenSelectedCountryData { (selectedCountryData) in
             self.viewModel.changeBackgroundImage(data: selectedCountryData)
@@ -379,11 +382,36 @@ extension MainViewController: ViewAnimationTrigger {
         print("direction: \(direction)")
         mapView.animatedFromOutside(direction: direction)
         
+        switch direction {
+        case .down:
+            sideButtonView.outsideAnimationManager(direction: .right)
+        case .up:
+            sideButtonView.outsideAnimationManager(direction: .left)
+        default:
+            break
+        }
+
     }
     
     func completeBottonSheetAnimation() {
         countrySelectionView.animatedFromOutside()
     }
+
+}
+
+// MARK: - ViewControllerPresentationProtocol
+extension MainViewController: ViewControllerPresentationProtocol {
+    func pushViewController() {
+//        let storyboard = UIStoryboard(name: "ListData", bundle: nil)
+//        let listDataViewController = storyboard.instantiateViewController(withIdentifier: "identifierListDataViewController") as! ListDataViewController
+//        self.navigationController?.pushViewController(listDataViewController, animated: true)
+        let storyboard = UIStoryboard(name: "ListData", bundle: nil)
+        let listDataViewController = storyboard.instantiateViewController(withIdentifier: "identifierTakasi") as! ListVehicleViewController
+        self.present(listDataViewController, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(listDataViewController, animated: true)
+    }
+    
+    
 }
 
 fileprivate extension Selector {
