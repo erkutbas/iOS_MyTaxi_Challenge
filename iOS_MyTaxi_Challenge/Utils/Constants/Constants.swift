@@ -74,5 +74,8 @@ struct CONSTANT {
         static let COUNTRY_SELECTION_VIEW_Y_COORDINATE: CGFloat = 200
         static let COUNTRY_SELECTION_VIEW_Y_COORDINATE_ACTIVE: CGFloat = 600
         static let MAPVIEW_Y_COORDINATE_ACTIVE: CGFloat = 0
+        static let SIDE_BUTTON_FRAME_WIDTH = UIScreen.main.bounds.width / 3
+        static let SIDE_BUTTON_FRAME_Y = UIScreen.main.bounds.height - (UIApplication.shared.returnBottomPadding() + 125)
+        static let SIDE_BUTTON_FRAME_X = UIScreen.main.bounds.width - (UIScreen.main.bounds.width / 3)
     }
 }

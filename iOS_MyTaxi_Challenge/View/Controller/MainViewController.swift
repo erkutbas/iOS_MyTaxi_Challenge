@@ -17,13 +17,7 @@ class MainViewController: UIViewController {
     private var mapView: MapView!
     private var countrySelectionView: CountrySelectionView!
     
-    lazy var sideButtonView: SideButtonView = {
-        let temp = SideButtonView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.isUserInteractionEnabled = true
-        temp.delegate = self
-        return temp
-    }()
+    private var sideButtonView: SideButtonView!
     
     lazy var refreshingView: RefreshingView = {
         let temp = RefreshingView()
@@ -114,9 +108,9 @@ class MainViewController: UIViewController {
         viewModel.apiCallStatus.unbind()
         viewModel.unsuitableCountry.unbind()
         viewModel.feedDataToCountySelectionView.unbind()
-//        viewModel.selectedCountryDataStruct.unbind()
         viewModel.backgroundImageChanger.unbind()
         viewModel.poiListApicallStatus.unbind()
+        viewModel.sideButtonActivationListener.unbind()
         
     }
     
@@ -191,13 +185,14 @@ extension MainViewController {
             ])
         
         self.addBottomSheetViews()
-        self.addSideButtonViews()
         self.addRefreshingView()
         
     }
     
     private func addRefreshingView() {
         self.view.addSubview(refreshingView)
+        self.view.bringSubviewToFront(refreshingView)
+        
         NSLayoutConstraint.activate([
             
             refreshingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
@@ -206,19 +201,6 @@ extension MainViewController {
             refreshingView.topAnchor.constraint(equalTo: self.view.topAnchor),
             
             ])
-    }
-    
-    private func addSideButtonViews() {
-        self.view.addSubview(sideButtonView)
-        NSLayoutConstraint.activate([
-            
-            sideButtonView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            sideButtonView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(UIApplication.shared.returnBottomPadding() + 75)),
-            sideButtonView.heightAnchor.constraint(equalToConstant: 50),
-            sideButtonView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width / 3),
-            
-            ])
-        
     }
     
     private func addMainBackgroundImage() {
@@ -240,7 +222,7 @@ extension MainViewController {
         
         viewModel.unsuitableCountry.bind { (result) in
             if !result {
-                self.presentWarningViewController()
+                self.presentWarningViewController(warningType: .countrySelection)
             }
         }
         
@@ -248,16 +230,16 @@ extension MainViewController {
             self.countrySelectionView.setPresentedCountriesData(data: countryListData)
         }
         
-//        viewModel.selectedCountryDataStruct.bind { (selectedCountryData) in
-//            self.startGettingDataProcess(data: selectedCountryData)
-//        }
-        
         viewModel.backgroundImageChanger.bind { (urlString) in
             self.changeBackgroundImage(urlString: urlString)
         }
         
         viewModel.poiListApicallStatus.bind { (status) in
             self.mapViewManagers(status: status)
+        }
+        
+        viewModel.sideButtonActivationListener.bind { (active) in
+            self.sideButtonView.sideButtonActivationManager(active: active)
         }
 
         self.listenCountrySelectionViewDataChanges()
@@ -285,16 +267,20 @@ extension MainViewController {
                 } else {
                     self.viewControllerImage.loadImage(urlString: urlString)
                 }
-            }, completion: nil)
+            }, completion: { (finish) in
+                self.viewModel.setSideButtonActivationListenerValue(active: true)
+            })
             
         }
     }
     
-    private func presentWarningViewController() {
+    private func presentWarningViewController(warningType: WarningType) {
         let warningViewContoller = WarningViewController()
         warningViewContoller.delegate = self
         warningViewContoller.modalPresentationStyle = .overCurrentContext
         warningViewContoller.modalTransitionStyle = .crossDissolve
+        warningViewContoller.warningType = warningType
+        
         self.present(warningViewContoller, animated: true, completion: nil)
 //        self.navigationController?.pushViewController(warningViewContoller, animated: true)
         
@@ -304,12 +290,17 @@ extension MainViewController {
         let mainScreenBounds = UIScreen.main.bounds
         
         mapView = MapView(frame: CGRect(origin: CGPoint(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.MAPVIEW_Y_COORDINATE - UIApplication.shared.returnBottomPadding()), size: mainScreenBounds.size))
+        mapView.delegate = self
         
         countrySelectionView = CountrySelectionView(frame: CGRect(origin: CGPoint(x: 0, y: mainScreenBounds.height - CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE - UIApplication.shared.returnBottomPadding()), size: CGSize(width: mainScreenBounds.width, height: CONSTANT.VIEW_FRAME_VALUES.COUNTRY_SELECTION_VIEW_Y_COORDINATE_ACTIVE)))
         countrySelectionView.delegate = self
         
+        sideButtonView = SideButtonView(frame: CGRect(x: CONSTANT.VIEW_FRAME_VALUES.SIDE_BUTTON_FRAME_X, y: CONSTANT.VIEW_FRAME_VALUES.SIDE_BUTTON_FRAME_Y, width: CONSTANT.VIEW_FRAME_VALUES.SIDE_BUTTON_FRAME_WIDTH, height: 50))
+        sideButtonView.delegate = self
+        
         self.view.addSubview(countrySelectionView)
         self.view.addSubview(mapView)
+        self.view.addSubview(sideButtonView)
         
     }
     
@@ -353,22 +344,38 @@ extension MainViewController: ViewAnimationTrigger {
     func triggerAnimation(direction: Direction?) {
         print("\(#function)")
         guard let direction = direction else { return }
-        print("direction: \(direction)")
         mapView.animatedFromOutside(direction: direction)
         
-        switch direction {
-        case .down:
-            sideButtonView.outsideAnimationManager(direction: .right)
-        case .up:
-            sideButtonView.outsideAnimationManager(direction: .left)
-        default:
-            break
-        }
+        
+        print("KOKO direction : \(direction)")
+        self.sideButtonView.outsideAnimationManager()
+//        switch direction {
+//        case .down:
+//            sideButtonView.outsideAnimationManager(direction: .right)
+//        case .up:
+//            sideButtonView.outsideAnimationManager(direction: .left)
+//        default:
+//            break
+//        }
 
     }
     
     func completeBottonSheetAnimation() {
         countrySelectionView.animatedFromOutside()
+    }
+    
+    func sideButtonAnimationTrigger(direction: Direction) {
+        print("MOKO direction : \(direction)")
+        self.sideButtonView.outsideAnimationManager()
+//        switch direction {
+//        case .down:
+//            sideButtonView.outsideAnimationManager(direction: .right)
+//        case .up:
+//            sideButtonView.outsideAnimationManager(direction: .left)
+//        default:
+//            break
+//        }
+        
     }
 
 }
@@ -376,15 +383,19 @@ extension MainViewController: ViewAnimationTrigger {
 // MARK: - ViewControllerPresentationProtocol
 extension MainViewController: ViewControllerPresentationProtocol {
     func pushViewController() {
-//        let storyboard = UIStoryboard(name: "ListData", bundle: nil)
-//        let listDataViewController = storyboard.instantiateViewController(withIdentifier: "identifierListDataViewController") as! ListDataViewController
-//        self.navigationController?.pushViewController(listDataViewController, animated: true)
-        let storyboard = UIStoryboard(name: "ListData", bundle: nil)
-        let listDataViewController = storyboard.instantiateViewController(withIdentifier: "identifierTakasi") as! ListVehicleViewController
+
+        if self.viewModel.returnArrayDataForListView().count <= 0 {
+            self.presentWarningViewController(warningType: .noVehicle)
+        } else {
+            let storyboard = UIStoryboard(name: "ListData", bundle: nil)
+            let listDataViewController = storyboard.instantiateViewController(withIdentifier: "identifierTakasi") as! ListVehicleViewController
+            
+            guard let image = self.viewControllerImage.image else { return }
+            
+            listDataViewController.viewModel = ListDataViewModel(arrayData: self.viewModel.returnArrayDataForListView(), topImage: image, countryInformation: self.viewModel.returnSelectedContryData())
+            self.present(listDataViewController, animated: true, completion: nil)
+        }
         
-        listDataViewController.viewModel = ListDataViewModel(arrayData: self.viewModel.returnArrayDataForListView())
-        self.present(listDataViewController, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(listDataViewController, animated: true)
     }
     
 }

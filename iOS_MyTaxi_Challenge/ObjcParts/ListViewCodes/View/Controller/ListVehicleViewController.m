@@ -28,6 +28,7 @@
     [self addBlurViewToBottomDismissView];
     
     [self addTapGestures];
+    [self setInputImageToTop];
     
 }
 
@@ -36,6 +37,10 @@
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(handleSingleTap:)];
     [self.dismissBottomView addGestureRecognizer:singleFingerTap];
+}
+
+- (void) setInputImageToTop {
+    [_imageContainerView setHeaderImageView:[_viewModel returnTopImage]];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
@@ -63,7 +68,7 @@
     [_topView.layer setShadowRadius:5.0];
     [_topView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
     
-    _dismissBottomView.layer.cornerRadius = cornerRadius_40;
+    _dismissBottomView.layer.cornerRadius = cornerRadius_30;
     _dismissBottomView.layer.maskedCorners = kCALayerMinXMinYCorner;
     _dismissBottomView.clipsToBounds = true;
 
@@ -93,6 +98,7 @@
     _imageContainerView = [[ImageContainerView alloc] initWithFrame:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, UIApplication.sharedApplication.statusBarFrame.size.height + imageContainerViewHeight)];
     _imageContainerView.translatesAutoresizingMaskIntoConstraints = false;
     _imageContainerView.clipsToBounds = true;
+    [_imageContainerView setTitlePrompts:[_viewModel returnCountryInformation]];
     
     [_topView addSubview:_imageContainerView];
     

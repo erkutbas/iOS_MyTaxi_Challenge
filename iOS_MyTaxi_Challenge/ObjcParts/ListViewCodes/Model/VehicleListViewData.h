@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "VehicleInformation.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VehicleListViewData : NSObject
 
 @property (nonatomic, copy, readonly) NSMutableArray<VehicleInformation *> *vehicleArray;
+@property (nonatomic, copy, readonly) UIImage *topImage;
 
-- (instancetype)initWithArrayData:(NSMutableArray<VehicleInformation *> *)arrayData;
+- (instancetype)initWithArrayData:(NSMutableArray<VehicleInformation *> *)arrayData topImage:(UIImage *)inputImage;
 
 @end
 

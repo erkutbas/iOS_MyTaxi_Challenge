@@ -11,6 +11,7 @@ import UIKit
 class WarningViewController: PermissionTemplateViewController {
     
     weak var delegate: ViewAnimationTrigger?
+    var warningType: WarningType?
     
     lazy var customButtonView: PermissionButtonView = {
         let temp = PermissionButtonView(frame: CGRect(x: 0, y: 0, width: 240, height: 50))
@@ -48,8 +49,21 @@ extension WarningViewController {
     }
     
     private func setStackViewPrompts() {
-        self.mainSubject.text = LocalizedConstants.PermissionPrompts.warning
-        self.detailedInformation.text = LocalizedConstants.PermissionPrompts.warningDetail
+        
+        guard let warningType = warningType else { return }
+        
+        switch warningType {
+        case .countrySelection:
+            self.mainSubject.text = LocalizedConstants.PermissionPrompts.warning
+            self.detailedInformation.text = LocalizedConstants.PermissionPrompts.warningDetail
+        case .noVehicle:
+            self.mainSubject.text = LocalizedConstants.TitlePrompts.emptyData
+            self.detailedInformation.text = LocalizedConstants.TitlePrompts.emptyDataDetail
+        default:
+            self.mainSubject.text = LocalizedConstants.PermissionPrompts.warning
+            self.detailedInformation.text = LocalizedConstants.PermissionPrompts.warningDetail
+        }
+        
     }
     
     private func setCenterViewImages() {

@@ -50,6 +50,8 @@ struct LocalizedConstants {
         static let mainWelcome = NSLocalizedString("mainWelcome", comment: "")
         static let detailWelcome = NSLocalizedString("detailWelcome", comment: "")
         static let listView = NSLocalizedString("listView", comment: "")
+        static let emptyData = NSLocalizedString("emptyData", comment: "")
+        static let emptyDataDetail = NSLocalizedString("emptyDataDetail", comment: "")
         
     }
 }

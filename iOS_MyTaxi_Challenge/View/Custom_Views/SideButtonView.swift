@@ -68,24 +68,35 @@ extension SideButtonView {
     }
     
     // outsider
-    func outsideAnimationManager(direction: Direction) {
+    func outsideAnimationManager() {
+        print("\(#function) self.frame.width : \(self.frame.width)")
+        print("self.mainScreenBounds.width : \(self.mainScreenBounds.width)")
+        print("UIScreen.main.bounds.width : \(UIScreen.main.bounds.width)")
+        print("direction : \(self.direction)")
+        
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            switch direction {
+            switch self.direction {
             case .left:
-                self.frame = CGRect(x: self.mainScreenBounds.width - (UIScreen.main.bounds.width / 3) , y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
+                print("OSURUK")
+                self.frame = CGRect(x: self.mainScreenBounds.width - (UIScreen.main.bounds.width / 3) , y: self.frame.origin.y, width: CONSTANT.VIEW_FRAME_VALUES.SIDE_BUTTON_FRAME_WIDTH, height: self.frame.height)
                 self.arrangeCornerRadius(radius: 25, maskCorner: [.layerMinXMaxYCorner, .layerMinXMinYCorner])
-                self.directionIcon.transform = .identity
+                //self.directionIcon.transform = .identity
+                self.direction = .right
                 
             case .right:
-                self.frame = CGRect(x: self.mainScreenBounds.width, y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
+                print("GOT")
+                self.frame = CGRect(x: self.mainScreenBounds.width, y: self.frame.origin.y, width: 0, height: self.frame.height)
                 self.arrangeCornerRadius(radius: 0, maskCorner: [.layerMinXMaxYCorner, .layerMinXMinYCorner])
-                self.directionIcon.transform = CGAffineTransform(scaleX: -1, y: 1)
-                
+                //self.directionIcon.transform = CGAffineTransform(scaleX: -1, y: 1)
+                self.direction = .left
             default:
                 break
             }
             
-        }, completion: nil)
+        }, completion: { (finish) in
+            print("BITTI")
+            print("self.frame : \(self.frame)")
+        })
     }
 
     // outsider functions
@@ -102,13 +113,11 @@ extension SideButtonView {
                 self.isUserInteractionEnabled = active
             })
             
-            if active {
-                
-            }
-            
-            
         }
+        
     }
+    
+    
     
 }
 

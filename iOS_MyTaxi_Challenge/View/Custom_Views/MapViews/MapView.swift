@@ -13,6 +13,8 @@ class MapView: BaseBottomSheetView {
     
     private var mapViewModel = MapViewModel()
     
+    weak var delegate: ViewAnimationTrigger?
+    
     lazy var mapView: MKMapView = {
         let temp = MKMapView(frame: .zero)
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -268,10 +270,11 @@ extension MapView: UIGestureRecognizerDelegate {
     }
     
     @objc fileprivate func animateView(_ sender: UITapGestureRecognizer) {
-        
         blurViewAnimations()
         mapKitAnimations()
         mainViewAnimations()
+        
+        delegate?.sideButtonAnimationTrigger(direction: self.direction)
         
     }
     

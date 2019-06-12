@@ -110,7 +110,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CuA-sX-NeX">
-                                <rect key="frame" x="0.0" y="816" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="836" width="414" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dismiss" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q97-Yb-8mA">
                                         <rect key="frame" x="310" y="16.5" width="74" height="31"/>
@@ -130,7 +130,7 @@
                                 <constraints>
                                     <constraint firstItem="Q97-Yb-8mA" firstAttribute="leading" secondItem="XUE-JW-kVC" secondAttribute="trailing" constant="8" id="TiC-qj-KVO"/>
                                     <constraint firstAttribute="trailing" secondItem="Q97-Yb-8mA" secondAttribute="trailing" constant="30" id="V47-z8-Ypc"/>
-                                    <constraint firstAttribute="height" constant="80" id="aMm-bE-USn"/>
+                                    <constraint firstAttribute="height" constant="60" id="aMm-bE-USn"/>
                                     <constraint firstItem="XUE-JW-kVC" firstAttribute="top" secondItem="CuA-sX-NeX" secondAttribute="top" constant="21" id="esJ-J6-7S0"/>
                                     <constraint firstItem="XUE-JW-kVC" firstAttribute="centerY" secondItem="Q97-Yb-8mA" secondAttribute="centerY" id="kFO-F3-7as"/>
                                 </constraints>

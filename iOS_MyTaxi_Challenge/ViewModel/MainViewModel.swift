@@ -15,9 +15,10 @@ class MainViewModel: CommonViewModel {
     var apiCallStatus = Dynamic(ApiCallStatus.none)
     var feedDataToCountySelectionView = Dynamic(Array<CountryList>())
     var unsuitableCountry = Dynamic(false)
-    //var selectedCountryDataStruct = Dynamic(CountrySelectionStruct())
+    var selectedCountryDataStruct = CountrySelectionStruct()
     var backgroundImageChanger = Dynamic(String())
     var poiListApicallStatus = Dynamic(ApiCallStatus.none)
+    var sideButtonActivationListener = Dynamic(false)
     
     // mapview requirements
     var mapViewRequiredData: MapViewRequiredParams?
@@ -117,17 +118,7 @@ class MainViewModel: CommonViewModel {
     
     func returnPresentedCountries() -> PresentedCountryData? {
         guard let data = self.presentedCountryData else { return nil }
-        
-//        for item in data.resultData.presentedCountries.countryList {
-//            print("item : \(item.countryName)")
-//
-//            for item in item.cities {
-//                print("city : \(item)")
-//            }
-//        }
-        
         return data
-        
     }
     
     private func checkCurrentCountryInsidePresentedCountries() {
@@ -162,7 +153,9 @@ class MainViewModel: CommonViewModel {
     }
     
     func changeBackgroundImage(data: CountrySelectionStruct) {
-//        self.selectedCountryDataStruct.value = data
+        
+        setSideButtonActivationListenerValue(active: false)
+        selectedCountryDataStruct = data
         
         if let country = data.country {
             self.backgroundImageChanger.value = country.countryImageURL
@@ -184,6 +177,28 @@ class MainViewModel: CommonViewModel {
         }
         
         return tempArray
+    }
+    
+    func setSideButtonActivationListenerValue(active: Bool) {
+        sideButtonActivationListener.value = active
+    }
+    
+    func returnSelectedContryData() -> CountryInformaton {
+        
+        var tempCity = "Hamburg"
+        var tempCountry = "Germany"
+        
+        if let city = selectedCountryDataStruct.city {
+            tempCity = city
+        }
+        
+        if let country = selectedCountryDataStruct.country {
+            tempCountry = country.countryName
+        }
+        
+        let countryInfo = CountryInformaton(country: tempCountry, city: tempCity)
+        
+        return countryInfo
     }
     
 }

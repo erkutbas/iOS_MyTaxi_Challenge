@@ -11,11 +11,13 @@ import Foundation
 protocol ViewAnimationTrigger: class {
     func triggerAnimation(direction: Direction?)
     func completeBottonSheetAnimation()
+    func sideButtonAnimationTrigger(direction: Direction)
 }
 
 extension ViewAnimationTrigger {
     func triggerAnimation(direction: Direction?) {}
     func completeBottonSheetAnimation() {}
+    func sideButtonAnimationTrigger(direction: Direction) {}
 }
 
 protocol PickerProtocols: class {

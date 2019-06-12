@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		820B7D6D01670406CA0283EB /* Pods_iOS_MyTaxi_Challenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69DD2D23930B75C38BB4A239 /* Pods_iOS_MyTaxi_Challenge.framework */; };
+		A70133B322B119EB004B5C96 /* CountryInformaton.m in Sources */ = {isa = PBXBuildFile; fileRef = A70133B222B119EB004B5C96 /* CountryInformaton.m */; };
 		A701D5F022A9A3BD00CBF1BE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D5EF22A9A3BD00CBF1BE /* LocationManager.swift */; };
 		A701D5F222A9ABF100CBF1BE /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D5F122A9ABF100CBF1BE /* PermissionViewController.swift */; };
 		A701D5F422A9AD8F00CBF1BE /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D5F322A9AD8F00CBF1BE /* Base.swift */; };
@@ -47,7 +48,6 @@
 		A76EB36E22AB03D4006D7DEA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB36D22AB03D4006D7DEA /* MapView.swift */; };
 		A76EB37022AB1BA0006D7DEA /* CountrySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */; };
 		A76EB37222AB443E006D7DEA /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */; };
-		A7A3091722A8E5C100FEBABC /* WebSiteParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3091622A8E5C100FEBABC /* WebSiteParser.swift */; };
 		A7A3091B22A8E63800FEBABC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3091A22A8E63800FEBABC /* Enums.swift */; };
 		A7A3092722A92A3600FEBABC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3092622A92A3600FEBABC /* MainViewController.swift */; };
 		A7C1EE1022AF4458007CA706 /* ListDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */; };
@@ -74,6 +74,8 @@
 /* Begin PBXFileReference section */
 		69DD2D23930B75C38BB4A239 /* Pods_iOS_MyTaxi_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_MyTaxi_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E125676A9025A6C0ED8C161 /* Pods-iOS_MyTaxi_Challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_MyTaxi_Challenge.release.xcconfig"; path = "Target Support Files/Pods-iOS_MyTaxi_Challenge/Pods-iOS_MyTaxi_Challenge.release.xcconfig"; sourceTree = "<group>"; };
+		A70133B122B119EB004B5C96 /* CountryInformaton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryInformaton.h; sourceTree = "<group>"; };
+		A70133B222B119EB004B5C96 /* CountryInformaton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountryInformaton.m; sourceTree = "<group>"; };
 		A701D5EF22A9A3BD00CBF1BE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A701D5F122A9ABF100CBF1BE /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		A701D5F322A9AD8F00CBF1BE /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
@@ -117,7 +119,6 @@
 		A76EB36D22AB03D4006D7DEA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectionView.swift; sourceTree = "<group>"; };
 		A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
-		A7A3091622A8E5C100FEBABC /* WebSiteParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSiteParser.swift; sourceTree = "<group>"; };
 		A7A3091A22A8E63800FEBABC /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A7A3092622A92A3600FEBABC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A7C1EE0E22AF4458007CA706 /* ListDataTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDataTableViewCell.h; sourceTree = "<group>"; };
@@ -168,6 +169,16 @@
 				69DD2D23930B75C38BB4A239 /* Pods_iOS_MyTaxi_Challenge.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A70133AE22B10F8F004B5C96 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */,
+				A7C1EE1C22AF6578007CA706 /* ListVehicleViewController.h */,
+				A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A701D5EC22A9A38900CBF1BE /* Resources */ = {
@@ -329,7 +340,6 @@
 				A701D61E22AA407D00CBF1BE /* Api */,
 				A701D60722A9BDC500CBF1BE /* Permission */,
 				A701D5EE22A9A3A100CBF1BE /* Location */,
-				A7A3091622A8E5C100FEBABC /* WebSiteParser.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -378,11 +388,9 @@
 		A7A3091E22A9296700FEBABC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A70133AE22B10F8F004B5C96 /* Controller */,
 				A7C1EE2C22B0B79D007CA706 /* TableViewCells */,
 				A7C1EE2522AFED9A007CA706 /* CustomViews */,
-				A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */,
-				A7C1EE1C22AF6578007CA706 /* ListVehicleViewController.h */,
-				A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,6 +453,8 @@
 				A7C1EE3022B0BBF0007CA706 /* VehicleListViewData.m */,
 				A7C1EE3722B0CF53007CA706 /* VehicleInformation.h */,
 				A7C1EE3822B0CF53007CA706 /* VehicleInformation.m */,
+				A70133B122B119EB004B5C96 /* CountryInformaton.h */,
+				A70133B222B119EB004B5C96 /* CountryInformaton.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -665,6 +675,7 @@
 				A701D60022A9B48700CBF1BE /* PermissionButtonView.swift in Sources */,
 				A7E46D8D22AD6735006DE3A9 /* MapViewModel.swift in Sources */,
 				A75FF83B22AA805D00E2493E /* Protocols.swift in Sources */,
+				A70133B322B119EB004B5C96 /* CountryInformaton.m in Sources */,
 				A76E0D0022AB6E0200BD577D /* CountrySelectionViewModel.swift in Sources */,
 				A7C1EE3522B0BFB2007CA706 /* ListDataViewModel.m in Sources */,
 				A714BE5C22A8E41A00A373DC /* AppDelegate.swift in Sources */,
@@ -676,7 +687,6 @@
 				A7A3092722A92A3600FEBABC /* MainViewController.swift in Sources */,
 				A701D5F422A9AD8F00CBF1BE /* Base.swift in Sources */,
 				A7A3091B22A8E63800FEBABC /* Enums.swift in Sources */,
-				A7A3091722A8E5C100FEBABC /* WebSiteParser.swift in Sources */,
 				A75FF83822AA803200E2493E /* MainViewModel.swift in Sources */,
 				A76EB37022AB1BA0006D7DEA /* CountrySelectionView.swift in Sources */,
 				A7EC3C1F22AD1DA600A0E26E /* DiscardableImageCacheItem.swift in Sources */,
@@ -842,7 +852,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erkutbas.iOS-MyTaxi-Challenge";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOS_MyTaxi_Challenge/ObjcParts/ListViewCodes/View/iOS_MyTaxi_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS_MyTaxi_Challenge/ObjcParts/ListViewCodes/View/Controller/iOS_MyTaxi_Challenge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -865,7 +875,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erkutbas.iOS-MyTaxi-Challenge";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "iOS_MyTaxi_Challenge/ObjcParts/ListViewCodes/View/iOS_MyTaxi_Challenge-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS_MyTaxi_Challenge/ObjcParts/ListViewCodes/View/Controller/iOS_MyTaxi_Challenge-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

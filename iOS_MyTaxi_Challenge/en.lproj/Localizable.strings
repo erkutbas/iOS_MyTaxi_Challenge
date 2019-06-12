@@ -39,4 +39,7 @@
 "mainWelcome" = "Welcome to iOS Challenge";
 "detailWelcome" = "Choose Country, Select City, Wander on the Map. Whatever you desire :)";
 "listView" = "List View";
+"emptyData" = "No Vehicle";
+"emptyDataDetail" = "There is no vehicle on the current zoomed area. Please change area by selecting a city as well ☺️";
+
 

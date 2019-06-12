@@ -8,11 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "ListDataViewModel.h"
-#import "VehicleListViewData.h"
 
 @implementation ListDataViewModel
 
-- (instancetype)initWithArrayData:(NSMutableArray<VehicleInformation *> *)arrayData {
+- (instancetype)initWithArrayData:(NSMutableArray<VehicleInformation *> *)arrayData topImage:(UIImage *)inputImage countryInformation:(CountryInformaton *)countryInfo {
     
     self = [super init];
     
@@ -21,6 +20,9 @@
     }
     
     _vehicleArray = [arrayData copy];
+    _topImage = [inputImage copy];
+    _countryInformation = countryInfo;
+    
     
     return self;
     
@@ -40,6 +42,14 @@
 
 - (VehicleInformation *)returnVehicleInformationData:(NSUInteger)index {
     return [_vehicleArray objectAtIndex:index];
+}
+
+- (UIImage *) returnTopImage {
+    return _topImage;
+}
+
+- (CountryInformaton *) returnCountryInformation {
+    return _countryInformation;
 }
 
 

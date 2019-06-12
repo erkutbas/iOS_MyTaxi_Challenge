@@ -8,10 +8,11 @@
 
 #import "VehicleListViewData.h"
 #import "VehicleInformation.h"
+#import <UIKit/UIKit.h>
 
 @implementation VehicleListViewData
 
-- (instancetype) initWithArrayData:(NSMutableArray<VehicleInformation *> *)arrayData {
+- (instancetype) initWithArrayData:(NSMutableArray<VehicleInformation *> *)arrayData topImage:(UIImage *)inputImage {
     
     self = [super init];
 
@@ -20,21 +21,10 @@
     }
 
     _vehicleArray = [arrayData copy];
+    _topImage = [inputImage copy];
 
     return self;
 
 }
-
-//- (instancetype) initWithArrayData:(VehicleInformation *)arrayData {
-//    self = [super init];
-//
-//    if (!self) {
-//        return nil;
-//    }
-//
-//    _vehicleArray = [arrayData copy];
-//
-//    return self;
-//}
 
 @end

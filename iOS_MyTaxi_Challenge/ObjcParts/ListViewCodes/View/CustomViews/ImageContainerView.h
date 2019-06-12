@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CountryInformaton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,10 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) UIImageView *headerImageView;
 @property (strong, nonatomic) UIVisualEffectView *blurEffectView;
-@property (strong, nonatomic) UILabel *screenTitle;
+@property (strong, nonatomic) UILabel *mainScreenTitle;
+@property (strong, nonatomic) UILabel *detailScreenTitle;
 
 - (void) blurViewActivationManager:(BOOL *)value;
 - (void) screenTitleActivationManager:(BOOL *)value;
+- (void) setHeaderImageView:(UIImageView * _Nonnull)headerImageView;
+- (void)setTitlePrompts:(CountryInformaton *)data;
 
 @end
 

@@ -13,6 +13,7 @@ extern const CGFloat imageContainerViewHeight;
 extern const CGFloat imageContainerVisibleHeight;
 extern const CGFloat cornerRadius_10;
 extern const CGFloat cornerRadius_20;
+extern const CGFloat cornerRadius_30;
 extern const CGFloat cornerRadius_40;
 extern const CGFloat cornerRadius_50;
 extern const CGFloat cornerRadius_60;

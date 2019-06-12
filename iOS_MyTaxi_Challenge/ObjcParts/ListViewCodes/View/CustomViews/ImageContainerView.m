@@ -74,16 +74,26 @@
 }
 
 - (void) addScreenTitleLabel {
-    _screenTitle = [[UILabel alloc] initWithFrame:CGRectZero];
-    _screenTitle.translatesAutoresizingMaskIntoConstraints = false;
-    _screenTitle.text = @"Vehicle List Screen";
-    _screenTitle.alpha = 0;
-    [_screenTitle setFont:[UIFont fontWithName:@"Avenier-Medium" size:20]];
-    [_screenTitle setTextColor:UIColor.whiteColor];
-    [_headerImageView addSubview:_screenTitle];
+    _mainScreenTitle = [[UILabel alloc] initWithFrame:CGRectZero];
+    _mainScreenTitle.translatesAutoresizingMaskIntoConstraints = false;
+    _mainScreenTitle.text = @"Vehicle List Screen";
+    _mainScreenTitle.alpha = 0;
+    [_mainScreenTitle setFont:[UIFont fontWithName:@"Avenier-Heavy" size:25]];
+    [_mainScreenTitle setTextColor:UIColor.whiteColor];
+    [_headerImageView addSubview:_mainScreenTitle];
     
-    [NSLayoutConstraint activateConstraints:@[[_screenTitle.centerXAnchor constraintEqualToAnchor:_headerImageView.centerXAnchor],
-                                              [_screenTitle.bottomAnchor constraintEqualToAnchor:_headerImageView.bottomAnchor constant:-20],
+    _detailScreenTitle = [[UILabel alloc] initWithFrame:CGRectZero];
+    _detailScreenTitle.translatesAutoresizingMaskIntoConstraints = false;
+    _detailScreenTitle.text = @"Vehicle List Screen";
+    _detailScreenTitle.alpha = 0;
+    [_detailScreenTitle setFont:[UIFont fontWithName:@"Avenier-Light" size:18]];
+    [_detailScreenTitle setTextColor:UIColor.whiteColor];
+    [_headerImageView addSubview:_detailScreenTitle];
+    
+    [NSLayoutConstraint activateConstraints:@[[_mainScreenTitle.centerXAnchor constraintEqualToAnchor:_headerImageView.centerXAnchor],
+                                              [_mainScreenTitle.bottomAnchor constraintEqualToAnchor:_headerImageView.bottomAnchor constant:-30],
+                                              [_detailScreenTitle.centerXAnchor constraintEqualToAnchor:_headerImageView.centerXAnchor],
+     [_detailScreenTitle.bottomAnchor constraintEqualToAnchor:_headerImageView.bottomAnchor constant:-10],
                                               ]
      ];
 }
@@ -91,9 +101,11 @@
 - (void) screenTitleActivationManager:(BOOL *)value {
     [UIView animateWithDuration:0.3 animations:^(void) {
         if (value) {
-            self.screenTitle.alpha = 1;
+            self.mainScreenTitle.alpha = 1;
+            self.detailScreenTitle.alpha = 1;
         } else {
-            self.screenTitle.alpha = 0;
+            self.mainScreenTitle.alpha = 0;
+            self.detailScreenTitle.alpha = 0;
         }
     }];
 }
@@ -102,6 +114,15 @@
     _headerImageView.layer.cornerRadius = cornerRadius_20;
     _headerImageView.layer.maskedCorners = kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
     
+}
+
+- (void)setHeaderImageView:(UIImageView *)headerImageView {
+    [_headerImageView setImage:headerImageView];
+}
+
+- (void)setTitlePrompts:(CountryInformaton *)data {
+    [_mainScreenTitle setText:data.countryTitle];
+    [_detailScreenTitle setText:data.cityTitle];
 }
 
 @end

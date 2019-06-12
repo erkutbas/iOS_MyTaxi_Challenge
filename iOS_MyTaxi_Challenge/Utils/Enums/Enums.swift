@@ -94,6 +94,11 @@ enum VehicleType {
     case taxi
 }
 
+enum WarningType {
+    case countrySelection
+    case noVehicle
+}
+
 enum AnimationCaller {
     case outsider
     case sideButton
