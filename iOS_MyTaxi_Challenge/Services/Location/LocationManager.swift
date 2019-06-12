@@ -71,7 +71,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         self.didCLGeocoderDataGet = false
         
         getCurrentLocationData { (location) in
-            print("Location : \(location)")
             // didupdatelocations triggers more than once until it stopsupdatinglocation. That's why we need to keep clgeocoder function call in control. Because afterward it triggers a view controller presentation.
             if !self.didCLGeocoderDataGet {
                 self.didCLGeocoderDataGet = true
@@ -102,7 +101,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func startGettingLocationDataByAddress(address: String, completion: @escaping placeMarkCompletion) {
-        print("\(#function) address : \(address)")
         let clgeocoder = CLGeocoder()
         clgeocoder.geocodeAddressString(address) { (placeMarks, error) in
             if let error = error {
@@ -126,7 +124,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("\(#function)")
         guard let location = locations.last  else {
             return
         }

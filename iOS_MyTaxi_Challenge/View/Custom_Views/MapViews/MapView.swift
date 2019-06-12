@@ -106,8 +106,10 @@ extension MapView {
     }
     
     private func reArrangeViewTitles() {
-        self.mainSubject.text = LocalizedConstants.TitlePrompts.mapViewScreen
-        self.detailedInformation.text = LocalizedConstants.TitlePrompts.mapViewScreenDetail
+        DispatchQueue.main.async {
+            self.mainSubject.text = LocalizedConstants.TitlePrompts.mapViewScreen
+            self.detailedInformation.text = LocalizedConstants.TitlePrompts.mapViewScreenDetail
+        }
     }
     
     private func addBlurEffect() {
@@ -188,7 +190,6 @@ extension MapView {
     }
     
     private func focusMapAndLoadAnnotations() {
-        print("\(#function)")
         
         DispatchQueue.main.async {
             self.addAnnotationsToMapView()
@@ -238,10 +239,8 @@ extension MapView {
         
         switch status {
         case .process:
-            print("REFRESH BASLAR")
             self.refreshingView.activationManager(active: true)
         case .done:
-            print("REFRESH BITIR")
             self.refreshingView.activationManager(active: false)
         default:
             break
@@ -371,11 +370,6 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         print("\(#function)")
-        
-        print("NW : \(mapView.northWestCoordinate)")
-        print("NE : \(mapView.northEastCoordinate)")
-        print("SW : \(mapView.southWestCoordinate)")
-        print("SE : \(mapView.southEastCoordinate)")
         
         mapViewModel.updateMapView(apiCallData: ApiCallInputStruct(callType: .listOfVehiclesCallByInsider, urlString: CONSTANT.MY_TAXI_URLS.URLS.RAW_URL_POI_SERVICE, p2Lat: String(describing: mapView.northWestCoordinate.latitude), p2Lon: String(describing: mapView.southEastCoordinate.longitude), p1Lat: String(describing: mapView.southEastCoordinate.latitude), p1Lon: String(describing: mapView.northWestCoordinate.longitude)))
     }

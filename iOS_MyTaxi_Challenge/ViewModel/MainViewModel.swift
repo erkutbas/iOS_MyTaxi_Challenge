@@ -37,7 +37,6 @@ class MainViewModel: CommonViewModel {
         apiCallStatus.value = .process
         
         guard let urlRequest = ApiCallManager.shared.createUrlRequest(apiCallInputStruct: apiCallInputStruct) else { return }
-        print("urlRequest : \(urlRequest)")
         ApiCallManager.shared.startUrlRequest(PresentedCountryData.self
         , useCache: true, urlRequest: urlRequest) { (result) in
             self.handleGenericResponse(response: result)
@@ -46,7 +45,6 @@ class MainViewModel: CommonViewModel {
     }
     
     func getListOfVehicles(apiCallStruct: ApiCallInputStruct) {
-        print("\(#function)")
         
         poiListApicallStatus.value = .process
         self.retrieveCoordinateData(apiCallStruct: apiCallStruct)
@@ -60,7 +58,6 @@ class MainViewModel: CommonViewModel {
     }
     
     func handleGenericResponse<T>(response: Result<T, Error>) where T : Decodable, T : Encodable {
-        print("\(#function)")
        
         switch response {
         case .failure(let error):
@@ -85,10 +82,8 @@ class MainViewModel: CommonViewModel {
     }
     
     private func handlePoiListData(data: PoiListData) {
-        print("\(#function)")
         
         guard let poiList = data.poiList else { return }
-        print("Total Data : \(poiList.count)")
 
         var vehicleDataArray = Array<VehicleData>()
         for item in poiList {

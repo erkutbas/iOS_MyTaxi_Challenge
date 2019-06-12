@@ -158,10 +158,6 @@
     CGFloat yValue = (imageContainerViewHeight) - (scrollView.contentOffset.y + imageContainerViewHeight);
     CGFloat height = MIN(MAX(yValue, imageContainerVisibleHeight), UIScreen.mainScreen.bounds.size.height);
     
-    printf("yValue %2f :\n", yValue);
-    printf("height %2f :\n", height);
-    printf("scrollView.contentOffset.y %2f :\n", scrollView.contentOffset.y);
-    
     _topView.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, height);
     
     if (height <= imageContainerVisibleHeight) {

@@ -208,7 +208,6 @@ class BasePickerView: UIView {
     }
     
     func prepareViewConfigurations() {
-        print("yarro 2")
         addViews()
     }
     

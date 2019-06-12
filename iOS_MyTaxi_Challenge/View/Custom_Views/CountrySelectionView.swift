@@ -300,14 +300,12 @@ extension CountrySelectionView: UIGestureRecognizerDelegate {
 // MARK: - PickerProtocols
 extension CountrySelectionView: PickerProtocols {
     func getSelectedCountryInformation(countryData: CountryList) {
-        print("\(#function)")
         
         self.cityPickerView.setCitidata(cityList: countryData.cities)
         self.countrySelectionViewModel.setSelectedCountry(country: countryData)
     }
     
     func getSelectedCity(city: String?) {
-        print("\(#function) city : \(city)")
         self.countrySelectionViewModel.setSelectedCity(city: city)
     }
 }

@@ -28,7 +28,6 @@
 		A701D62022AA409A00CBF1BE /* ApiCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D61F22AA409A00CBF1BE /* ApiCallManager.swift */; };
 		A701D62222AA416B00CBF1BE /* PresentedCountryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D62122AA416B00CBF1BE /* PresentedCountryData.swift */; };
 		A714BE5C22A8E41A00A373DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714BE5B22A8E41A00A373DC /* AppDelegate.swift */; };
-		A714BE5E22A8E41A00A373DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714BE5D22A8E41A00A373DC /* ViewController.swift */; };
 		A714BE6322A8E41B00A373DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A714BE6222A8E41B00A373DC /* Assets.xcassets */; };
 		A714BE6622A8E41B00A373DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A714BE6422A8E41B00A373DC /* LaunchScreen.storyboard */; };
 		A75FF83822AA803200E2493E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF83722AA803200E2493E /* MainViewModel.swift */; };
@@ -98,7 +97,6 @@
 		A701D62122AA416B00CBF1BE /* PresentedCountryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedCountryData.swift; sourceTree = "<group>"; };
 		A714BE5822A8E41A00A373DC /* iOS_MyTaxi_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_MyTaxi_Challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A714BE5B22A8E41A00A373DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A714BE5D22A8E41A00A373DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A714BE6222A8E41B00A373DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A714BE6522A8E41B00A373DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A714BE6722A8E41B00A373DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 				A7A3091322A8E59000FEBABC /* View */,
 				A7A3091422A8E59700FEBABC /* ViewModel */,
 				A714BE5B22A8E41A00A373DC /* AppDelegate.swift */,
-				A714BE5D22A8E41A00A373DC /* ViewController.swift */,
 				A714BE6222A8E41B00A373DC /* Assets.xcassets */,
 				A714BE6422A8E41B00A373DC /* LaunchScreen.storyboard */,
 				A714BE6722A8E41B00A373DC /* Info.plist */,
@@ -656,7 +653,6 @@
 				A75FF83D22AA80B000E2493E /* Dynamic.swift in Sources */,
 				A701D60322A9B4FA00CBF1BE /* Structs.swift in Sources */,
 				A7EC3C1C22AD1C7200A0E26E /* CachedImageView.swift in Sources */,
-				A714BE5E22A8E41A00A373DC /* ViewController.swift in Sources */,
 				A7C1EE1022AF4458007CA706 /* ListDataTableViewCell.m in Sources */,
 				A7E46D9122ADC0BF006DE3A9 /* MKMapView+Extension.swift in Sources */,
 				A701D60622A9BD5200CBF1BE /* RefreshingView.swift in Sources */,

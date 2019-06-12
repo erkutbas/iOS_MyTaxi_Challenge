@@ -52,16 +52,18 @@ extension WarningViewController {
         
         guard let warningType = warningType else { return }
         
-        switch warningType {
-        case .countrySelection:
-            self.mainSubject.text = LocalizedConstants.PermissionPrompts.warning
-            self.detailedInformation.text = LocalizedConstants.PermissionPrompts.warningDetail
-        case .noVehicle:
-            self.mainSubject.text = LocalizedConstants.TitlePrompts.emptyData
-            self.detailedInformation.text = LocalizedConstants.TitlePrompts.emptyDataDetail
-        default:
-            self.mainSubject.text = LocalizedConstants.PermissionPrompts.warning
-            self.detailedInformation.text = LocalizedConstants.PermissionPrompts.warningDetail
+        DispatchQueue.main.async {
+            switch warningType {
+            case .countrySelection:
+                self.mainSubject.text = LocalizedConstants.PermissionPrompts.warning
+                self.detailedInformation.text = LocalizedConstants.PermissionPrompts.warningDetail
+            case .noVehicle:
+                self.mainSubject.text = LocalizedConstants.TitlePrompts.emptyData
+                self.detailedInformation.text = LocalizedConstants.TitlePrompts.emptyDataDetail
+            default:
+                self.mainSubject.text = LocalizedConstants.PermissionPrompts.warning
+                self.detailedInformation.text = LocalizedConstants.PermissionPrompts.warningDetail
+            }
         }
         
     }

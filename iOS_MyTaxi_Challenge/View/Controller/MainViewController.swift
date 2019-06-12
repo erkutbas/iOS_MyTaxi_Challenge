@@ -258,7 +258,6 @@ extension MainViewController {
     }
     
     private func changeBackgroundImage(urlString: String) {
-        print("\(#function) urlString \(urlString)")
         DispatchQueue.main.async {
             
             UIView.transition(with: self.viewControllerImage, duration: 0.5, options: .transitionCrossDissolve, animations: {
@@ -275,14 +274,16 @@ extension MainViewController {
     }
     
     private func presentWarningViewController(warningType: WarningType) {
-        let warningViewContoller = WarningViewController()
-        warningViewContoller.delegate = self
-        warningViewContoller.modalPresentationStyle = .overCurrentContext
-        warningViewContoller.modalTransitionStyle = .crossDissolve
-        warningViewContoller.warningType = warningType
         
-        self.present(warningViewContoller, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(warningViewContoller, animated: true)
+        DispatchQueue.main.async {
+            let warningViewContoller = WarningViewController()
+            warningViewContoller.delegate = self
+            warningViewContoller.modalPresentationStyle = .overCurrentContext
+            warningViewContoller.modalTransitionStyle = .crossDissolve
+            warningViewContoller.warningType = warningType
+            
+            self.present(warningViewContoller, animated: true, completion: nil)
+        }
         
     }
     
@@ -342,21 +343,10 @@ extension MainViewController {
 // MARK: - ViewAnimationTrigger
 extension MainViewController: ViewAnimationTrigger {
     func triggerAnimation(direction: Direction?) {
-        print("\(#function)")
         guard let direction = direction else { return }
         mapView.animatedFromOutside(direction: direction)
         
-        
-        print("KOKO direction : \(direction)")
         self.sideButtonView.outsideAnimationManager()
-//        switch direction {
-//        case .down:
-//            sideButtonView.outsideAnimationManager(direction: .right)
-//        case .up:
-//            sideButtonView.outsideAnimationManager(direction: .left)
-//        default:
-//            break
-//        }
 
     }
     
@@ -365,16 +355,7 @@ extension MainViewController: ViewAnimationTrigger {
     }
     
     func sideButtonAnimationTrigger(direction: Direction) {
-        print("MOKO direction : \(direction)")
         self.sideButtonView.outsideAnimationManager()
-//        switch direction {
-//        case .down:
-//            sideButtonView.outsideAnimationManager(direction: .right)
-//        case .up:
-//            sideButtonView.outsideAnimationManager(direction: .left)
-//        default:
-//            break
-//        }
         
     }
 

@@ -14,7 +14,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     
-    printf("ImageContainerView initiates");
     [self prepareViewConfigurations];
     
     return self;

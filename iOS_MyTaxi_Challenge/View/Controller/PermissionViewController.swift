@@ -41,8 +41,10 @@ extension PermissionViewController {
     }
     
     private func setPermissionViewPrompts() {
-        self.mainSubject.text = LocalizedConstants.PermissionPrompts.mainSubject
-        self.detailedInformation.text = LocalizedConstants.PermissionPrompts.detailedInformation
+        DispatchQueue.main.async {
+            self.mainSubject.text = LocalizedConstants.PermissionPrompts.mainSubject
+            self.detailedInformation.text = LocalizedConstants.PermissionPrompts.detailedInformation
+        }
     }
     
     private func setPermissionViewImages() {

@@ -69,13 +69,6 @@ class VehicleData: CommonPlaceData {
             self.heading = CONSTANT.NUMERICS.FLOAT_ZERO
         }
         
-        displayData()
-    }
-    
-    func displayData() {
-        print("id : \(id)")
-        print("state : \(state)")
-        
     }
     
 }

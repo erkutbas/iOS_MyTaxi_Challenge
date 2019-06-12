@@ -40,8 +40,6 @@ class ApiCallManager {
     
     private func taskHandler<T:Codable>(type: T.Type, useCache: Bool, urlRequest: URLRequest, completion: @escaping (Result<T, Error>) -> Void) {
         
-        print("\(#function) urlRequest : \(urlRequest)")
-        
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
                 print("error : \(error)")
@@ -77,7 +75,6 @@ class ApiCallManager {
                 let parsedData = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(parsedData))
             } catch let error {
-                print("Something goes terribly wrong : \(error)")
                 completion(.failure(error))
             }
             
@@ -88,15 +85,12 @@ class ApiCallManager {
     }
     
     private func checkDataExistsInCahce(urlRequest: URLRequest) -> Data? {
-        print("\(#function) urlRequest : \(urlRequest)")
         guard let cachedResponse = URLCache.shared.cachedResponse(for: urlRequest) else { return nil }
-        print("data : \(cachedResponse.data)")
         return cachedResponse.data
     }
     
     private func storeDataToCache(urlResponse: URLResponse, urlRequest: URLRequest, data: Data) {
         let cachedUrlResponse = CachedURLResponse(response: urlResponse, data: data)
-        print("stored")
         URLCache.shared.storeCachedResponse(cachedUrlResponse, for: urlRequest)
     }
     

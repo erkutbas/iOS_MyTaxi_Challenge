@@ -51,14 +51,15 @@ extension SideButtonView {
     }
     
     private func changeStackViewCostraints() {
-        print("Yarro ooooooo ")
         self.mainStackViewLeadingConstraint.constant = 10
     }
     
     private func changeMainStackViewPrompts() {
-        self.mainSubject.text = LocalizedConstants.TitlePrompts.listView
-        self.mainSubject.font = UIFont(name: "Avenir-Medium", size: 16)
-        self.detailedInformation.text = nil
+        DispatchQueue.main.async {
+            self.mainSubject.text = LocalizedConstants.TitlePrompts.listView
+            self.mainSubject.font = UIFont(name: "Avenir-Medium", size: 16)
+            self.detailedInformation.text = nil
+        }
     }
     
     private func reArrangeTopBarViewConstraint() {
@@ -69,22 +70,16 @@ extension SideButtonView {
     
     // outsider
     func outsideAnimationManager() {
-        print("\(#function) self.frame.width : \(self.frame.width)")
-        print("self.mainScreenBounds.width : \(self.mainScreenBounds.width)")
-        print("UIScreen.main.bounds.width : \(UIScreen.main.bounds.width)")
-        print("direction : \(self.direction)")
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             switch self.direction {
             case .left:
-                print("OSURUK")
                 self.frame = CGRect(x: self.mainScreenBounds.width - (UIScreen.main.bounds.width / 3) , y: self.frame.origin.y, width: CONSTANT.VIEW_FRAME_VALUES.SIDE_BUTTON_FRAME_WIDTH, height: self.frame.height)
                 self.arrangeCornerRadius(radius: 25, maskCorner: [.layerMinXMaxYCorner, .layerMinXMinYCorner])
                 //self.directionIcon.transform = .identity
                 self.direction = .right
                 
             case .right:
-                print("GOT")
                 self.frame = CGRect(x: self.mainScreenBounds.width, y: self.frame.origin.y, width: 0, height: self.frame.height)
                 self.arrangeCornerRadius(radius: 0, maskCorner: [.layerMinXMaxYCorner, .layerMinXMinYCorner])
                 //self.directionIcon.transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -94,7 +89,6 @@ extension SideButtonView {
             }
             
         }, completion: { (finish) in
-            print("BITTI")
             print("self.frame : \(self.frame)")
         })
     }
@@ -129,7 +123,6 @@ extension SideButtonView: UIGestureRecognizerDelegate {
     }
     
     @objc fileprivate func tapTriggered(_ sender: UITapGestureRecognizer) {
-        print("\(#function)")
         self.startAnimationCommon()
         self.delegate?.pushViewController()
         

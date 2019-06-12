@@ -33,7 +33,6 @@ class MapViewModel: CommonViewModel {
     }
     
     func returnRegionCoordinate() -> CLLocationCoordinate2D {
-        print("regionLocation.coordinate : \(regionLocation.coordinate)")
         return regionLocation.coordinate
     }
     
@@ -47,7 +46,6 @@ class MapViewModel: CommonViewModel {
         self.apiCallStatus.value = .process
         
         guard let urlRequest = ApiCallManager.shared.createUrlRequest(apiCallInputStruct: apiCallData) else { return }
-        print("UrlRequest : \(urlRequest)")
         
         ApiCallManager.shared.startUrlRequest(PoiListData.self, useCache: false, urlRequest: urlRequest) { (result) in
             self.handleGenericResponse(response: result)
@@ -70,7 +68,6 @@ class MapViewModel: CommonViewModel {
         print("\(#function)")
         
         guard let poiList = data.poiList else { return }
-        print("Total Data : \(poiList.count)")
         
         vehicleDataArray = Array<VehicleData>()
         for item in poiList {
