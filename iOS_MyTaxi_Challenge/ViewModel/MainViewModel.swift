@@ -172,4 +172,18 @@ class MainViewModel: CommonViewModel {
         
     }
     
+    func returnArrayDataForListView() -> NSMutableArray {
+        let tempArray: NSMutableArray = [];
+        
+        guard let arrayData = self.returnMapViewRequiredParams() else { return [] }
+        
+        for item in arrayData.vehicleArray {
+            
+            let vehicleInformation = VehicleInformation(id: String(describing: item.id), state: item.state.rawValue)
+            tempArray.add(vehicleInformation)
+        }
+        
+        return tempArray
+    }
+    
 }

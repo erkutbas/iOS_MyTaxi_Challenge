@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageContainerView.h"
+#import "ListDataViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UITableView *vehicleTableView;
 @property (strong, nonatomic) IBOutlet UIView *dismissBottomView;
 
+@property (strong, nonatomic) ListDataViewModel *viewModel;
+
+@property (strong, nonatomic) UIView *topView;
+@property (strong, nonatomic) ImageContainerView *imageContainerView;
+@property (strong, nonatomic) UIVisualEffectView *bottomBlurView;
 
 @end
 

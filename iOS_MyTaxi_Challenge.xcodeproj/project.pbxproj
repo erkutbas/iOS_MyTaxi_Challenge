@@ -52,10 +52,13 @@
 		A7A3092722A92A3600FEBABC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3092622A92A3600FEBABC /* MainViewController.swift */; };
 		A7C1EE1022AF4458007CA706 /* ListDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */; };
 		A7C1EE1222AF458C007CA706 /* ListData.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C1EE1122AF458C007CA706 /* ListData.storyboard */; };
-		A7C1EE1522AF484D007CA706 /* ListDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE1422AF484D007CA706 /* ListDataViewController.m */; };
 		A7C1EE1E22AF6578007CA706 /* ListVehicleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */; };
 		A7C1EE2222AF6D3E007CA706 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE2122AF6D3E007CA706 /* Constants.m */; };
 		A7C1EE2822AFEDBD007CA706 /* ImageContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE2722AFEDBD007CA706 /* ImageContainerView.m */; };
+		A7C1EE2B22B0B2E1007CA706 /* BottomDismissView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE2A22B0B2E1007CA706 /* BottomDismissView.m */; };
+		A7C1EE3122B0BBF0007CA706 /* VehicleListViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE3022B0BBF0007CA706 /* VehicleListViewData.m */; };
+		A7C1EE3522B0BFB2007CA706 /* ListDataViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE3422B0BFB2007CA706 /* ListDataViewModel.m */; };
+		A7C1EE3922B0CF53007CA706 /* VehicleInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE3822B0CF53007CA706 /* VehicleInformation.m */; };
 		A7E46D8622AD3867006DE3A9 /* PoiiListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8522AD3867006DE3A9 /* PoiiListData.swift */; };
 		A7E46D8822AD481E006DE3A9 /* VehicleAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8722AD481E006DE3A9 /* VehicleAnnotationView.swift */; };
 		A7E46D8B22AD488D006DE3A9 /* VehiclePointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */; };
@@ -120,14 +123,20 @@
 		A7C1EE0E22AF4458007CA706 /* ListDataTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDataTableViewCell.h; sourceTree = "<group>"; };
 		A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDataTableViewCell.m; sourceTree = "<group>"; };
 		A7C1EE1122AF458C007CA706 /* ListData.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ListData.storyboard; sourceTree = "<group>"; };
-		A7C1EE1322AF484D007CA706 /* ListDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDataViewController.h; sourceTree = "<group>"; };
-		A7C1EE1422AF484D007CA706 /* ListDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDataViewController.m; sourceTree = "<group>"; };
 		A7C1EE1C22AF6578007CA706 /* ListVehicleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListVehicleViewController.h; sourceTree = "<group>"; };
 		A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListVehicleViewController.m; sourceTree = "<group>"; };
 		A7C1EE2122AF6D3E007CA706 /* Constants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		A7C1EE2322AF6D49007CA706 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		A7C1EE2622AFEDBD007CA706 /* ImageContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageContainerView.h; sourceTree = "<group>"; };
 		A7C1EE2722AFEDBD007CA706 /* ImageContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageContainerView.m; sourceTree = "<group>"; };
+		A7C1EE2922B0B2E1007CA706 /* BottomDismissView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BottomDismissView.h; sourceTree = "<group>"; };
+		A7C1EE2A22B0B2E1007CA706 /* BottomDismissView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BottomDismissView.m; sourceTree = "<group>"; };
+		A7C1EE2F22B0BBF0007CA706 /* VehicleListViewData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleListViewData.h; sourceTree = "<group>"; };
+		A7C1EE3022B0BBF0007CA706 /* VehicleListViewData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleListViewData.m; sourceTree = "<group>"; };
+		A7C1EE3322B0BFB2007CA706 /* ListDataViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDataViewModel.h; sourceTree = "<group>"; };
+		A7C1EE3422B0BFB2007CA706 /* ListDataViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDataViewModel.m; sourceTree = "<group>"; };
+		A7C1EE3722B0CF53007CA706 /* VehicleInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VehicleInformation.h; sourceTree = "<group>"; };
+		A7C1EE3822B0CF53007CA706 /* VehicleInformation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VehicleInformation.m; sourceTree = "<group>"; };
 		A7E46D8522AD3867006DE3A9 /* PoiiListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoiiListData.swift; sourceTree = "<group>"; };
 		A7E46D8722AD481E006DE3A9 /* VehicleAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAnnotationView.swift; sourceTree = "<group>"; };
 		A7E46D8A22AD488D006DE3A9 /* VehiclePointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePointAnnotation.swift; sourceTree = "<group>"; };
@@ -361,6 +370,7 @@
 				A7A3092822A92D8D00FEBABC /* StoryBoard */,
 				A7C1EE2422AFE2E6007CA706 /* Model */,
 				A7A3091E22A9296700FEBABC /* View */,
+				A7C1EE3222B0BEB5007CA706 /* ViewModel */,
 			);
 			path = ListViewCodes;
 			sourceTree = "<group>";
@@ -368,12 +378,9 @@
 		A7A3091E22A9296700FEBABC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A7C1EE2C22B0B79D007CA706 /* TableViewCells */,
 				A7C1EE2522AFED9A007CA706 /* CustomViews */,
 				A7E46DBC22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h */,
-				A7C1EE0E22AF4458007CA706 /* ListDataTableViewCell.h */,
-				A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */,
-				A7C1EE1322AF484D007CA706 /* ListDataViewController.h */,
-				A7C1EE1422AF484D007CA706 /* ListDataViewController.m */,
 				A7C1EE1C22AF6578007CA706 /* ListVehicleViewController.h */,
 				A7C1EE1D22AF6578007CA706 /* ListVehicleViewController.m */,
 			);
@@ -434,6 +441,10 @@
 		A7C1EE2422AFE2E6007CA706 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A7C1EE2F22B0BBF0007CA706 /* VehicleListViewData.h */,
+				A7C1EE3022B0BBF0007CA706 /* VehicleListViewData.m */,
+				A7C1EE3722B0CF53007CA706 /* VehicleInformation.h */,
+				A7C1EE3822B0CF53007CA706 /* VehicleInformation.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -443,8 +454,28 @@
 			children = (
 				A7C1EE2622AFEDBD007CA706 /* ImageContainerView.h */,
 				A7C1EE2722AFEDBD007CA706 /* ImageContainerView.m */,
+				A7C1EE2922B0B2E1007CA706 /* BottomDismissView.h */,
+				A7C1EE2A22B0B2E1007CA706 /* BottomDismissView.m */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		A7C1EE2C22B0B79D007CA706 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				A7C1EE0E22AF4458007CA706 /* ListDataTableViewCell.h */,
+				A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		A7C1EE3222B0BEB5007CA706 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A7C1EE3322B0BFB2007CA706 /* ListDataViewModel.h */,
+				A7C1EE3422B0BFB2007CA706 /* ListDataViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A7E46D8922AD486B006DE3A9 /* MapViews */ = {
@@ -608,6 +639,7 @@
 				A7C1EE1E22AF6578007CA706 /* ListVehicleViewController.m in Sources */,
 				A7E46D8822AD481E006DE3A9 /* VehicleAnnotationView.swift in Sources */,
 				A7E46D8F22AD6C23006DE3A9 /* VehicleData.swift in Sources */,
+				A7C1EE3922B0CF53007CA706 /* VehicleInformation.m in Sources */,
 				A76E0CFE22AB608800BD577D /* CityPickerView.swift in Sources */,
 				A76EB36E22AB03D4006D7DEA /* MapView.swift in Sources */,
 				A75FF84922AAB8C300E2493E /* TempBase.swift in Sources */,
@@ -623,7 +655,9 @@
 				A701D60D22A9C6D600CBF1BE /* Constants.swift in Sources */,
 				A76E0D0522AC015F00BD577D /* CityPickerViewModel.swift in Sources */,
 				A76E0D0322ABE98E00BD577D /* CountryPickerViewModel.swift in Sources */,
+				A7C1EE3122B0BBF0007CA706 /* VehicleListViewData.m in Sources */,
 				A7C1EE2222AF6D3E007CA706 /* Constants.m in Sources */,
+				A7C1EE2B22B0B2E1007CA706 /* BottomDismissView.m in Sources */,
 				A701D5F222A9ABF100CBF1BE /* PermissionViewController.swift in Sources */,
 				A7E46DC222AEB478006DE3A9 /* SideButtonView.swift in Sources */,
 				A75FF84F22AACE2A00E2493E /* UIView+Extension.swift in Sources */,
@@ -632,11 +666,11 @@
 				A7E46D8D22AD6735006DE3A9 /* MapViewModel.swift in Sources */,
 				A75FF83B22AA805D00E2493E /* Protocols.swift in Sources */,
 				A76E0D0022AB6E0200BD577D /* CountrySelectionViewModel.swift in Sources */,
+				A7C1EE3522B0BFB2007CA706 /* ListDataViewModel.m in Sources */,
 				A714BE5C22A8E41A00A373DC /* AppDelegate.swift in Sources */,
 				A75FF84C22AAC6B600E2493E /* WarningViewController.swift in Sources */,
 				A7E46D8622AD3867006DE3A9 /* PoiiListData.swift in Sources */,
 				A7E46D8B22AD488D006DE3A9 /* VehiclePointAnnotation.swift in Sources */,
-				A7C1EE1522AF484D007CA706 /* ListDataViewController.m in Sources */,
 				A701D62222AA416B00CBF1BE /* PresentedCountryData.swift in Sources */,
 				A701D5F022A9A3BD00CBF1BE /* LocationManager.swift in Sources */,
 				A7A3092722A92A3600FEBABC /* MainViewController.swift in Sources */,

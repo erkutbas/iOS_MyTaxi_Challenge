@@ -85,9 +85,9 @@ enum MapUpdateTrigger {
     case none
 }
 
-enum VehicleState {
-    case active
-    case inActive
+enum VehicleState: String {
+    case active = "active"
+    case inActive = "inactive"
 }
 
 enum VehicleType {

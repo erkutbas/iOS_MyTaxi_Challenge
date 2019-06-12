@@ -10,12 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ImageContainerView : UIVew
+@interface ImageContainerView : UIView
 
-@property (strong, nonatomic) UIView *imageContainerView;
 @property (strong, nonatomic) UIImageView *headerImageView;
 @property (strong, nonatomic) UIVisualEffectView *blurEffectView;
 @property (strong, nonatomic) UILabel *screenTitle;
+
+- (void) blurViewActivationManager:(BOOL *)value;
+- (void) screenTitleActivationManager:(BOOL *)value;
 
 @end
 

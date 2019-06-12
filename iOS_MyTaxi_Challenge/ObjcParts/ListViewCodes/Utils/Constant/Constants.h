@@ -9,9 +9,17 @@
 #ifndef Constants_h
 #define Constants_h
 
-extern const CGFloat statusBarHeight;
 extern const CGFloat imageContainerViewHeight;
 extern const CGFloat imageContainerVisibleHeight;
+extern const CGFloat cornerRadius_10;
+extern const CGFloat cornerRadius_20;
+extern const CGFloat cornerRadius_40;
+extern const CGFloat cornerRadius_50;
+extern const CGFloat cornerRadius_60;
+extern const CGFloat rowHeight_60;
+extern const CGFloat rowHeight_70;
+extern const CGFloat bottomEdge_80;
+
 
 #endif /* Constants_h */
 

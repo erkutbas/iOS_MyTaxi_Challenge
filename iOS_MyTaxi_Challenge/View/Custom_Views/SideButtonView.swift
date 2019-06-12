@@ -87,6 +87,28 @@ extension SideButtonView {
             
         }, completion: nil)
     }
+
+    // outsider functions
+    func sideButtonActivationManager(active: Bool) {
+        DispatchQueue.main.async {
+            
+            UIView.transition(with: self, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                if active {
+                    self.backgroundColor = #colorLiteral(red: 0.831372549, green: 0.4980392157, blue: 0.6509803922, alpha: 1)
+                } else {
+                    self.backgroundColor = #colorLiteral(red: 0.2588235294, green: 0.1882352941, blue: 0.3137254902, alpha: 1)
+                }
+            }, completion: { (finish) in
+                self.isUserInteractionEnabled = active
+            })
+            
+            if active {
+                
+            }
+            
+            
+        }
+    }
     
 }
 

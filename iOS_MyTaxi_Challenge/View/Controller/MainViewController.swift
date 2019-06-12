@@ -47,7 +47,6 @@ class MainViewController: UIViewController {
         temp.isUserInteractionEnabled = true
         temp.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         temp.setTitle("ObjcViewController", for: UIControl.State.normal)
-        temp.addTarget(self, action: Selector.triggerObjcViewController, for: UIControl.Event.touchUpInside)
         return temp
     }()
     
@@ -60,8 +59,6 @@ class MainViewController: UIViewController {
         temp.alignment = .fill
         temp.axis = .vertical
         temp.distribution = .fillProportionally
-        
-        temp.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector.triggerObjcViewController))
         
         return temp
     }()
@@ -103,12 +100,6 @@ class MainViewController: UIViewController {
         initialOperations()
     }
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        sideButtonAnimationTrigger(animationParams: BottomAnimationsParams(callerType: .sideButton, direction: .up))
-//
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
@@ -135,7 +126,6 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     private func prepareViewControllerSettings() {
-        //addButton()
         configureViewControllerSettings()
         addViews()
         addMainBackgroundImage()
@@ -182,22 +172,6 @@ extension MainViewController {
         guard let latitude = CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.LATITUDE) else { return }
         guard let longitude = CLLocationDegrees(exactly: CONSTANT.MY_TAXI_URLS.DEFAULT_HAMBURG_LOCATIONS.LONGITUDE) else { return }
         self.viewModel.getListOfVehicles(apiCallStruct: ApiCallInputStruct(callType: .listOfVehiclesDefault, urlString: CONSTANT.MY_TAXI_URLS.URLS.DEFAULT_HAMBURG_SEARCH_URL, coordinate: CLLocation(latitude: latitude, longitude: longitude)))
-    }
-    
-    private func addButton() {
-        self.view.addSubview(button)
-        NSLayoutConstraint.activate([
-            
-            button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            
-            ])
-    }
-    
-    @objc fileprivate func triggerObjcViewController(_ sender: UITapGestureRecognizer) {
-        let objcViewController = ListDataViewController()
-        self.navigationController?.pushViewController(objcViewController, animated: true)
-        
     }
     
     private func addViews() {
@@ -407,14 +381,11 @@ extension MainViewController: ViewControllerPresentationProtocol {
 //        self.navigationController?.pushViewController(listDataViewController, animated: true)
         let storyboard = UIStoryboard(name: "ListData", bundle: nil)
         let listDataViewController = storyboard.instantiateViewController(withIdentifier: "identifierTakasi") as! ListVehicleViewController
+        
+        listDataViewController.viewModel = ListDataViewModel(arrayData: self.viewModel.returnArrayDataForListView())
         self.present(listDataViewController, animated: true, completion: nil)
 //        self.navigationController?.pushViewController(listDataViewController, animated: true)
     }
     
-    
-}
-
-fileprivate extension Selector {
-    static let triggerObjcViewController = #selector(MainViewController.triggerObjcViewController)
 }
 

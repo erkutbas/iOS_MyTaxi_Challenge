@@ -12,3 +12,11 @@
 
 CGFloat imageContainerViewHeight = 200;
 CGFloat imageContainerVisibleHeight = 70;
+CGFloat cornerRadius_10 = 10;
+CGFloat cornerRadius_20 = 20;
+CGFloat cornerRadius_40 = 40;
+CGFloat cornerRadius_50 = 50;
+CGFloat cornerRadius_60 = 60;
+CGFloat rowHeight_60 = 60;
+CGFloat rowHeight_70 = 70;
+CGFloat bottomEdge_80 = 80;
