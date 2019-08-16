@@ -19,12 +19,6 @@
 		A701D60622A9BD5200CBF1BE /* RefreshingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D60522A9BD5200CBF1BE /* RefreshingView.swift */; };
 		A701D60922A9BDD100CBF1BE /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D60822A9BDD100CBF1BE /* PermissionManager.swift */; };
 		A701D60D22A9C6D600CBF1BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D60C22A9C6D600CBF1BE /* Constants.swift */; };
-		A701D61222A9C82900CBF1BE /* placeholder_location.png in Resources */ = {isa = PBXBuildFile; fileRef = A701D60E22A9C82800CBF1BE /* placeholder_location.png */; };
-		A701D61322A9C82900CBF1BE /* location.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A701D60F22A9C82800CBF1BE /* location.jpg */; };
-		A701D61422A9C82900CBF1BE /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = A701D61022A9C82900CBF1BE /* tick.png */; };
-		A701D61522A9C82900CBF1BE /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = A701D61122A9C82900CBF1BE /* cross.png */; };
-		A701D61722A9C9E300CBF1BE /* taxiSample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A701D61622A9C9E300CBF1BE /* taxiSample.jpg */; };
-		A701D61D22A9CD2200CBF1BE /* blurredTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = A701D61C22A9CD2100CBF1BE /* blurredTaxi.png */; };
 		A701D62022AA409A00CBF1BE /* ApiCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D61F22AA409A00CBF1BE /* ApiCallManager.swift */; };
 		A701D62222AA416B00CBF1BE /* PresentedCountryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A701D62122AA416B00CBF1BE /* PresentedCountryData.swift */; };
 		A714BE5C22A8E41A00A373DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714BE5B22A8E41A00A373DC /* AppDelegate.swift */; };
@@ -33,7 +27,6 @@
 		A75FF83822AA803200E2493E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF83722AA803200E2493E /* MainViewModel.swift */; };
 		A75FF83B22AA805D00E2493E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF83A22AA805D00E2493E /* Protocols.swift */; };
 		A75FF83D22AA80B000E2493E /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF83C22AA80B000E2493E /* Dynamic.swift */; };
-		A75FF84122AAA22700E2493E /* mainVC.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A75FF84022AAA22600E2493E /* mainVC.jpg */; };
 		A75FF84922AAB8C300E2493E /* TempBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF84822AAB8C300E2493E /* TempBase.swift */; };
 		A75FF84C22AAC6B600E2493E /* WarningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF84B22AAC6B600E2493E /* WarningViewController.swift */; };
 		A75FF84F22AACE2A00E2493E /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75FF84E22AACE2A00E2493E /* UIView+Extension.swift */; };
@@ -42,11 +35,19 @@
 		A76E0D0022AB6E0200BD577D /* CountrySelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E0CFF22AB6E0200BD577D /* CountrySelectionViewModel.swift */; };
 		A76E0D0322ABE98E00BD577D /* CountryPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E0D0222ABE98E00BD577D /* CountryPickerViewModel.swift */; };
 		A76E0D0522AC015F00BD577D /* CityPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76E0D0422AC015F00BD577D /* CityPickerViewModel.swift */; };
-		A76E0D0722AC7FAE00BD577D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A76E0D0622AC7FAE00BD577D /* check.png */; };
-		A76EB36A22AAD555006D7DEA /* warning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A76EB36922AAD555006D7DEA /* warning.jpg */; };
 		A76EB36E22AB03D4006D7DEA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB36D22AB03D4006D7DEA /* MapView.swift */; };
 		A76EB37022AB1BA0006D7DEA /* CountrySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */; };
 		A76EB37222AB443E006D7DEA /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */; };
+		A79B19E22306E4D6002A02B0 /* location.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A79B19D92306E4D5002A02B0 /* location.jpg */; };
+		A79B19E32306E4D6002A02B0 /* placeholder_location.png in Resources */ = {isa = PBXBuildFile; fileRef = A79B19DA2306E4D5002A02B0 /* placeholder_location.png */; };
+		A79B19E42306E4D6002A02B0 /* mainVC.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A79B19DB2306E4D5002A02B0 /* mainVC.jpg */; };
+		A79B19E52306E4D6002A02B0 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = A79B19DC2306E4D6002A02B0 /* cross.png */; };
+		A79B19E62306E4D6002A02B0 /* tick.png in Resources */ = {isa = PBXBuildFile; fileRef = A79B19DD2306E4D6002A02B0 /* tick.png */; };
+		A79B19E72306E4D6002A02B0 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = A79B19DE2306E4D6002A02B0 /* check.png */; };
+		A79B19E82306E4D6002A02B0 /* blurredTaxi.png in Resources */ = {isa = PBXBuildFile; fileRef = A79B19DF2306E4D6002A02B0 /* blurredTaxi.png */; };
+		A79B19E92306E4D6002A02B0 /* warning.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A79B19E02306E4D6002A02B0 /* warning.jpg */; };
+		A79B19EA2306E4D6002A02B0 /* taxiSample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A79B19E12306E4D6002A02B0 /* taxiSample.jpg */; };
+		A79B19F22306E68E002A02B0 /* iOS_MyTaxi_ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79B19F12306E68E002A02B0 /* iOS_MyTaxi_ChallengeTests.swift */; };
 		A7A3091B22A8E63800FEBABC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3091A22A8E63800FEBABC /* Enums.swift */; };
 		A7A3092722A92A3600FEBABC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3092622A92A3600FEBABC /* MainViewController.swift */; };
 		A7C1EE1022AF4458007CA706 /* ListDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C1EE0F22AF4458007CA706 /* ListDataTableViewCell.m */; };
@@ -70,6 +71,16 @@
 		A7EC3C1F22AD1DA600A0E26E /* DiscardableImageCacheItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EC3C1E22AD1DA600A0E26E /* DiscardableImageCacheItem.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A79B19F42306E68E002A02B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A714BE5022A8E41900A373DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A714BE5722A8E41A00A373DC;
+			remoteInfo = iOS_MyTaxi_Challenge;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		69DD2D23930B75C38BB4A239 /* Pods_iOS_MyTaxi_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_MyTaxi_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E125676A9025A6C0ED8C161 /* Pods-iOS_MyTaxi_Challenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_MyTaxi_Challenge.release.xcconfig"; path = "Target Support Files/Pods-iOS_MyTaxi_Challenge/Pods-iOS_MyTaxi_Challenge.release.xcconfig"; sourceTree = "<group>"; };
@@ -87,12 +98,6 @@
 		A701D60522A9BD5200CBF1BE /* RefreshingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshingView.swift; sourceTree = "<group>"; };
 		A701D60822A9BDD100CBF1BE /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		A701D60C22A9C6D600CBF1BE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		A701D60E22A9C82800CBF1BE /* placeholder_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder_location.png; path = ../../../../iOS_Coding_Challange_final/iOS_OpenSky_BiTaksi_Challange/iOS_OpenSky_BiTaksi_Challange/Resources/Images/placeholder_location.png; sourceTree = "<group>"; };
-		A701D60F22A9C82800CBF1BE /* location.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = location.jpg; path = ../../../../iOS_Coding_Challange_final/iOS_OpenSky_BiTaksi_Challange/iOS_OpenSky_BiTaksi_Challange/Resources/Images/location.jpg; sourceTree = "<group>"; };
-		A701D61022A9C82900CBF1BE /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tick.png; path = ../../../../iOS_Coding_Challange_final/iOS_OpenSky_BiTaksi_Challange/iOS_OpenSky_BiTaksi_Challange/Resources/Images/tick.png; sourceTree = "<group>"; };
-		A701D61122A9C82900CBF1BE /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cross.png; path = ../../../../iOS_Coding_Challange_final/iOS_OpenSky_BiTaksi_Challange/iOS_OpenSky_BiTaksi_Challange/Resources/Images/cross.png; sourceTree = "<group>"; };
-		A701D61622A9C9E300CBF1BE /* taxiSample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = taxiSample.jpg; path = ../../../../taxiSample.jpg; sourceTree = "<group>"; };
-		A701D61C22A9CD2100CBF1BE /* blurredTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blurredTaxi.png; path = ../../../../1x/blurredTaxi.png; sourceTree = "<group>"; };
 		A701D61F22AA409A00CBF1BE /* ApiCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCallManager.swift; sourceTree = "<group>"; };
 		A701D62122AA416B00CBF1BE /* PresentedCountryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedCountryData.swift; sourceTree = "<group>"; };
 		A714BE5822A8E41A00A373DC /* iOS_MyTaxi_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_MyTaxi_Challenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +108,6 @@
 		A75FF83722AA803200E2493E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A75FF83A22AA805D00E2493E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		A75FF83C22AA80B000E2493E /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
-		A75FF84022AAA22600E2493E /* mainVC.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mainVC.jpg; path = ../../../../../Downloads/mainVC.jpg; sourceTree = "<group>"; };
 		A75FF84822AAB8C300E2493E /* TempBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempBase.swift; sourceTree = "<group>"; };
 		A75FF84B22AAC6B600E2493E /* WarningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningViewController.swift; sourceTree = "<group>"; };
 		A75FF84E22AACE2A00E2493E /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -112,11 +116,21 @@
 		A76E0CFF22AB6E0200BD577D /* CountrySelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectionViewModel.swift; sourceTree = "<group>"; };
 		A76E0D0222ABE98E00BD577D /* CountryPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerViewModel.swift; sourceTree = "<group>"; };
 		A76E0D0422AC015F00BD577D /* CityPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewModel.swift; sourceTree = "<group>"; };
-		A76E0D0622AC7FAE00BD577D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = ../../../../check.png; sourceTree = "<group>"; };
-		A76EB36922AAD555006D7DEA /* warning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = warning.jpg; path = ../../../../../Downloads/warning.jpg; sourceTree = "<group>"; };
 		A76EB36D22AB03D4006D7DEA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A76EB36F22AB1BA0006D7DEA /* CountrySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectionView.swift; sourceTree = "<group>"; };
 		A76EB37122AB443E006D7DEA /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		A79B19D92306E4D5002A02B0 /* location.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = location.jpg; path = ../../../../../Desktop/Images/location.jpg; sourceTree = "<group>"; };
+		A79B19DA2306E4D5002A02B0 /* placeholder_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder_location.png; path = ../../../../../Desktop/Images/placeholder_location.png; sourceTree = "<group>"; };
+		A79B19DB2306E4D5002A02B0 /* mainVC.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = mainVC.jpg; path = ../../../../../Desktop/Images/mainVC.jpg; sourceTree = "<group>"; };
+		A79B19DC2306E4D6002A02B0 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cross.png; path = ../../../../../Desktop/Images/cross.png; sourceTree = "<group>"; };
+		A79B19DD2306E4D6002A02B0 /* tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tick.png; path = ../../../../../Desktop/Images/tick.png; sourceTree = "<group>"; };
+		A79B19DE2306E4D6002A02B0 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = ../../../../../Desktop/Images/check.png; sourceTree = "<group>"; };
+		A79B19DF2306E4D6002A02B0 /* blurredTaxi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blurredTaxi.png; path = ../../../../../Desktop/Images/blurredTaxi.png; sourceTree = "<group>"; };
+		A79B19E02306E4D6002A02B0 /* warning.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = warning.jpg; path = ../../../../../Desktop/Images/warning.jpg; sourceTree = "<group>"; };
+		A79B19E12306E4D6002A02B0 /* taxiSample.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = taxiSample.jpg; path = ../../../../../Desktop/Images/taxiSample.jpg; sourceTree = "<group>"; };
+		A79B19EF2306E68D002A02B0 /* iOS_MyTaxi_ChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_MyTaxi_ChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A79B19F12306E68E002A02B0 /* iOS_MyTaxi_ChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_MyTaxi_ChallengeTests.swift; sourceTree = "<group>"; };
+		A79B19F32306E68E002A02B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7A3091A22A8E63800FEBABC /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		A7A3092622A92A3600FEBABC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A7C1EE0E22AF4458007CA706 /* ListDataTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDataTableViewCell.h; sourceTree = "<group>"; };
@@ -158,6 +172,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A79B19EC2306E68D002A02B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -184,21 +205,22 @@
 			children = (
 				A701D5ED22A9A39A00CBF1BE /* Images */,
 			);
-			path = Resources;
+			name = Resources;
+			path = ../Resources;
 			sourceTree = "<group>";
 		};
 		A701D5ED22A9A39A00CBF1BE /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A76E0D0622AC7FAE00BD577D /* check.png */,
-				A76EB36922AAD555006D7DEA /* warning.jpg */,
-				A75FF84022AAA22600E2493E /* mainVC.jpg */,
-				A701D61C22A9CD2100CBF1BE /* blurredTaxi.png */,
-				A701D61622A9C9E300CBF1BE /* taxiSample.jpg */,
-				A701D61122A9C82900CBF1BE /* cross.png */,
-				A701D60F22A9C82800CBF1BE /* location.jpg */,
-				A701D60E22A9C82800CBF1BE /* placeholder_location.png */,
-				A701D61022A9C82900CBF1BE /* tick.png */,
+				A79B19DF2306E4D6002A02B0 /* blurredTaxi.png */,
+				A79B19DE2306E4D6002A02B0 /* check.png */,
+				A79B19DC2306E4D6002A02B0 /* cross.png */,
+				A79B19D92306E4D5002A02B0 /* location.jpg */,
+				A79B19DB2306E4D5002A02B0 /* mainVC.jpg */,
+				A79B19DA2306E4D5002A02B0 /* placeholder_location.png */,
+				A79B19E12306E4D6002A02B0 /* taxiSample.jpg */,
+				A79B19DD2306E4D6002A02B0 /* tick.png */,
+				A79B19E02306E4D6002A02B0 /* warning.jpg */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -248,7 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				A714BE5A22A8E41A00A373DC /* iOS_MyTaxi_Challenge */,
-				A701D5EC22A9A38900CBF1BE /* Resources */,
+				A79B19F02306E68E002A02B0 /* iOS_MyTaxi_ChallengeTests */,
 				A714BE5922A8E41A00A373DC /* Products */,
 				C9086C4341984F672E10F21D /* Pods */,
 				4E912C272CC27C3FF33CA2DA /* Frameworks */,
@@ -259,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				A714BE5822A8E41A00A373DC /* iOS_MyTaxi_Challenge.app */,
+				A79B19EF2306E68D002A02B0 /* iOS_MyTaxi_ChallengeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -266,6 +289,7 @@
 		A714BE5A22A8E41A00A373DC /* iOS_MyTaxi_Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				A701D5EC22A9A38900CBF1BE /* Resources */,
 				A7A3091C22A9295600FEBABC /* ObjcParts */,
 				A7A3091822A8E62C00FEBABC /* Utils */,
 				A7A3091522A8E5A200FEBABC /* Services */,
@@ -297,6 +321,15 @@
 				A7E46D9022ADC0BF006DE3A9 /* MKMapView+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		A79B19F02306E68E002A02B0 /* iOS_MyTaxi_ChallengeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A79B19F12306E68E002A02B0 /* iOS_MyTaxi_ChallengeTests.swift */,
+				A79B19F32306E68E002A02B0 /* Info.plist */,
+			);
+			path = iOS_MyTaxi_ChallengeTests;
 			sourceTree = "<group>";
 		};
 		A7A3091222A8E58900FEBABC /* Model */ = {
@@ -535,19 +568,41 @@
 			productReference = A714BE5822A8E41A00A373DC /* iOS_MyTaxi_Challenge.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A79B19EE2306E68D002A02B0 /* iOS_MyTaxi_ChallengeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A79B19F62306E68E002A02B0 /* Build configuration list for PBXNativeTarget "iOS_MyTaxi_ChallengeTests" */;
+			buildPhases = (
+				A79B19EB2306E68D002A02B0 /* Sources */,
+				A79B19EC2306E68D002A02B0 /* Frameworks */,
+				A79B19ED2306E68D002A02B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A79B19F52306E68E002A02B0 /* PBXTargetDependency */,
+			);
+			name = iOS_MyTaxi_ChallengeTests;
+			productName = iOS_MyTaxi_ChallengeTests;
+			productReference = A79B19EF2306E68D002A02B0 /* iOS_MyTaxi_ChallengeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A714BE5022A8E41900A373DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Erkut Baş";
 				TargetAttributes = {
 					A714BE5722A8E41A00A373DC = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
+					};
+					A79B19EE2306E68D002A02B0 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = A714BE5722A8E41A00A373DC;
 					};
 				};
 			};
@@ -566,6 +621,7 @@
 			projectRoot = "";
 			targets = (
 				A714BE5722A8E41A00A373DC /* iOS_MyTaxi_Challenge */,
+				A79B19EE2306E68D002A02B0 /* iOS_MyTaxi_ChallengeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -575,20 +631,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A76EB36A22AAD555006D7DEA /* warning.jpg in Resources */,
-				A701D61522A9C82900CBF1BE /* cross.png in Resources */,
-				A701D61D22A9CD2200CBF1BE /* blurredTaxi.png in Resources */,
+				A79B19E52306E4D6002A02B0 /* cross.png in Resources */,
+				A79B19E22306E4D6002A02B0 /* location.jpg in Resources */,
 				A714BE6622A8E41B00A373DC /* LaunchScreen.storyboard in Resources */,
+				A79B19E32306E4D6002A02B0 /* placeholder_location.png in Resources */,
+				A79B19E72306E4D6002A02B0 /* check.png in Resources */,
 				A701D5F722A9AE7400CBF1BE /* Localizable.strings in Resources */,
 				A714BE6322A8E41B00A373DC /* Assets.xcassets in Resources */,
-				A701D61322A9C82900CBF1BE /* location.jpg in Resources */,
-				A701D61222A9C82900CBF1BE /* placeholder_location.png in Resources */,
-				A701D61422A9C82900CBF1BE /* tick.png in Resources */,
-				A75FF84122AAA22700E2493E /* mainVC.jpg in Resources */,
+				A79B19E62306E4D6002A02B0 /* tick.png in Resources */,
+				A79B19E82306E4D6002A02B0 /* blurredTaxi.png in Resources */,
 				A7C1EE1222AF458C007CA706 /* ListData.storyboard in Resources */,
-				A76E0D0722AC7FAE00BD577D /* check.png in Resources */,
+				A79B19E92306E4D6002A02B0 /* warning.jpg in Resources */,
+				A79B19EA2306E4D6002A02B0 /* taxiSample.jpg in Resources */,
 				A7E46DBD22AE036A006DE3A9 /* iOS_MyTaxi_Challenge-Bridging-Header.h in Resources */,
-				A701D61722A9C9E300CBF1BE /* taxiSample.jpg in Resources */,
+				A79B19E42306E4D6002A02B0 /* mainVC.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A79B19ED2306E68D002A02B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,7 +753,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A79B19EB2306E68D002A02B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A79B19F22306E68E002A02B0 /* iOS_MyTaxi_ChallengeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A79B19F52306E68E002A02B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A714BE5722A8E41A00A373DC /* iOS_MyTaxi_Challenge */;
+			targetProxy = A79B19F42306E68E002A02B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A701D5F922A9AE7400CBF1BE /* Localizable.strings */ = {
@@ -877,6 +956,48 @@
 			};
 			name = Release;
 		};
+		A79B19F72306E68E002A02B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2S8ZA3864V;
+				INFOPLIST_FILE = iOS_MyTaxi_ChallengeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.catchu.iOS-MyTaxi-ChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS_MyTaxi_Challenge.app/iOS_MyTaxi_Challenge";
+			};
+			name = Debug;
+		};
+		A79B19F82306E68E002A02B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2S8ZA3864V;
+				INFOPLIST_FILE = iOS_MyTaxi_ChallengeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.catchu.iOS-MyTaxi-ChallengeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS_MyTaxi_Challenge.app/iOS_MyTaxi_Challenge";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -894,6 +1015,15 @@
 			buildConfigurations = (
 				A714BE6B22A8E41B00A373DC /* Debug */,
 				A714BE6C22A8E41B00A373DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A79B19F62306E68E002A02B0 /* Build configuration list for PBXNativeTarget "iOS_MyTaxi_ChallengeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A79B19F72306E68E002A02B0 /* Debug */,
+				A79B19F82306E68E002A02B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
