@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.isUserInteractionEnabled = false
         return temp
+        
     }()
     
     lazy var viewControllerImage: CachedImageView = {
